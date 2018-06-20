@@ -1,0 +1,32 @@
+package org.zmsoft.jfp.framework.security.value;
+
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+
+/**
+ * 加密解密工具类
+ * 
+ * @author zmsoft
+ * @since 0.1.0
+ * @version 4.1.1 2016/12/20
+ * @version 3.2.1 2016/8/9
+ * @version 0.1.0 2014/2/8
+ * @see <PasswordHelper>
+ */
+public class MD5SecurityHelper {
+
+	/**
+	 * 加密
+	 * 
+	 * @param plainText
+	 *            需加密内容
+	 * @return
+	 * @throws Exception
+	 */
+	public static String encrypt(String plainText) throws Exception {
+		return new Md5PasswordEncoder().encodePassword(plainText, null);
+	}
+	public static void main(String[] args) throws Exception {
+		System.out.println(encrypt("wx038792acead673b41495451332"));
+	}
+	
+}

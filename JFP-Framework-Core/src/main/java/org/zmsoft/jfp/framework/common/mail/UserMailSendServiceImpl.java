@@ -9,9 +9,9 @@ import org.zmsoft.jfp.framework.support.common.ISMailSupport;
 /**
  * 邮件发送SDK
  * 
- * @author zmsoft
- * @version 2.3.0 2015/6/11
- * @since 2.3.0
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public class UserMailSendServiceImpl extends CommonChannelConfig implements ISMailSupport, IMailConstants, IFrameworkConstants {

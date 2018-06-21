@@ -5,9 +5,9 @@ import org.zmsoft.jfp.framework.beans.common.FrameworkDataBean;
 /**
  * 短信接口Bean
  * 
- * @author zmsoft
- * @version 2.1.3 2015/4/23
- * @since 2.1.2
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class SMSBean extends FrameworkDataBean {

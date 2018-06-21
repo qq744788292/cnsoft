@@ -6,9 +6,9 @@ import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 /**
  * XXTEA安全编码组件
  * 
- * @author zmsoft
- * @since 4.1.3
- * @version 4.1.3.1 2017/07/18
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class XXTEASecurityHelper implements IFrameworkConstants {
 

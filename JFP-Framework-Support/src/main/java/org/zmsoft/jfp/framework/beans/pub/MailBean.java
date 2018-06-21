@@ -6,9 +6,9 @@ import org.springframework.mail.SimpleMailMessage;
 /**
  * 邮件对象内容
  * 
- * @author zmsoft
- * @version 1.4.3 2014/11/29
- * @since 1.4.3
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class MailBean extends SimpleMailMessage implements IFrameworkConstants {

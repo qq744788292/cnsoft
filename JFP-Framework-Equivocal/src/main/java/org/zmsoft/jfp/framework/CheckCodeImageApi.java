@@ -30,9 +30,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * 图片显示
  * 
- * @author zmsoft
- * @version 0.1
- * @since 0.1.0 2014/6/10
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 @Controller

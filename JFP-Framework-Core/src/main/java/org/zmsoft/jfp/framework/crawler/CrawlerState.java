@@ -2,7 +2,10 @@ package org.zmsoft.jfp.framework.crawler;
 
 /**
  * 爬虫运行状态
- * @author fcy
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public enum CrawlerState {

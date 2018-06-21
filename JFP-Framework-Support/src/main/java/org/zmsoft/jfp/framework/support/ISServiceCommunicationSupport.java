@@ -7,10 +7,10 @@ import org.zmsoft.jfp.framework.beans.ObjectBean;
 
 /**
  * 数据压缩解压缩接口
- * 
- * @author zmsoft
- * @since 2.0.5
- * @version 2.0.5 2014/2/15
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public interface ISServiceCommunicationSupport {
 

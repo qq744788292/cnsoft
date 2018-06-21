@@ -13,13 +13,11 @@ import org.zmsoft.jfp.framework.utils.EmptyHelper;
 import com.alibaba.fastjson.JSON;
 
 /**
- * Redis缓存实现<br>
- * 面向开发人员使用
+ * Redis缓存实现
  * 
- * @version 3.1.1 2016/3/17
- * @version 2.4.2 2015/12/10
- * @version 2.4.1 2015/11/9
- * @since 20150728
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class MyRedisMaster implements ISCacheService, IFrameworkConstants {

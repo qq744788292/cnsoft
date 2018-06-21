@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 网吧大师登录本平台系统唯一接口地址
  * 
- * @author zmsoft
- * @version 4.1.3 2017/07/25
- * @since  4.1.3 2017/07/25
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 @Controller
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)

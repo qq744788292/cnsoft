@@ -8,9 +8,9 @@ import org.zmsoft.jfp.framework.biz.common.ISProcess;
 /**
  * 定时作业服务超类
  * 
- * @author zmsoft
- * @version 2.4.1.20151110
- * @since 2.4.1
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class MyTaskSupport extends MyJobSupport implements ISProcess, ISTask {
 

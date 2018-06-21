@@ -7,11 +7,10 @@ import org.zmsoft.jfp.framework.utils.RandomHelper;
 
 /**
  * 验证码工具类
- * 
- * @author 001745
- * @author zmsoft
- * @since 3.2.1
- * @version 3.2.1 2016/08/17
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see <RedisCacheHelper>
  */
 public class SecurityCodeHelper implements IFrameworkConstants, IModelConstants {

@@ -5,9 +5,9 @@ import java.lang.reflect.Method;
 /**
  * 匿名反射运行方法<br>
  * 类中不存在重载
- * @author zmsoft
- * @version 2.4.1 2015/11/10
- * @since 0.1.0
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class ReflectionHelper {

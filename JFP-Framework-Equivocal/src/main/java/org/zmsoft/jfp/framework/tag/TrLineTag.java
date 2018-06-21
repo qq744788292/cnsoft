@@ -13,9 +13,9 @@ import org.zmsoft.jfp.framework.utils.EmptyHelper;
 /**
  * 分页标签菜单栏
  * 
- * @author zmsoft
- * @version 4.1.3 2017/07/12
- *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class TrLineTag extends TagSupport implements IFrameworkConstants {
 	private static final long serialVersionUID = -7022081226075145681L;

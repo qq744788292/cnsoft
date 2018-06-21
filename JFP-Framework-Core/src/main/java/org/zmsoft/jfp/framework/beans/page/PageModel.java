@@ -19,9 +19,9 @@ import org.springframework.stereotype.Component;
  * <p>
  * 需要定义@CacheKeyMethod标签来为实体指定唯一Key值，完成缓存
  * 
- * @author zmsoft
- * @since 0.1 2012-7-13
- * @version 0.1
+ * @author ZmSoft
+ * @since 0.1.0 2018/2/8
+ * @version 0.1.0 2018/2/8
  */
 @Component("PageModel")
 // @Scope("prototype")

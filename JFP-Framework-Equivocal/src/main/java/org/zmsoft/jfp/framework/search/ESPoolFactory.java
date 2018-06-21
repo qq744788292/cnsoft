@@ -11,8 +11,10 @@ import io.searchbox.client.config.HttpClientConfig;
 
 /**
  * 检索服务器连接池
- * 
- * @author 001745
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class ESPoolFactory {

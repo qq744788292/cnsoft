@@ -18,8 +18,10 @@ import org.zmsoft.jfp.framework.utils.EmptyHelper;
 
 /**
  * 索引同步
- * 
- * @author 001745
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class DataIndexUpdateServiceJob extends MyTaskSupport {

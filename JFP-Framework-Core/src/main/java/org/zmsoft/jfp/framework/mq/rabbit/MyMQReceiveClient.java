@@ -15,9 +15,9 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 /**
  * MQ接受客户端
  * 
- * @author zmsoft
- * @version 0.1
- * @since 0.1.0 2014/2/8
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 //@component
 public class MyMQReceiveClient implements IMQConstants {

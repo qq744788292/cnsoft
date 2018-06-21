@@ -1,13 +1,14 @@
 package org.zmsoft.jfp.framework.search;
 
-public class ISSearch {
-	//whitespace：这个分析器基于空格字符来分离所提供的值。
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-	}
-	
+/**
+ * 全文检索索引更新接口
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
+public class ISSearch {
 	/**
 	 * 创建一个索引
 	 */

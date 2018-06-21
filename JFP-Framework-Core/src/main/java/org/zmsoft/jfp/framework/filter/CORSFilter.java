@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
- * CORS(跨域)过滤器.
- * @author zmsoft
- * @version 3.2.1 2016/08/17
- * @since 3.2.1 2016/08/17
+ * CORS(跨域)过滤器
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class CORSFilter extends OncePerRequestFilter {
 //	private static Logger logger = LoggerFactory.getLogger(LoginFilter.class);

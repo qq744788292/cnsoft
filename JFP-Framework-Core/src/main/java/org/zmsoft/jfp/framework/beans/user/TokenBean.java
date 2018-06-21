@@ -7,11 +7,9 @@ import org.zmsoft.jfp.framework.utils.DateHelper;
 /**
  * 用户登录信息
  * 
- * @author zmsoft
- * @version 2.0.1 2015/07/07
- * @version 1.1.0 2014/12/15
- * @version 0.1.0 2014/05/30
- * @since 0.1.0 2014/5/30
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 
 public class TokenBean extends FrameworkDataBean implements IFrameworkConstants {

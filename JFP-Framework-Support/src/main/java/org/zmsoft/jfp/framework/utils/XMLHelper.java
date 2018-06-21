@@ -16,9 +16,9 @@ import javax.xml.stream.events.XMLEvent;
 /**
  * 基于XML配置文件，映射内容到Bean
  * 
- * @author zmsoft
- * @since 0.2.1
- * @version 0.1.0 2014/11/28
+ * @author ZmSoft
+ * @since 0.1.0 2018/2/8
+ * @version 0.1.0 2018/2/8
  * 
  */
 public class XMLHelper {

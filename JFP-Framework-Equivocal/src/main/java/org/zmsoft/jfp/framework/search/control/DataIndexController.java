@@ -26,9 +26,9 @@ import org.zmsoft.jfp.framework.utils.EmptyHelper;
 /**
  * 全文检索服务索引管理
  * 
- * @author ISHome
- * @version 0.0.1
- * @since 0.0.1
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 @Controller
 public class DataIndexController implements IFrameworkConstants {

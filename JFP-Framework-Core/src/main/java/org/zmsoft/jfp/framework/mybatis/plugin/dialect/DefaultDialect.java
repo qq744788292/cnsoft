@@ -5,11 +5,14 @@ import org.zmsoft.jfp.framework.utils.EmptyHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
+ * 默认分页工具<br>
  * 类似hibernate的Dialect,但只精简出分页部分
  * 
- * @version 1.0
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ * @see <spring-db.xml>
  */
 public class DefaultDialect implements IFrameworkConstants {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -20,8 +20,10 @@ import io.searchbox.core.SearchResult;
 
 /**
  * 查询数据
- * 
- * @author 001745
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 //@Service("ESSearchService")

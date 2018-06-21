@@ -14,8 +14,9 @@ import com.alibaba.fastjson.JSON;
 /**
  * Redis缓存实现（集群）
  * 
- * @version 2.4.2 2015/12/9
- * @since 20150728
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class MyRedisCluster implements ISCacheService, IFrameworkConstants {

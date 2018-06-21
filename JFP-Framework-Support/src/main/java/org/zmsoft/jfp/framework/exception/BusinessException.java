@@ -2,6 +2,9 @@ package org.zmsoft.jfp.framework.exception;
 
 /**
  * 系统业务异常
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class BusinessException extends RuntimeException {
 	private static final long serialVersionUID = -4942131277837620579L;

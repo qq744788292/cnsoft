@@ -5,11 +5,10 @@ import org.zmsoft.jfp.framework.utils.DateHelper;
 
 /**
  * 日志接口属性超类
- * 
- * @author zmsoft
- * @version 3.1.2.20165/05/26
- * @version 2.3.1.2015/07/15
- * @since 2.3.1.2015/07/15
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class LogBean extends FrameworkDataBean {
 	/**

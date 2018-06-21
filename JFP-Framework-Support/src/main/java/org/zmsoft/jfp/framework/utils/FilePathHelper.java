@@ -9,11 +9,10 @@ import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 
 /**
  * FTP资源中心路径管理工具
- * 
- * @author zmsoft
- * @since 0.1.4
- * @version 0.1 2014/11/3
- * @version 0.2 2014/10/8
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 // TODO

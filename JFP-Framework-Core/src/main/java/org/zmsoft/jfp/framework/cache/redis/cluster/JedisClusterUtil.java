@@ -21,12 +21,9 @@ import redis.clients.jedis.exceptions.JedisConnectionException;
 /**
  * Redis操作工具类
  * 
- * @author zmsoft
- * @version 3.1.1 2016/3/17
- * @version 2.4.1 2015/11/9
- * @version 2.3.0 2015/6/11
- * @since 2.3.0
- * @see RedisChannelConfigBean
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class JedisClusterUtil implements ISJedisSupport, IFrameworkConstants {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -20,12 +20,9 @@ import com.alibaba.fastjson.JSON;
 /**
  * Token工具
  * 
- * @author zmsoft
- * @version 4.1.3 2017/08/01
- * @version 4.1.3 2017/04/15
- * @version 4.1.1 2016/12/12
- * @version 3.2.1 2016/08/28
- * @since 3.2.1 2016/08/28
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class MyTokenCommonSupport implements IFrameworkConstants, IDBConstants {

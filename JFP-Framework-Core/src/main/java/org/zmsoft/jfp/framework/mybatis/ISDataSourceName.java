@@ -2,8 +2,10 @@ package org.zmsoft.jfp.framework.mybatis;
 
 /**
  * 获得数据源名称
- * @author zmsoft
- *
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see <MyDataSourceManager><MyDataSourceHolder><MyDataBaseOperateSupport>
  */
 public interface ISDataSourceName {

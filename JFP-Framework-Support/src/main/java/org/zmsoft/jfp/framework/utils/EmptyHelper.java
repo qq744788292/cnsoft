@@ -8,10 +8,9 @@ import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 
 /**
  * 判断一个对象是不是空
- * @author zmsoft
- * 
- * @since 0.1.0 2014-11-25
- * @version 0.2.1
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class EmptyHelper implements IFrameworkConstants{
 	

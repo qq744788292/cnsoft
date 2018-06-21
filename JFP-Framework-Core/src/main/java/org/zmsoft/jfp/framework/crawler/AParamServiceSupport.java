@@ -11,8 +11,10 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * 参数基类
- * 
- * @author fcy
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public abstract class AParamServiceSupport implements IFrameworkConstants {

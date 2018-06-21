@@ -14,9 +14,9 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 /**
  * 基于文件的缓存，使用MD5的文件名称，按照年月日进行数据存放
- * @author zmsoft
- * @version 2.3.1 2015/7/15
- * @since 2.3.1 2015/7/15
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public class FileCacheHelper {

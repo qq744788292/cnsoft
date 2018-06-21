@@ -15,8 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 用户访问统计
- * 
- * @author zmsoft
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 @Controller

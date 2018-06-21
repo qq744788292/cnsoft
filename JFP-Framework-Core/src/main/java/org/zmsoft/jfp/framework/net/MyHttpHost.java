@@ -14,11 +14,10 @@ import com.alibaba.fastjson.JSONObject;
 /**
  * API请求通信
  * 
- * @author zmsoft
- * @since 3.2.1
- * @version 3.2.1.2016/06/29
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see <MyHttpServiceSupport>
- * 
  */
 public class MyHttpHost {
 

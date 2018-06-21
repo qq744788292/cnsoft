@@ -8,9 +8,9 @@ import org.zmsoft.jfp.framework.utils.PKHelper;
 /**
  * 数据持久层存储超类
  * 
- * @author zmsoft
- * @since 0.1.0
- * @version 0.1.0 2014/2/8
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class MyDataBaseObjectSupport extends FrameworkDataBean implements IDBConstants {
 

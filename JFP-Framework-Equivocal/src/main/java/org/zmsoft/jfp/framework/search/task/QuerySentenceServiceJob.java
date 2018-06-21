@@ -16,8 +16,9 @@ import com.alibaba.fastjson.JSON;
 /**
  * 全文检索参数缓存同步
  * 
- * @author 001745
- *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class QuerySentenceServiceJob extends MyTaskSupport {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

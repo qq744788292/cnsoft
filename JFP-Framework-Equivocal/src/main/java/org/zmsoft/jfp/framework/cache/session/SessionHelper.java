@@ -6,12 +6,9 @@ import org.zmsoft.jfp.framework.token.TokenBusinessSupport;
 /**
  * 登录用户Session（LoginerBean）本地ThreadLocal
  * 
- * @author zmsoft
- * @version 4.2.1 2017/03/15
- * @version 4.1.1 2016/12/12
- * @version 3.2.1 2016/8/6
- * @version 2.0.0 2015/1/19
- * @since 2.0.0 2015/1/19
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class SessionHelper {
 	private static final ThreadLocal<TokenBusinessSupport> holder = new ThreadLocal<TokenBusinessSupport>();

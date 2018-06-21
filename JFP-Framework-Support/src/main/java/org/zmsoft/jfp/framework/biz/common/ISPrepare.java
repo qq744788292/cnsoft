@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 /**
  * 数据整理
  * 
- * @author zmsoft
- * @version 3.4.1
- * @since 3.4.1 2016/11/1
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public interface ISPrepare {

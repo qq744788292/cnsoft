@@ -22,9 +22,9 @@ import org.springframework.security.crypto.codec.Base64;
 /**
  * RSA安全编码组件
  * 
- * @author zmsoft
- * @since 0.1.0
- * @version 0.1.0 2014/2/8
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class RSASecurityHelper {
 	public static final String KEY_ALGORITHM = "RSA";

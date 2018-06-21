@@ -22,11 +22,9 @@ import redis.clients.jedis.Jedis;
 /**
  * IP安全策略
  * 
- * @author Spook
- * @version 4.1.1 2016/12/12
- * @version 2.4.3 2016/1/28
- * @version 2.4.2 2016/1/6
- * @since 2.4.2 2016/1/6
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class SafeStrategySupport extends MyInterceptorAdapterSupport {
 	public final static String FIREWALL_NAME = "SafeStrategy";

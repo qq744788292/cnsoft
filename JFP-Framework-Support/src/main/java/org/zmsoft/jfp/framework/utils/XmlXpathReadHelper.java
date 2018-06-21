@@ -13,6 +13,11 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+/**
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 public class XmlXpathReadHelper {
 
 	public static void main(String[] args) throws Exception {

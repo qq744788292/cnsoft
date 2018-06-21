@@ -5,9 +5,9 @@ import org.zmsoft.jfp.framework.client.ClientBusinessSupport;
 /**
  * 登录用户Session（LoginerBean）本地ThreadLocal
  * 
- * @author Spook
- * @version 4.2.1 2017/03/15
- * @since 4.2.1 2017/03/15
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class ClientHelper {
 	private static final ThreadLocal<ClientBusinessSupport> holder = new ThreadLocal<ClientBusinessSupport>();

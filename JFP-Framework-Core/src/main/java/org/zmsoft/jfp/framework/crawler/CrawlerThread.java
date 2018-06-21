@@ -8,8 +8,10 @@ import org.zmsoft.jfp.framework.utils.BeanFactoryHelper;
 
 /**
  * 爬虫线程启动入口
- * @author fcy
- *
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class CrawlerThread extends MyWorkSupport implements Runnable {
 	private String bizName = null;

@@ -16,8 +16,9 @@ import net.coobird.thumbnailator.Thumbnails;
 
 /**
  * 断点续传上传用法示例
- * 
- * @since 2.4.2 2016/1/6
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class OSSOperateHelper implements IFrameworkConstants {
 

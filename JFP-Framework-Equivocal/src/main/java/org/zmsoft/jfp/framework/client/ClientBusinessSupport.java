@@ -6,12 +6,9 @@ import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 /**
  * 业务请求Token数据算法
  * 
- * @author Spook
- * @version 4.1.3 2017/04/15
- * @version 4.1.1 2016/12/12
- * @version 3.2.1 2016/08/28
- * @version 2.3.1 2015/06/23
- * @since 2.3.1 2015/06/23
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class ClientBusinessSupport extends FrameworkDataBean implements IFrameworkConstants {
 

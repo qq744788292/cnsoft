@@ -8,9 +8,9 @@ import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 /**
  * 数据库操作基本接口CURD
  * 
- * @author zmsoft
- * @since 0.1.0
- * @version 0.1.0 2014/2/8
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see <ISFrameworkConstants>
  */
 public interface ISDatabaseSupport<T> extends IFrameworkConstants {

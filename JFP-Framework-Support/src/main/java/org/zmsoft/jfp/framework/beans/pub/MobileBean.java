@@ -5,9 +5,9 @@ import org.zmsoft.jfp.framework.beans.common.FrameworkDataBean;
 /**
  * 手机接口属性超类
  * 
- * @author zmsoft
- * @version 2.3.1.2015/07/15
- * @since 2.3.1.2015/07/15
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class MobileBean extends FrameworkDataBean {
 

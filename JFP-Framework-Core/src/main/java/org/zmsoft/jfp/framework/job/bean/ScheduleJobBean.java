@@ -3,6 +3,7 @@ package org.zmsoft.jfp.framework.job.bean;
 import org.zmsoft.jfp.framework.beans.ObjectBean;
 import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 
+/** 任务定义表*/
 public class ScheduleJobBean extends ObjectBean implements IFrameworkConstants {
 	/**
 	 * 任务id

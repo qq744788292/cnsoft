@@ -6,9 +6,10 @@ import org.zmsoft.jfp.framework.crawler.CrawlerState;
 
 /**
  * 数据持久化
- * 
- * @author fcy
  *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public abstract class SaveDataService<T, E> extends ACrawlerServiceSupport<T, E> {
 

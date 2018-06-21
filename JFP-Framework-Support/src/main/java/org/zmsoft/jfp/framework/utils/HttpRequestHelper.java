@@ -12,10 +12,9 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 客户端请求工具类
  * 
- * @author zmsoft
- * @version 3.3.1 2016/8/8 增加默认ipAddress（0.0.0.0:1）
- * @version 3.1.0 2016/5/30
- * @since 3.1.0 2016/5/30
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class HttpRequestHelper {
@@ -174,7 +173,7 @@ public class HttpRequestHelper {
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 *             创建日期：2015年5月11日 修改说明：
-	 * @author niezhegang
+	 * @author ZmSoft
 	 */
 	public static String transcode(String source, String distCharSet) throws UnsupportedEncodingException {
 		String ret = source;
@@ -193,7 +192,7 @@ public class HttpRequestHelper {
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 *             创建日期：2015年5月11日 修改说明：
-	 * @author niezhegang
+	 * @author ZmSoft
 	 */
 	public static String transcode(HttpServletRequest request, String distCharSet) throws UnsupportedEncodingException {
 		// 获得 POST参数

@@ -5,11 +5,10 @@ import org.zmsoft.jfp.framework.beans.pub.SMSBean;
 
 /**
  * 短信发送网关
- * @author zmsoft
- * @version 2.4.1 2015/9/9
- * @version 2.1.3 2015/4/23
- * @since 2.1.3
- *
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public interface ISSMSGatewaySupport {
 

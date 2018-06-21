@@ -7,9 +7,9 @@ import org.zmsoft.jfp.framework.utils.EmptyHelper;
 /**
  * 数据安全处理（非加密）
  * 
- * @author zmsoft
- * @version 2.0.5 2015/2/16
- * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class EmptySecuritySupport implements ISSecuritySupport {
 

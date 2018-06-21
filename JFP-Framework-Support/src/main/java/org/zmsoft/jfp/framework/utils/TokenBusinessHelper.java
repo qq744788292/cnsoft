@@ -4,11 +4,10 @@ import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 
 /**
  * 业务请求Token数据算法
- * 
- * @author zmsoft
- * @since 2.3.1
- * @version 3.2.1 2016/8/8
- * @version 2.3.1 2015/6/23
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see TokenBusinessBean
  */
 public class TokenBusinessHelper implements IFrameworkConstants {

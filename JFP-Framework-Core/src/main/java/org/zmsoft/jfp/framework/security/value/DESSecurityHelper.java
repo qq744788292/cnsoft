@@ -10,11 +10,9 @@ import javax.crypto.spec.DESKeySpec;
 /**
  * DES加解密算法工具类
  * 
- * @author zmsoft
- * @since 0.1.0
- * @version 4.1.1 2016/12/20
- * @version 3.2.1 2016/8/9
- * @version 0.1.0 2014/2/8
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see <PasswordHelper>
  */
 public class DESSecurityHelper {

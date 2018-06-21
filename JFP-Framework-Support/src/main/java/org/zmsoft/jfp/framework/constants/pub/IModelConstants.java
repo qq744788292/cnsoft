@@ -2,7 +2,9 @@ package org.zmsoft.jfp.framework.constants.pub;
 
 /**
  * 页面控制操作常量定义
- * @author zmsoft
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public interface IModelConstants {

@@ -18,9 +18,9 @@ import org.zmsoft.jfp.persistent.common.ConfigData.ConfigDataDBO;
 /**
  * 数据字典下拉框
  * 
- * @author zmsoft
- * @version 4.1.3 2017/07/12
- *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants {
 

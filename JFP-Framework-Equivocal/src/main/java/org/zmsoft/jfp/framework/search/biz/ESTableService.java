@@ -26,8 +26,10 @@ import io.searchbox.indices.IndicesExists;
 
 /**
  * 基于数据库表建立索引
- * 
- * @author 001745
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class ESTableService extends MySearchSupport {

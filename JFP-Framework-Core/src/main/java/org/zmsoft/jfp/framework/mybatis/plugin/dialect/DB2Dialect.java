@@ -1,7 +1,11 @@
 package org.zmsoft.jfp.framework.mybatis.plugin.dialect;
 
 /**
- * @author badqiu
+ * DB2分页
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class DB2Dialect extends DefaultDialect{
 

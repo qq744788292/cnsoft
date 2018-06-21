@@ -10,9 +10,9 @@ import redis.clients.jedis.Jedis;
 /**
  * 日志推送到Redis
  * 
- * @author zmsoft
- * @version 3.2.1 2016/08/17
- * @since 3.2.1 2016/08/17
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public class ELKLogSendConnection implements ILogConstants, IFrameworkConstants {

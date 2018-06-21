@@ -5,9 +5,9 @@ import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 
 /**
  * 短信发送类
- * @author zmsoft
- * @since 2.1.2
- * @version 2.1.2.20150417
+ * @author ZmSoft
+ * @since 0.1.0 2018/2/8
+ * @version 0.1.0 2018/2/8
  */
 public interface ISMSSupport {
 

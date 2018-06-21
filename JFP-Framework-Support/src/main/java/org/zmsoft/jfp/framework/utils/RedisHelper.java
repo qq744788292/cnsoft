@@ -8,10 +8,10 @@ import redis.clients.jedis.Jedis;
 
 /**
  * 缓存数据对象与字符串转换
- * 
- * @author zmsoft
- * @since 0.2.1
- * @version 0.1.0 2014/11/28
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public class RedisHelper implements IFrameworkConstants {

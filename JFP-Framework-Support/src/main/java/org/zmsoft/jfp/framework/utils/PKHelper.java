@@ -8,11 +8,10 @@ import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 
 /**
  * 系统唯一识别ID
- * 
- * @author zmsoft
- * @version 2.4.1 2015/11/10
- * @since 0.1.0
- * @version 0.1.0 2014/2/8
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class PKHelper implements IFrameworkConstants {
 	public static void main(String[] args) {

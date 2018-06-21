@@ -5,6 +5,9 @@ import org.zmsoft.jfp.framework.utils.BeanFactoryHelper;
 
 /**
  * 爬虫缓存
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class CrawlerHelper {
 	final static String CHK = "CrawlerCache:";

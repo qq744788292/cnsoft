@@ -7,10 +7,9 @@ import org.zmsoft.jfp.framework.utils.BeanFactoryHelper;
 /**
  * Redis缓存操作key-value
  * 
- * @author zmsoft
- * @since 3.2.1
- * @version 3.2.1 2016/08/17
- * @see <ICacheService>
+ * @author ZmSoft
+ * @since 0.1.0 2018/2/8
+ * @version 0.1.0 2018/2/8
  */
 public class RedisCacheHelper implements IFrameworkConstants {
 	public static void setSessionAttribute(String key, Object value) {

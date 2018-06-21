@@ -17,10 +17,10 @@ import org.zmsoft.jfp.framework.utils.BeanFactoryHelper;
 /**
  * 编辑操作插件（insert/update/delete）
  * 
- * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
-
-// TODO 添加非法字符过滤器
 @Intercepts({ @Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }) })
 public class MyFrameworkUpdatePlugin implements Interceptor {
 	// protected Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -11,6 +11,11 @@ import io.searchbox.indices.CreateIndex;
 import io.searchbox.indices.DeleteIndex;
 import io.searchbox.indices.IndicesExists;
 
+/**
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 //@Service("ESIndexService")
 public class ESIndexService extends MySearchSupport {
 

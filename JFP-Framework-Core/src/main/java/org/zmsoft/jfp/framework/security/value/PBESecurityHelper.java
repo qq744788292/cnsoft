@@ -13,10 +13,9 @@ import org.apache.commons.codec.binary.Base64;
 /**
  * 加密解密工具类
  * 
- * @author zmsoft
- * @since 0.1.0
- * @version 0.1.0 2014/2/8
- * @version 3.3.1 2016/10/26
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class PBESecurityHelper {
 	private final static int ITERATIONS = 20;

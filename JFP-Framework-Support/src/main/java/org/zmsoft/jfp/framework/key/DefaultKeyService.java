@@ -7,9 +7,9 @@ import org.zmsoft.jfp.framework.utils.EmptyHelper;
 /**
  * 业务key名称定义
  * 
- * @author zmsoft
- * @version 2.4.1 2015/8/17
- * @since 2.4.1 2015/8/17
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public class DefaultKeyService implements IFrameworkConstants, IApiServiceConstants {

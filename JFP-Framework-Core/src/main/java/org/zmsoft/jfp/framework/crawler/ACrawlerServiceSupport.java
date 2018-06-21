@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 爬虫基类
- * 
- * @author fcy
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public abstract class ACrawlerServiceSupport<T, E> extends MyJobSupport {

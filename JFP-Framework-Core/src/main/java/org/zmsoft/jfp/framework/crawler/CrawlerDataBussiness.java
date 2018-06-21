@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 /**
  * 爬虫业务处理逻辑驱动器
- * 
- * @author fcy
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 @Service("CrawlerDataBussiness")

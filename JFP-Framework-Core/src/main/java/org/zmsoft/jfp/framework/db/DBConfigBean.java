@@ -5,9 +5,9 @@ import org.springframework.core.io.Resource;
 /**
  * 数据库配置定义
  * 
- * @since 0.1
- * @version 0.2 2012-9-19 1、标准化命名 2、废除锁定参数
- * @version 0.1
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class DBConfigBean {
 	/**

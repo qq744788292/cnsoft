@@ -11,6 +11,13 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 
+/**
+ * 数据缓存超类
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 //@EnableAsync
 //@Service("GameDataCache")
 public abstract class ADataCacheSupport<T> implements IFrameworkConstants, ICommonDataConstants {

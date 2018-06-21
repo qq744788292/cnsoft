@@ -2,6 +2,11 @@ package org.zmsoft.jfp.framework.search.utils;
 
 import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 
+/**
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 public class IndexNameHelper implements IFrameworkConstants {
 	public static final String CREAT = "creat";
 	public static final String UPDATE = "update";

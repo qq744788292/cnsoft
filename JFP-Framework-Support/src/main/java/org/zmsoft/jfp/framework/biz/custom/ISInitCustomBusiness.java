@@ -5,9 +5,9 @@ import org.zmsoft.jfp.framework.biz.common.ISInit;
 /**
  * 业务初始化过程
  * 
- * @author zmsoft
- * @version 2.0.0
- * @since 2.0.0 2015/1/19
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public interface ISInitCustomBusiness extends ISInit {

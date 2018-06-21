@@ -4,10 +4,10 @@ import java.util.Random;
 
 /**
  * 随机数验证码
- * 
- * @author zmsoft
- * @since 0.1.0
- * @version 0.1.0 2014/2/8
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class RandomHelper {
 	public static void main(String[] args) {

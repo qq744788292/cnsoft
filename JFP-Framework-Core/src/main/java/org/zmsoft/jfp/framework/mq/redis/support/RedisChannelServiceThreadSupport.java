@@ -12,9 +12,9 @@ import org.zmsoft.jfp.framework.utils.EmptyHelper;
 /**
  * 通道服务超类
  * 
- * @author zmsoft
- * @version 2.4.1 2015/8/15
- * @since 2.4.1
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public abstract class RedisChannelServiceThreadSupport extends CommonChannelConfig implements Runnable, IFrameworkConstants, ISReceive, ISInit, ISCheck, ISProcess, ISFinished {
 	/**

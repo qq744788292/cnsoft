@@ -15,6 +15,11 @@ import org.zmsoft.jfp.framework.utils.BeanFactoryHelper;
 
 import io.searchbox.client.JestClient;
 
+/**
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 public class MySearchSupport implements ISSentenceConstants {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	// 缓存中心

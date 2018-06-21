@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 /**
  * 短信发送
  * 
- * @author zmsoft
- * @version 0.0.1 2017/12/08
- * @since 0.0.1 2017/12/08
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 
 public class SMSOperatrHelper extends MyTokenCommonSupport {

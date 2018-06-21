@@ -2,11 +2,9 @@ package org.zmsoft.jfp.framework.mybatis;
 /**
  * SQL数据源管理器
  * 
- * @author zmsoft
- * 
- * @since 0.1 2012-7-13
- * @version 0.1
- * @version 2.1.2.20150422
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see <MyDataSourceManager><MyFrameworkQueryPlugin><ISDataSourceName>
  */
 public class MyDataSourceHolder {

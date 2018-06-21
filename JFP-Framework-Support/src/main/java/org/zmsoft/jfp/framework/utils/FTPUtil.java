@@ -17,11 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * FTP工具
- * 
- * @author zmsoft
- * @since 0.1.0
- * @version 0.2 2014/11/3
- * @version 0.1 2014/2/8
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class FTPUtil implements IFrameworkConstants {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -23,13 +23,10 @@ import org.slf4j.LoggerFactory;
  * 数据业务操作接口定义超类<br>
  * 事务性质业务逻辑<br>
  * 
- * @author zmsoft
- * @version 4.1.3 2017/04/15
- * @version 4.1.1 2016/12/12
- * @version 3.2.1 2016/08/28
- * @version 0.1.0 2013-8-21
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @param <E>
- * @since 0.1.0 2013-8-21
  */
 public class MyBusinessSupport<T, E> extends MyWorkSupport implements IFrameworkConstants, IModelConstants, ILoginer {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

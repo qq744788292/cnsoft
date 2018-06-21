@@ -14,9 +14,9 @@ import com.google.zxing.common.BitMatrix;
 /**
  * 二维码生成器
  * 
- * @author zmsoft
- * @version 4.1.3 2017/07/25
- * @since 4.1.3 2017/07/25
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class QRCodeHelper {
 	public static void main(String[] args) throws Exception {

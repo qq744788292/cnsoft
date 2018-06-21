@@ -5,10 +5,9 @@ import org.zmsoft.jfp.framework.security.value.MD5SecurityHelper;
 /**
  * 用户密码混淆验证
  * 
- * @author zmsoft
- * @version 4.1.1 2016/12/20
- * @version 2.0.1 2012/11/14
- * @since 2.0.1 2012/11/14
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class PasswordHelper {
 	public static void main(String[] args) throws Exception {

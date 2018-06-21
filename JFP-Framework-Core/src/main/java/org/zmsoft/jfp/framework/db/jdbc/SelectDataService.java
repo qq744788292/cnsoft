@@ -15,6 +15,13 @@ import org.mybatis.spring.SqlSessionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * jdbc数据库操作
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 public class SelectDataService {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 

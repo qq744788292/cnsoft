@@ -2,9 +2,9 @@ package org.zmsoft.jfp.framework.support;
 
 /**
  * 加密解密接口
- * @author zmsoft
- * @since 2.0.5
- * @version 2.0.5 2014/2/15
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public interface ISSecuritySupport {
 	/**

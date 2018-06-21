@@ -8,8 +8,10 @@ import org.zmsoft.jfp.framework.utils.FilePathHelper;
 
 /**
  * 文件头定义
- * 
- * @author zmsoft
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see http://baike.baidu.com/view/1547292.htm?fr=aladdin
  */
 public class MyContentTypeSupport extends MyTokenCommonSupport implements IFrameworkConstants {

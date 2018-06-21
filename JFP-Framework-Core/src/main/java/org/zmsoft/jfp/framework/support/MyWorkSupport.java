@@ -6,9 +6,9 @@ import org.zmsoft.jfp.framework.net.MyHttpServiceSupport;
 /**
  * 异步线程超类
  * 
- * @author zmsoft
- * @version 3.1.2.20160505
- * @since 3.1.2
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class MyWorkSupport implements IFrameworkConstants {
 

@@ -15,8 +15,10 @@ import org.springframework.util.StringUtils;
 
 /**
  * 字符串工具类
- * 
- * @author lujf
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public class StringUtil {
@@ -299,7 +301,7 @@ public class StringUtil {
 	/**
 	 * 给值为null的字符串赋默认值
 	 * 
-	 * @author LuoRuixian
+	 * @author ZmSoft
 	 */
 	public static String trimNull(String str, String defaultStr) {
 		return str == null ? defaultStr : str;
@@ -308,7 +310,7 @@ public class StringUtil {
 	/**
 	 * 给值为null的字符串赋值空字符串
 	 * 
-	 * @author LuoRuixian
+	 * @author ZmSoft
 	 */
 	public static String trimNull(String str) {
 		return trimNull(str, "");

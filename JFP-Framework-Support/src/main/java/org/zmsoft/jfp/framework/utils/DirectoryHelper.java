@@ -6,10 +6,10 @@ import java.util.Calendar;
 import java.util.Date;
 /**
  * 日期格式化
- * 
- * @author zmsoft
- * @since 3.3.1 2016/9/20
- * @version 3.3.1 2016/9/20
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class DirectoryHelper {
 	/**

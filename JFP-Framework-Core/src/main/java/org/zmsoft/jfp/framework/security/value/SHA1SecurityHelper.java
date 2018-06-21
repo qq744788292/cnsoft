@@ -11,9 +11,9 @@ import java.util.Map;
 /**
  * SHA1安全编码组件
  * 
- * @author zmsoft
- * @since 4.1.3
- * @version 4.1.3.1 2017/07/18
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class SHA1SecurityHelper {
 	public static String SHA1(Map<String, String> maps) throws DigestException {

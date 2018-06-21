@@ -1,5 +1,11 @@
 package org.zmsoft.jfp.framework.mybatis.plugin.dialect;
 
+/**
+ * Dialect for Derby
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 public class DerbyDialect extends DefaultDialect{
 
 	public boolean supportsLimit() {

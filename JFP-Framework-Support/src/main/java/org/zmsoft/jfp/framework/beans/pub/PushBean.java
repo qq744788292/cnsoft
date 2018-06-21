@@ -5,9 +5,9 @@ import org.zmsoft.jfp.framework.beans.common.FrameworkDataBean;
 /**
  * 短信接口Bean
  * 
- * @author zmsoft
- * @version 2.3.0 2015/6/15
- * @since 2.3.0
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public class PushBean extends FrameworkDataBean {

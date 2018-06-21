@@ -10,9 +10,9 @@ import org.zmsoft.jfp.persistent.common.System.SystemService;
 /**
  * 系统信息缓存
  * 
- * @author cq
- * @version 0.0.1 2017/07/12
- * @since 0.0.1 2017/07/12
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class SystemCacheService extends ADataCacheSupport<SystemDBO> {
 

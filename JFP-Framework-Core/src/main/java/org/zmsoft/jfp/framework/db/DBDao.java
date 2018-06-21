@@ -24,12 +24,10 @@ import org.springframework.core.io.Resource;
 /**
  * 内部初始化数据库模式
  * 
- * @since 0.1
- * @version 0.3 2014-8-21 loadConfig()方法BUG修正
- * @version 0.2 2012-9-17 标准化开发
- * @version 0.1
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
-// @Repository
 public class DBDao extends MyDataBaseOperateSupport<Object> implements IDBConstants {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -8,6 +8,13 @@ import java.sql.SQLException;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 
+/**
+ * 数据类别拦截器
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 @SuppressWarnings("rawtypes")
 public class MyFrameworkTypeHandler implements TypeHandler {
 	public void setParameter(PreparedStatement ps, int i, Object parameter,

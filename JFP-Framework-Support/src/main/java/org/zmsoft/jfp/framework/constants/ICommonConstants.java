@@ -2,7 +2,9 @@ package org.zmsoft.jfp.framework.constants;
 
 /**
  * 共通业务关键字定义
- * @author zmsoft
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public interface ICommonConstants {

@@ -5,9 +5,9 @@ import org.zmsoft.jfp.framework.biz.common.ISCheck;
 /**
  * 业务检查过程
  * 
- * @author zmsoft
- * @version 2.0.0
- * @since 2.0.0 2015/1/19
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public interface ISCheckCustomBusiness extends ISCheck {

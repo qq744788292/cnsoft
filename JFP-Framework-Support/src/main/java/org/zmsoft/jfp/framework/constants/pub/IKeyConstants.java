@@ -3,9 +3,9 @@ package org.zmsoft.jfp.framework.constants.pub;
 
 /**
  * 定时作业常量定义
- * @author zmsoft
- * @version 2.0.1
- * @since 2.0.0 2015/2/3
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public interface IKeyConstants {

@@ -10,7 +10,13 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * FTP读取
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 public class FileReadHelper {
 	public static String readToString(String fileName) {  
         String encoding = "UTF-8";  

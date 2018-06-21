@@ -18,8 +18,10 @@ import io.searchbox.core.Update;
 
 /**
  * 数据管理
- * 
- * @author 001745
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 //@Service("ESDataService")
 public class ESDataService extends MySearchSupport{

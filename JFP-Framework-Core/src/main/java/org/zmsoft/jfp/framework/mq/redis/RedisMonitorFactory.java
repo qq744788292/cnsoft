@@ -11,10 +11,9 @@ import org.slf4j.LoggerFactory;
 /**
  * 通道监听工厂
  * 
- * @author zmsoft
- * @version 2.4.1 2015/8/15
- * @since 2.4.1
- * @deprecated
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class RedisMonitorFactory implements IFrameworkConstants {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

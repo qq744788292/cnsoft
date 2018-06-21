@@ -7,9 +7,9 @@ import org.zmsoft.jfp.framework.cache.ISCacheService;
 /**
  * 内部初始化数据库模式
  * 
- * @since 0.1
- * @version 0.2 2012-9-17 标准化开发
- * @version 0.1
+ * @author ZmSoft
+ * @since 0.1.0 2018/2/8
+ * @version 0.1.0 2018/2/8
  */
 public class DBService {
 

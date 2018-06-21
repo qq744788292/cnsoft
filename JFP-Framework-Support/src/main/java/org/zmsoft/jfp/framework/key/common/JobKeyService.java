@@ -7,10 +7,10 @@ import org.zmsoft.jfp.framework.key.DefaultKeyService;
 
 /**
  * 定时任务Key定义
- * 
- * @author zmsoft
- * @version 2.4.1 2015/8/17
- * @since 2.4.1 2015/8/17
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public class JobKeyService extends DefaultKeyService implements IKeyConstants {

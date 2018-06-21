@@ -22,7 +22,10 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * 动态任务接口
- *
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public abstract class ATaskJob implements Job, IFrameworkConstants {
 

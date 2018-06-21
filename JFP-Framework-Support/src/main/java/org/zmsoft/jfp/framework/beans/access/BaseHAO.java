@@ -7,9 +7,9 @@ import org.zmsoft.jfp.framework.utils.PKHelper;
  * Hospital Access Object <br>
  * 对接属性父类
  * 
- * @author zmsoft
- * @version 2.0.2
- * @since 2.0.2 2015/02/06
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class BaseHAO extends MobileBean {
 

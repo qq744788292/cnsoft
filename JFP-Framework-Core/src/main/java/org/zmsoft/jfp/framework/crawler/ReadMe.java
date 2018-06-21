@@ -2,9 +2,10 @@ package org.zmsoft.jfp.framework.crawler;
 
 /**
  * 数据爬虫
- * @author zmsoft
- * @version 0.0.1 2017/09/11
- * @since 0.0.1 2017/09/11
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class ReadMe {
 

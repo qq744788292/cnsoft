@@ -3,9 +3,9 @@ package org.zmsoft.jfp.common.cache;
 /**
  * 系统常量
  * 
- * @author cq
- * @version 0.0.1 2017/07/18
- * @since 0.0.1 2017/07/18
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public interface ICommonDataConstants {
 	

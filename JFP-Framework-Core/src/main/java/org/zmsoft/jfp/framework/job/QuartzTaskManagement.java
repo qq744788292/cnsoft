@@ -27,9 +27,9 @@ import org.springframework.stereotype.Service;
  * 动态添加任务<br>
  * Quartz Task Management
  * 
- * @version 0.0.1
- * @since 0.0.1 2017/01/05
- * @see QuartzJobImpl QuartzDisallowJobImpl
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ * @see <QuartzJobImpl> <QuartzDisallowJobImpl>
  */
 @Service("QuartzTaskManagement")
 public class QuartzTaskManagement implements IFrameworkConstants {

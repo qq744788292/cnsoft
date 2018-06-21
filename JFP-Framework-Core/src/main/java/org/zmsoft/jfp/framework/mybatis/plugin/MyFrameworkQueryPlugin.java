@@ -37,14 +37,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 分页插件（select）
- * 
+ * 分页插件（select）<br>
+ * 拦截所有查询操作
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see <MyDataSourceManager><MyDataSourceHolder>
  * @see <MyDataBaseObjectSupport><MyDataBaseOperateSupport><ISDataSourceName>
- * 
  */
-// 拦截所有查询操作
-// TODO 添加非法字符过滤器
 @Intercepts({ @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) })
 public class MyFrameworkQueryPlugin implements Interceptor {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

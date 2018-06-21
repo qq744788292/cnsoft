@@ -6,9 +6,9 @@ import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 /**
  * 接口数据返回主体
  * 
- * @author zmsoft
- * @version 0.1
- * @since 0.2.0.0
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 
 public class RESTResultBean<T> extends ObjectBean implements IFrameworkConstants {

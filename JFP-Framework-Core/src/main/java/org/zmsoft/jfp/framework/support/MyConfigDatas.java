@@ -5,10 +5,9 @@ import java.util.HashMap;
 /**
  * 参数配置定义
  * 
- * @author zmsoft
- * 
- * @since 3.3.1 20160826
- * @version 3.3.1 20160826
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class MyConfigDatas {
 

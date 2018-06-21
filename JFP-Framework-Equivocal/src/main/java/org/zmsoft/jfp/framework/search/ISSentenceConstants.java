@@ -2,6 +2,12 @@ package org.zmsoft.jfp.framework.search;
 
 import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 
+/**
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 public interface ISSentenceConstants extends IFrameworkConstants{
 	public final static String ES_TYPE = "data";
 	

@@ -49,11 +49,9 @@ import com.gargoylesoftware.htmlunit.WebClient;
 /**
  * API请求通信
  * 
- * @author Spook
- * @since 2.1.0
- * @version 5.0.1.2017/10/11
- * @version 2.4.1.2014/11/10
- * @version 2.1.0 2014/2/8
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * @see <HttpServiceHelper><ISHttpHost>
  * 
  */

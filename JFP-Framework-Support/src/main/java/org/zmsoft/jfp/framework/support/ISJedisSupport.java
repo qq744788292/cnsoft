@@ -8,11 +8,10 @@ import java.util.Set;
 /**
  * Redis缓存实现<br>
  * 面向缓存服务使用
- * 
- * @version 3.1.2 2016/4/21
- * @version 3.1.1 2016/3/17
- * @version 2.4.2 2015/12/10
- * @since 2.4.2 2015/12/10
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  *
  */
 public interface ISJedisSupport {

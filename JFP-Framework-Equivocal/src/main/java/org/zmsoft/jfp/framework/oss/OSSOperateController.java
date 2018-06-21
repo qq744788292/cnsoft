@@ -19,9 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * OSS资源管理
  * 
- * @author zmsoft
- * @version 0.0.1 2017/03/15
- * @since 0.0.1 2017/03/15
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 @Controller
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -74,7 +74,7 @@ public class OSSOperateController extends MyTokenCommonSupport {
 
 	/**
 	 * 富文本上传
-	 * @author 蔡强
+	 * @author ZmSoft
 	 * @param jobId
 	 * @param upFile
 	 * @return

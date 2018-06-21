@@ -13,6 +13,11 @@ import org.zmsoft.jfp.framework.search.biz.ESDataService;
 import org.zmsoft.jfp.framework.support.MyTaskSupport;
 import org.zmsoft.jfp.framework.utils.EmptyHelper;
 
+/**
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ */
 public class DataIndexDeleteServiceJob extends MyTaskSupport {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -1,10 +1,11 @@
 package org.zmsoft.jfp.common.constants;
 
 /**
- * 平台标识
- * @author zmsoft
- * @version 0.2.1 2017/05/15
- * @since 0.2.1 2017/05/15
+ * 自定义常量
+ * 
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public interface CustomConstants {
 	

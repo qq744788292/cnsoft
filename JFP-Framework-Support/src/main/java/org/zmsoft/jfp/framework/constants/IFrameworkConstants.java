@@ -3,10 +3,9 @@ package org.zmsoft.jfp.framework.constants;
 /**
  * 系统常量
  * 
- * @author zmsoft
- * @since 0.1.0 2014/2/8
- * @version 0.2.1 2014/11/05
- * @version 0.1
+ * @author ZmSoft
+ * @since 0.1.0 2018/2/8
+ * @version 0.1.0 2018/2/8
  */
 public interface IFrameworkConstants {
 

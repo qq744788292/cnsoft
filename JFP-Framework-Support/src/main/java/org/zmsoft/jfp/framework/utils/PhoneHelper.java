@@ -2,10 +2,10 @@ package org.zmsoft.jfp.framework.utils;
 
 /**
  * 手机号码隐藏转换方法
- * 
- * @author zmsoft
- * @since 0.2.1
- * @version 0.1.0 2014/11/28
+ *
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public class PhoneHelper {

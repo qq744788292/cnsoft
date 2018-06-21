@@ -2,10 +2,10 @@ package org.zmsoft.jfp.framework.mybatis.plugin.dialect;
 
 
 /**
- * A dialect compatible with the H2 database.
- * 
- * @author Thomas Mueller
- *
+ * Dialect for H2
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class H2Dialect extends DefaultDialect {
 

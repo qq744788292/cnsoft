@@ -9,10 +9,9 @@ import org.zmsoft.jfp.framework.support.common.ISPhonePushSupport;
 /**
  * 短信发送SDK
  * 
- * @author zmsoft
- * @version 2.4.1 2015/8/15
- * @version 2.3.0 2015/6/15
- * @since 2.3.0
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  * 
  */
 public class UserPushSendServiceImpl extends CommonChannelConfig implements ISPhonePushSupport, IPushConstant, IFrameworkConstants {

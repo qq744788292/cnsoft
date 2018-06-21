@@ -10,9 +10,9 @@ import com.alibaba.fastjson.JSONObject;
 /**
  * 分页数据参数转换
  * 
- * @author zmsoft
- * @since 4.2.1 2017/05/24
- * @version 4.2.1 2017/05/24
+ * @author ZmSoft
+ * @since 0.1.0 2018/2/8
+ * @version 0.1.0 2018/2/8
  */
 public class PageModelHelper {
 

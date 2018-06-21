@@ -11,10 +11,10 @@ import org.apache.ibatis.session.Configuration;
 
 /**
  * SQL数据源
- * @author zmsoft
  * 
- * @since 0.1 2012-7-13
- * @version 0.1
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class MyFrameworkSqlSource implements SqlSource {
 

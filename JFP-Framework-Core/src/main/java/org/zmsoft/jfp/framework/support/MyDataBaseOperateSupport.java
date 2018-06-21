@@ -22,10 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * 数据持久层操作超类
  * 
- * @author zmsoft
- * @since 0.1.0
- * @version 0.2.1 2014/11/05
- * @version 0.1.0 2014/2/8
+ * @author ZmSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
  */
 public class MyDataBaseOperateSupport<T> implements ISDataSourceName, IFrameworkConstants, IDBConstants {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());

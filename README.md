@@ -15,6 +15,11 @@ java free project tools & framework
 2. JFP-Framework-Core           核心实现，包括各种工具
 3. JFP-Framework-Equivocal      扩展功能，包括业务支撑底层
 
+#### 版本日志
+0.1.0 2018/2/2 原有代码整理迁移
+1.0.1 2018/2/8 正式发布
+
+
 #### 参与贡献
 
 1. Fork 本项目

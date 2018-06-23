@@ -1,4 +1,4 @@
-package org.zmsoft.jfp.persistent.common.ConfigData;
+package org.zmsoft.jfp.persistent.common.SystemParameter;
 
 import org.zmsoft.jfp.framework.support.MyDataBaseOperateSupport2;
 import org.slf4j.Logger;
@@ -7,14 +7,14 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-/** 参数配置 */
-@Service("ConfigDataService")
+/** 参数定义 */
+@Service("SystemParameterService")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class ConfigDataService extends MyDataBaseOperateSupport2<ConfigDataDBO> {
+public class SystemParameterService extends MyDataBaseOperateSupport2<SystemParameterDBO> {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	public ConfigDataDao getDao() {
-		return getMySqlSession().getMapper(ConfigDataDao.class);
+	public SystemParameterDao getDao() {
+		return getMySqlSession().getMapper(SystemParameterDao.class);
 	}
 
 }

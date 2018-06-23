@@ -7,13 +7,14 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import org.zmsoft.jfp.common.cache.ConfigCacheService;
+import org.zmsoft.jfp.common.cache.ISCacheData;
 import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 import org.zmsoft.jfp.framework.utils.BeanFactoryHelper;
 import org.zmsoft.jfp.framework.utils.EmptyHelper;
+import org.zmsoft.jfp.persistent.common.SystemParameter.SystemParameterDBO;
 
 /**
- * 数据字典下拉框
+ * 业务分类数据显示文本
  * 
  * @author ZmSoft
  * @version 0.1.0 2018/2/8
@@ -22,6 +23,7 @@ import org.zmsoft.jfp.framework.utils.EmptyHelper;
 public class ConfigDataTextTag extends TagSupport implements IFrameworkConstants {
 
 	private static final long serialVersionUID = 4070563013716274089L;
+	private ISCacheData<SystemParameterDBO> SystemParameterService_;
 
 	@Override
 	public int doEndTag() throws JspException {
@@ -34,13 +36,13 @@ public class ConfigDataTextTag extends TagSupport implements IFrameworkConstants
 		try {
 			out = this.pageContext.getOut();
 
-			ConfigCacheService _ConfigDataCacheService_ = BeanFactoryHelper.getBean("ConfigDataCacheService");
-			if (EmptyHelper.isEmpty(configType))
+			SystemParameterService_ = BeanFactoryHelper.getBean("SystemParameterService");
+			if (EmptyHelper.isEmpty(getConfigType()))
 				out.println("");
-			else if (EmptyHelper.isEmpty(configKey))
+			else if (EmptyHelper.isEmpty(getConfigKey()))
 				out.println("");
 			else
-				out.println(_ConfigDataCacheService_.loadConfigData(configType, configKey).getValue());
+				out.println(SystemParameterService_.loadCacheData(configDate).getValue());
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -55,23 +57,22 @@ public class ConfigDataTextTag extends TagSupport implements IFrameworkConstants
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
-	private String configType;
-	private String configKey;
+
+	private SystemParameterDBO configDate = new SystemParameterDBO();
 
 	public String getConfigType() {
-		return configType;
+		return configDate.getType();
 	}
 
 	public void setConfigType(String configType) {
-		this.configType = configType;
+		this.configDate.setType(configType);
 	}
 
 	public String getConfigKey() {
-		return configKey;
+		return configDate.getKey();
 	}
 
 	public void setConfigKey(String configKey) {
-		this.configKey = configKey;
+		this.configDate.setKey(configKey);
 	}
-
 }

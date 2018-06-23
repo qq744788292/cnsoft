@@ -9,14 +9,14 @@ import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.zmsoft.jfp.common.cache.ConfigCacheService;
+import org.zmsoft.jfp.common.cache.ISCacheData;
 import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 import org.zmsoft.jfp.framework.utils.BeanFactoryHelper;
 import org.zmsoft.jfp.framework.utils.EmptyHelper;
-import org.zmsoft.jfp.persistent.common.ConfigData.ConfigDataDBO;
+import org.zmsoft.jfp.persistent.common.SystemParameter.SystemParameterDBO;
 
 /**
- * 数据字典下拉框
+ * 业务分类数据下拉框
  * 
  * @author ZmSoft
  * @version 0.1.0 2018/2/8
@@ -24,7 +24,8 @@ import org.zmsoft.jfp.persistent.common.ConfigData.ConfigDataDBO;
  */
 public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants {
 
-	private static final long serialVersionUID = 4070563013716274089L;
+	private static final long serialVersionUID = 4070563013716274089L;// 缓存
+	private ISCacheData<SystemParameterDBO> SystemParameterService_; //参数定义 
 
 	@Override
 	public int doEndTag() throws JspException {
@@ -81,18 +82,17 @@ public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants 
 
 			sb.append(">");
 
-			//缓存
-			ConfigCacheService _ConfigDataCacheService_ = BeanFactoryHelper.getBean("ConfigDataCacheService");
-			//直接从数据库里读取
-			List<ConfigDataDBO> configDatas = _ConfigDataCacheService_.getConfigDatasFromDB(configType);
-
+			// 缓存
+			SystemParameterService_ = BeanFactoryHelper.getBean("SystemParameterService");
+			// 直接从数据库里读取
+			List<SystemParameterDBO> configDatas = SystemParameterService_.getDataFromDB(configDate);
 
 			String custom_data;
 			// 是否默认添加第一条,比如 --请选择--
 			if (EmptyHelper.isNotEmpty(firstOption)) {
 				sb.append("<option value>" + firstOption + "</option>");
 			}
-			for (ConfigDataDBO item : configDatas) {
+			for (SystemParameterDBO item : configDatas) {
 				sb.append("<option");
 				// 自定义数据
 				if (EmptyHelper.isNotEmpty(data)) {
@@ -107,7 +107,7 @@ public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants 
 				{
 					sb.append(" value=\"" + item.getKey());
 					sb.append("\"");
-					if (item.getKey().equals(configKey))
+					if (item.getKey().equals(getConfigKey()))
 						sb.append(" selected ");
 					sb.append(">");
 				}
@@ -132,8 +132,7 @@ public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants 
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
-	private String configType;
-	private String configKey;
+	private SystemParameterDBO configDate = new SystemParameterDBO();
 	private String onclick;
 	private String onchange;
 	private String clazz;
@@ -151,19 +150,19 @@ public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants 
 	}
 
 	public String getConfigType() {
-		return configType;
+		return configDate.getType();
 	}
 
 	public void setConfigType(String configType) {
-		this.configType = configType;
+		this.configDate.setType(configType);
 	}
 
 	public String getConfigKey() {
-		return configKey;
+		return configDate.getKey();
 	}
 
 	public void setConfigKey(String configKey) {
-		this.configKey = configKey;
+		this.configDate.setKey(configKey);
 	}
 
 	public String getOnclick() {

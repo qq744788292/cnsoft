@@ -1,9 +1,9 @@
-package org.zmsoft.jfp.persistent.common.ConfigData;
+package org.zmsoft.jfp.persistent.common.SystemParameter;
 
 import org.zmsoft.jfp.framework.support.MyDataBaseObjectSupport3;
 
-/** 参数配置 */
-public class ConfigDataDBO extends MyDataBaseObjectSupport3 {
+/** 参数定义 */
+public class SystemParameterDBO extends MyDataBaseObjectSupport3 {
 	/**
 	 * 分类
 	 */

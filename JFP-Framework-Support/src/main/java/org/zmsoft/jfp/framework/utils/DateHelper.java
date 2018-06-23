@@ -10,10 +10,10 @@ import java.util.regex.Pattern;
 
 /**
  * 日期格式化
- *
- * @author ZmSoft
- * @version 0.1.0 2018/2/8
- * @since 0.1.0 2018/2/8
+ * 
+ * @author isotope
+ * @since 0.1.0
+ * @version 0.1.0 2014/2/8
  */
 public class DateHelper {
 	/**
@@ -292,6 +292,84 @@ public class DateHelper {
 	}
 
 	/**
+	 * 两个日期相差多少秒
+	 * 
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	public static int getTimeDelta(Date date1, Date date2) {
+		long timeDelta = (date1.getTime() - date2.getTime()) / 1000;// 单位是秒
+		int secondsDelta = timeDelta > 0 ? (int) timeDelta : (int) Math.abs(timeDelta);
+		return secondsDelta;
+	}
+
+	/**
+	 * 两个日期相差多少秒
+	 * 
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	public static int getTimeDelta(Calendar date1, Calendar date2) {
+		long timeDelta = (date1.getTimeInMillis() - date2.getTimeInMillis()) / 1000;// 单位是秒
+		int secondsDelta = timeDelta > 0 ? (int) timeDelta : (int) Math.abs(timeDelta);
+		return secondsDelta;
+	}
+
+	/**
+	 * 日期转化
+	 * 
+	 * @param date
+	 *            日期字符串
+	 * @return
+	 * @throws Exception
+	 */
+	public static Calendar getCalendar(String date) throws Exception {
+		Calendar c = Calendar.getInstance();
+		date = date.replaceAll("[\\.\\-\\年\\月]", "/").replace("日", "");
+		String[] d = date.split("/");
+		c.set(Integer.parseInt(d[0]), Integer.parseInt(d[1]) - 1, Integer.parseInt(d[2]));
+		return c;
+	}
+
+	/**
+	 * 日期转化
+	 * 
+	 * @param date
+	 *            日期字符串
+	 * @param formatType
+	 *            日期格式
+	 * @return
+	 * @throws Exception
+	 */
+	public static Calendar getCalendar(String date, String formatType) throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat(formatType);
+
+		Calendar c = Calendar.getInstance();
+		c.setTimeInMillis(sdf.parse(date).getTime());
+		return c;
+	}
+
+	/**
+	 * 
+	 * @param date
+	 * @return
+	 * @throws Exception
+	 */
+	public static java.sql.Date getSQLDate(String date) throws Exception {
+		return new java.sql.Date(getCalendar(date).getTimeInMillis());
+	}
+
+	public static String getSQLDate(String date, String formatType) throws Exception {
+		return customTime(getSQLDate(date), formatType);
+	}
+
+	public static String getDate(String date, String formatType) throws Exception {
+		return customTime(getDate(date), formatType);
+	}
+
+	/**
 	 * 日期转换<br>
 	 * 20151111日<br>
 	 * 2015.6.19<br>
@@ -310,40 +388,12 @@ public class DateHelper {
 				c.set(Integer.parseInt(date.substring(0, 4)), Integer.parseInt(date.substring(4, 6)) - 1,
 						Integer.parseInt(date.substring(6, 8)));
 			} else {
-				date = date.replaceAll("[\\.\\-\\年\\月]", "/").replace("日", "");
-				String[] d = date.split("/");
-				c.set(Integer.parseInt(d[0]), Integer.parseInt(d[1]) - 1, Integer.parseInt(d[2]));
+				c = getCalendar(date);
 			}
 		} catch (Exception e) {
 			return null;
 		}
 		return c.getTime();
-	}
-
-	/**
-	 * 
-	 * @param date
-	 * @return
-	 * @throws Exception
-	 */
-	public static java.sql.Date getSQLDate(String date) throws Exception {
-		Calendar c = Calendar.getInstance();
-		try {
-			date = date.replaceAll("[\\.\\-\\年\\月]", "/").replace("日", "");
-			String[] d = date.split("/");
-			c.set(Integer.parseInt(d[0]), Integer.parseInt(d[1]) - 1, Integer.parseInt(d[2]));
-		} catch (Exception e) {
-			return null;
-		}
-		return new java.sql.Date(c.getTimeInMillis());
-	}
-
-	public static String getSQLDate(String date, String formatType) throws Exception {
-		return customTime(getSQLDate(date), formatType);
-	}
-
-	public static String getDate(String date, String formatType) throws Exception {
-		return customTime(getDate(date), formatType);
 	}
 
 	/**
@@ -360,10 +410,10 @@ public class DateHelper {
 	}
 
 	/**
-	 * 日期计算
-	 * {@link Calendar#add()}
+	 * 日期计算 {@link Calendar#add()}
+	 * 
 	 * @param date
-	 * @param field 
+	 * @param field
 	 * @param amount
 	 * @return
 	 * @throws Exception
@@ -383,7 +433,7 @@ public class DateHelper {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		return format.format(cal.getTime());
 	}
-	
+
 	/**
 	 * 时间转字符串 yyyy-MM-dd
 	 * 
@@ -410,5 +460,38 @@ public class DateHelper {
 		Date d2 = new Date();
 		int x = DateHelper.getDaysBetween(d1, d2);
 		System.out.println(x);
+	}
+
+	/**
+	 * 判断当前时间是否在[startTime, endTime]区间，注意时间格式要一致
+	 * 
+	 * @param nowTime
+	 *            当前时间
+	 * @param startTime
+	 *            开始时间
+	 * @param endTime
+	 *            结束时间
+	 * @return
+	 * @author jqlin
+	 */
+	public static boolean isEffectiveDate(Date nowTime, Date startTime, Date endTime) {
+		if (nowTime.getTime() == startTime.getTime() || nowTime.getTime() == endTime.getTime()) {
+			return true;
+		}
+
+		Calendar date = Calendar.getInstance();
+		date.setTime(nowTime);
+
+		Calendar begin = Calendar.getInstance();
+		begin.setTime(startTime);
+
+		Calendar end = Calendar.getInstance();
+		end.setTime(endTime);
+
+		if (date.after(begin) && date.before(end)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

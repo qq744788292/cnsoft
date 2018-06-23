@@ -10,16 +10,18 @@ package org.zmsoft.jfp.common.cache;
 public interface ICommonDataConstants {
 	
 	/**
-	 * 文章分类
+	 * 参数定义
 	 */
-	public final static String CACHE_COMMON_TYPE = "CACHE:COMMON:TYPE:";
+	public final static String CACHE_COMMON_PARAMETER = "CACHE:COMMON:PARAMETER:";
+	
 	/**
-	 * 参数配置
+	 * 业务分类
 	 */
-	public final static String CACHE_COMMON_CONFIG = "CACHE:COMMON:CONFIG:";
+	public final static String CACHE_COMMON_CLASSIFY = "CACHE:COMMON:CLASSIFY:";
+	
 	/**
 	 * 系统配置
 	 */
-	public final static String CACHE_COMMON_SYSTEM = "CACHE:COMMON:SYSTEM:";
+	public final static String CACHE_COMMON_CONFIG = "CACHE:COMMON:CONFIG:";
 	
 }

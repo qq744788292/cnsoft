@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.zmsoft.jfp.framework.cache.ISCacheService;
-import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.zmsoft.jfp.framework.cache.ISCacheService;
+import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
 
 import com.alibaba.fastjson.JSON;
 
@@ -18,9 +18,9 @@ import com.alibaba.fastjson.JSON;
  * @version 0.1.0 2018/2/8
  * @since 0.1.0 2018/2/8
  */
-//@EnableAsync
-//@Service("GameDataCache")
-public abstract class ADataCacheSupport<T> implements IFrameworkConstants, ICommonDataConstants {
+// @EnableAsync
+// @Service("GameDataCache")
+public abstract class ADataCacheSupport<T> implements ISCacheData<T>, IFrameworkConstants, ICommonDataConstants {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -49,18 +49,20 @@ public abstract class ADataCacheSupport<T> implements IFrameworkConstants, IComm
 	 * 是否自动转换
 	 */
 	protected boolean translation = false;
-
+	
 	/**
-	 * 缓存加载
+	 * 数据保存
+	 * @deprecated
 	 */
-	// @Async
-	public abstract void loadCacheData();
-
+	public boolean doCache() throws Exception{
+		return false;
+	}
+	
 	/**
-	 * 缓存破弃
+	 * 数据缓存
+	 * @param key
+	 * @param data
 	 */
-	public abstract void removeCacheData(T param);
-
 	protected void putCache(String key, Object data) {
 		if (data instanceof String)
 			myCacheService.putObject(key, data, expireTimeWithSecond, translation);
@@ -68,11 +70,22 @@ public abstract class ADataCacheSupport<T> implements IFrameworkConstants, IComm
 			myCacheService.putObject(key, JSON.toJSONString(data), expireTimeWithSecond, translation);
 	}
 
+	/**
+	 * 获取缓存
+	 * @param key
+	 * @return
+	 */
 	protected Object loadCache(String key) {
 		// myCacheService.expire(key, expireTimeWithSecond);
 		return myCacheService.getObject(key, translation);
 	}
 
+	/**
+	 * 获取缓存并转化为对象
+	 * @param key
+	 * @param clazz
+	 * @return
+	 */
 	protected T loadCacheClass(String key, Class<T> clazz) {
 		Object cache = loadCache(key);
 		if (cache == null)
@@ -80,6 +93,12 @@ public abstract class ADataCacheSupport<T> implements IFrameworkConstants, IComm
 		return JSON.parseObject((String) cache, clazz);
 	}
 
+	/**
+	 * 获取缓存并转化为对象集合
+	 * @param key
+	 * @param clazz
+	 * @return
+	 */
 	protected List<T> loadCacheArray(String key, Class<T> clazz) {
 		Object cache = loadCache(key);
 		if (cache == null)

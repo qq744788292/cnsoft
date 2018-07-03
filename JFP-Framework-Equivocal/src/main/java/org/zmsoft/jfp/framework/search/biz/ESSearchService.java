@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
 import org.zmsoft.jfp.framework.search.ESQuerySentenceFactory;
 import org.zmsoft.jfp.framework.search.ISPrepareSearchType;
 import org.zmsoft.jfp.framework.search.MySearchSupport;

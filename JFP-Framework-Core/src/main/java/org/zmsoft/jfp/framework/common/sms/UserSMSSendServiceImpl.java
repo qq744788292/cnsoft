@@ -22,23 +22,17 @@ import com.alibaba.fastjson.JSON;
  */
 public class UserSMSSendServiceImpl extends CommonChannelConfig implements ISMSSupport, ISMSConstants {
 	public UserSMSSendServiceImpl() {
-		this(ISMSSupport.CONFIG_KEY);
-	}
-
-	public UserSMSSendServiceImpl(String key) {
-		this.channelKey = key;
+		this.channelKey = CONFIG_KEY;
 	}
 
 	@Override
 	public boolean send(SMSBean sms) {
 		logger.debug(sms.toString());
 		// 压入队列
-		if (catchService == null)
+		if (myCacheService == null)
 			logger.error(">>>>>缓存服务没有定义...xxx");
 		else {
-			catchService.selectDB(defaultIndex);
-			catchService.addObjectInList(channelKey, sms, false);
-			catchService.init();
+			myCacheService.addObjectInList(channelKey, sms, false);
 		}
 		// 直接保存到短信队列
 		return true;
@@ -65,7 +59,7 @@ public class UserSMSSendServiceImpl extends CommonChannelConfig implements ISMSS
 		else
 			sms.setSourceCmp(TWO);
 		// 压入队列
-		if (catchService == null) {
+		if (myCacheService == null) {
 
 			// Jedis jedis = new Jedis("", 6379);
 			// jedis.auth("");
@@ -76,9 +70,7 @@ public class UserSMSSendServiceImpl extends CommonChannelConfig implements ISMSS
 
 			logger.error(">>>>>缓存服务没有定义...xxx" + JSON.toJSONString(sms));
 		} else {
-			catchService.selectDB(defaultIndex);
-			catchService.addObjectInList(channelKey, JSON.toJSONString(sms), false);
-			catchService.init();
+			myCacheService.addObjectInList(channelKey, JSON.toJSONString(sms), false);
 		}
 		// 直接保存到短信队列
 		return true;

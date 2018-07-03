@@ -7,19 +7,19 @@ public class SystemConfigDBO extends MyDataBaseObjectSupport3 {
 	/**
 	 * 分类
 	 */
-	protected String type;
+	protected String key;
 
 	/**
 	 * 配置对应的内容
 	 */
 	protected String value;
 
-	public String getType() {
-		return type;
+	public String getKey() {
+		return key;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 	public String getValue() {

@@ -2,7 +2,6 @@ package org.zmsoft.jfp.framework.search.biz;
 
 import java.io.IOException;
 
-import org.springframework.stereotype.Service;
 import org.zmsoft.jfp.framework.search.MySearchSupport;
 
 import io.searchbox.client.JestClient;

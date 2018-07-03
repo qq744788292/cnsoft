@@ -9,6 +9,10 @@ package org.zmsoft.jfp.framework.constants;
  */
 public interface IFrameworkConstants {
 
+
+	public static final String PAGE_LIMIT = "PageLimit";
+	
+	
 	public final static String Token_Can_Use_Hour = "TokenCanUseHour";
 	public final static String SYSTEM_OpenId = "1234567890";
 	public final static String SYSTEM_CHARSET = "UTF-8";

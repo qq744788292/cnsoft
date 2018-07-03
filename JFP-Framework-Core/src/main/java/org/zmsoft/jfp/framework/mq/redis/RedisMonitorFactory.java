@@ -2,8 +2,8 @@ package org.zmsoft.jfp.framework.mq.redis;
 
 import java.util.ArrayList;
 
+import org.zmsoft.jfp.framework.common.support.RedisChannelServiceThreadSupport;
 import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
-import org.zmsoft.jfp.framework.mq.redis.support.RedisChannelServiceThreadSupport;
 import org.zmsoft.jfp.framework.utils.EmptyHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

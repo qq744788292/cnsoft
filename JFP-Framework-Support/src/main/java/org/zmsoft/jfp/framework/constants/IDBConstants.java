@@ -24,6 +24,7 @@ public interface IDBConstants {
 	public final static String MESSAGE_DB_UPDATE = "数据更新成功";
 	public final static String MESSAGE_DB_DELETE = "数据删除成功";
 	public final static String MESSAGE_DB_SAVE = "数据保存成功";
+	public final static String MESSAGE_DB_FAIL = "数据操作失败";
 
 	public final static String DataSource_MYSQL = "MySql";
 	public final static String DataSource_DEFAULT = DataSource_MYSQL;

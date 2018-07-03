@@ -17,11 +17,7 @@ import org.zmsoft.jfp.framework.support.common.ISPhonePushSupport;
 public class UserPushSendServiceImpl extends CommonChannelConfig implements ISPhonePushSupport, IPushConstant, IFrameworkConstants {
 
 	public UserPushSendServiceImpl() {
-		this(ISPhonePushSupport.CONFIG_KEY);
-	}
-
-	public UserPushSendServiceImpl(String key) {
-		this.channelKey = key;
+		this.channelKey = CONFIG_KEY;
 	}
 
 	/**
@@ -36,10 +32,10 @@ public class UserPushSendServiceImpl extends CommonChannelConfig implements ISPh
 		else
 			push.setSourceCmp(TWO);
 
-		if (catchService == null)
+		if (myCacheService == null)
 			logger.error(">>>>>缓存服务没有定义...xxx");
 		else {
-			catchService.addObjectInList(channelKey, push, false);
+			myCacheService.addObjectInList(channelKey, push, false);
 		}
 		return true;
 	}

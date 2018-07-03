@@ -7,10 +7,13 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import org.zmsoft.jfp.common.cache.ISCacheData;
+import org.zmsoft.jfp.framework.cache.ISCacheData;
 import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
+import org.zmsoft.jfp.framework.constants.ITagConstants;
 import org.zmsoft.jfp.framework.utils.BeanFactoryHelper;
 import org.zmsoft.jfp.framework.utils.EmptyHelper;
+import org.zmsoft.jfp.persistent.common.SystemClassify.SystemClassifyDBO;
+import org.zmsoft.jfp.persistent.common.SystemConfig.SystemConfigDBO;
 import org.zmsoft.jfp.persistent.common.SystemParameter.SystemParameterDBO;
 
 /**
@@ -20,10 +23,9 @@ import org.zmsoft.jfp.persistent.common.SystemParameter.SystemParameterDBO;
  * @version 0.1.0 2018/2/8
  * @since 0.1.0 2018/2/8
  */
-public class ConfigDataTextTag extends TagSupport implements IFrameworkConstants {
+public class ConfigDataTextTag extends TagSupport implements IFrameworkConstants,ITagConstants {
 
 	private static final long serialVersionUID = 4070563013716274089L;
-	private ISCacheData<SystemParameterDBO> SystemParameterService_;
 
 	@Override
 	public int doEndTag() throws JspException {
@@ -36,13 +38,25 @@ public class ConfigDataTextTag extends TagSupport implements IFrameworkConstants
 		try {
 			out = this.pageContext.getOut();
 
-			SystemParameterService_ = BeanFactoryHelper.getBean("SystemParameterService");
-			if (EmptyHelper.isEmpty(getConfigType()))
-				out.println("");
-			else if (EmptyHelper.isEmpty(getConfigKey()))
-				out.println("");
-			else
-				out.println(SystemParameterService_.loadCacheData(configDate).getValue());
+			if (TAG_PARAMETER.equals(tableName)) {
+				ISCacheData<SystemParameterDBO> SystemParameterService_ = BeanFactoryHelper.getBean("SystemParameterService");
+				if (EmptyHelper.isEmpty(getConfigType()))
+					out.println(EMPTY);
+				else if (EmptyHelper.isEmpty(getConfigKey()))
+					out.println(EMPTY);
+				else
+					out.println(SystemParameterService_.loadCacheData(configDate).getValue());
+			} else if (TAG_CLASSIFY.equals(tableName)) {
+				ISCacheData<SystemClassifyDBO> SystemClassifyService_ = BeanFactoryHelper.getBean("SystemClassifyCacheService");
+				SystemClassifyDBO param = new SystemClassifyDBO();
+				param.setClassifyId(getConfigKey());
+				out.println(SystemClassifyService_.loadCacheData(param).getClassifyName());
+			} else if (TAG_CONFIG.equals(tableName)) {
+				ISCacheData<SystemConfigDBO> SystemConfigCacheService_ = BeanFactoryHelper.getBean("SystemConfigCacheService");
+				SystemConfigDBO param = new SystemConfigDBO();
+				param.setKey(getConfigKey());
+				out.println(SystemConfigCacheService_.loadCacheData(param).getValue());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -74,5 +88,15 @@ public class ConfigDataTextTag extends TagSupport implements IFrameworkConstants
 
 	public void setConfigKey(String configKey) {
 		this.configDate.setKey(configKey);
+	}
+
+	private String tableName;
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
 	}
 }

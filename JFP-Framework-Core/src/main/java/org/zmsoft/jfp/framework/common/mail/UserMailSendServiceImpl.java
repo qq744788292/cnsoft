@@ -16,21 +16,17 @@ import org.zmsoft.jfp.framework.support.common.ISMailSupport;
  */
 public class UserMailSendServiceImpl extends CommonChannelConfig implements ISMailSupport, IMailConstants, IFrameworkConstants {
 	public UserMailSendServiceImpl() {
-		this(ISMailSupport.CONFIG_KEY);
-	}
-
-	public UserMailSendServiceImpl(String key) {
-		this.channelKey = key;
+		this.channelKey = CONFIG_KEY;
 	}
 
 	@Override
 	public boolean send(MailBean mial) {
 		logger.debug(mial.toString());
 
-		if (catchService == null)
+		if (myCacheService == null)
 			logger.error(">>>>>缓存服务没有定义...xxx");
 		else {
-			catchService.addObjectInList(channelKey, mial, false);
+			myCacheService.addObjectInList(channelKey, mial, false);
 		}
 		return true;
 	}

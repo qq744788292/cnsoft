@@ -190,7 +190,7 @@ public class PageTag extends TagSupport implements IFrameworkConstants {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                out.write("<span>PageTag标签渲染出错</span>");
+                out.write("<span>PageTag.doStartTagByDiv标签渲染出错</span>");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -225,6 +225,7 @@ public class PageTag extends TagSupport implements IFrameworkConstants {
 
                 String paramStr = paramStringBuilder.toString();
                 StringBuilder sb = new StringBuilder();
+                sb.append("\r\n");
                 sb.append("<table>");
                 sb.append("<tr class=\"pageht\">");
                 ///////////////////////////// 左侧统计///////////////////////////////////////////
@@ -322,21 +323,23 @@ public class PageTag extends TagSupport implements IFrameworkConstants {
 
                 //跳转指定页面
                 sb.append("<td style=\"width:10px;\"></td>");
-
-                sb.append("<td style=\"width:100px;\"> "
-                        +"<input id='toPageInput' style=\"text-align:center; cursor: pointer;width:35px;\" type='text' > "
-                        +"<input  style='padding:2px 2px;border:1px solid transparent;text-align:center; cursor: pointer;' type='button' onclick='toPage()' value='跳转'> </td>");
-                sb.append("<script type=\"text/javascript\"> "
-                        +"function toPage(){"
-                        +" var pageCurrent=$('#toPageInput').val();"
-                        +" var url='").append(url).append(paramStr).append("'+pageCurrent;"
-                        +" if(pageCurrent == ''){return;}"
-                        +" if(pageCurrent > ").append(totalPage).append("){return;}"
-                        +"parent.showPageForm(url);"
-                        +"} "
-                        +"</script>" );
-
-                sb.append("<td style=\"width:26px;\"></td>");
+                if(totalPage>5){
+	                sb.append("<td style=\"width: 42px;\"><input class=\"form-control\" id=\"_jumpPageInput_\" type=\"text\"></td>");
+	                sb.append("<td style=\"width:10px;\"></td>");
+	                sb.append("<td style=\"width: 34px;\"><input class=\"btn btn-default\" type=\"button\" onclick=\"_doJumpPage_()\" value=\"跳转\"></td>");
+	                sb.append("<td style=\"width:10px;\"></td>");	                
+	                sb.append("\r\n");
+	                sb.append("<script type=\"text/javascript\">");
+	                sb.append("function _doJumpPage_(){");
+	                sb.append("var jumpNum=$('#_jumpPageInput_').val();");
+	                sb.append("var url='").append(url).append(paramStr).append("'+jumpNum;");
+	                sb.append("if(jumpNum == ''){return;}");
+	                sb.append("if(jumpNum > ").append(totalPage).append("){return;}");
+	                sb.append("parent.showPageForm(url);");
+	                sb.append("} ");
+	                sb.append("</script>" );
+                }
+                
                 sb.append("</tr>");
                 sb.append("</table>");
                 sb.append("</td>");
@@ -348,7 +351,7 @@ public class PageTag extends TagSupport implements IFrameworkConstants {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                out.write("<span>PageTag标签渲染出错</span>");
+                out.write("<span>PageTag.doStartTagByTable标签渲染出错</span>");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

@@ -9,10 +9,12 @@ import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.zmsoft.jfp.common.cache.ISCacheData;
+import org.zmsoft.jfp.framework.cache.ISCacheData;
 import org.zmsoft.jfp.framework.constants.IFrameworkConstants;
+import org.zmsoft.jfp.framework.constants.ITagConstants;
 import org.zmsoft.jfp.framework.utils.BeanFactoryHelper;
 import org.zmsoft.jfp.framework.utils.EmptyHelper;
+import org.zmsoft.jfp.persistent.common.SystemClassify.SystemClassifyDBO;
 import org.zmsoft.jfp.persistent.common.SystemParameter.SystemParameterDBO;
 
 /**
@@ -22,10 +24,9 @@ import org.zmsoft.jfp.persistent.common.SystemParameter.SystemParameterDBO;
  * @version 0.1.0 2018/2/8
  * @since 0.1.0 2018/2/8
  */
-public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants {
+public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants, ITagConstants {
 
 	private static final long serialVersionUID = 4070563013716274089L;// 缓存
-	private ISCacheData<SystemParameterDBO> SystemParameterService_; //参数定义 
 
 	@Override
 	public int doEndTag() throws JspException {
@@ -82,37 +83,67 @@ public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants 
 
 			sb.append(">");
 
-			// 缓存
-			SystemParameterService_ = BeanFactoryHelper.getBean("SystemParameterService");
-			// 直接从数据库里读取
-			List<SystemParameterDBO> configDatas = SystemParameterService_.getDataFromDB(configDate);
-
-			String custom_data;
 			// 是否默认添加第一条,比如 --请选择--
 			if (EmptyHelper.isNotEmpty(firstOption)) {
-				sb.append("<option value>" + firstOption + "</option>");
+				sb.append("<option value>").append(firstOption).append("</option>");
 			}
-			for (SystemParameterDBO item : configDatas) {
-				sb.append("<option");
-				// 自定义数据
-				if (EmptyHelper.isNotEmpty(data)) {
-					String val = BeanUtils.getProperty(item, data);
-					if (EmptyHelper.isEmpty(val))
-						val = "";
-					custom_data = " custom-data='" + val + "'";
-					sb.append(custom_data);
-				}
+			// 缓存
+			// 直接从数据库里读取
+			if (TAG_PARAMETER.equals(tableName)) {
+				ISCacheData<SystemParameterDBO> SystemParameterService_ = BeanFactoryHelper.getBean("SystemParameterCacheService");
+				List<SystemParameterDBO> configDatas = SystemParameterService_.getDataFromDB(configDate);
 
-				// 默认数据
-				{
-					sb.append(" value=\"" + item.getKey());
-					sb.append("\"");
-					if (item.getKey().equals(getConfigKey()))
-						sb.append(" selected ");
-					sb.append(">");
+				String custom_data;
+				for (SystemParameterDBO item : configDatas) {
+					sb.append("<option");
+					// 自定义数据
+					if (EmptyHelper.isNotEmpty(data)) {
+						String val = BeanUtils.getProperty(item, data);
+						if (EmptyHelper.isEmpty(val))
+							val = "";
+						custom_data = " custom-data='" + val + "'";
+						sb.append(custom_data);
+					}
+
+					// 默认数据
+					{
+						sb.append(" value=\"" + item.getKey());
+						sb.append("\"");
+						if (item.getKey().equals(getConfigKey()))
+							sb.append(" selected ");
+						sb.append(">");
+					}
+					sb.append(item.getValue());
+					sb.append("</option>");
 				}
-				sb.append(item.getValue());
-				sb.append("</option>");
+			} else if (TAG_CLASSIFY.equals(tableName)) {
+				ISCacheData<SystemClassifyDBO> SystemClassifyService_ = BeanFactoryHelper.getBean("SystemClassifyCacheService");
+				SystemClassifyDBO systemClassifyDBO = new SystemClassifyDBO();
+				systemClassifyDBO.setDelFlag(ZERO);
+				List<SystemClassifyDBO> configDatas = SystemClassifyService_.loadCacheDatas(systemClassifyDBO);
+				String custom_data;
+				for (SystemClassifyDBO item : configDatas) {
+					sb.append("<option");
+					// 自定义数据
+					if (EmptyHelper.isNotEmpty(data)) {
+						String val = BeanUtils.getProperty(item, data);
+						if (EmptyHelper.isEmpty(val))
+							val = "";
+						custom_data = " custom-data='" + val + "'";
+						sb.append(custom_data);
+					}
+
+					// 默认数据
+					{
+						sb.append(" value=\"" + item.getPuk());
+						sb.append("\"");
+						// if (item.getPuk().equals(getConfigKey()))
+						// sb.append(" selected ");
+						sb.append(">");
+					}
+					sb.append(item.getClassifyName());
+					sb.append("</option>");
+				}
 			}
 
 			sb.append("</select>");
@@ -140,6 +171,15 @@ public class ConfigDataBoxTag extends TagSupport implements IFrameworkConstants 
 	private String name;
 	private String data;
 	private String firstOption;
+	private String tableName;
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
 
 	public String getFirstOption() {
 		return firstOption;

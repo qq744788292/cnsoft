@@ -2,7 +2,7 @@
 Jfp
 ====== 
 
-#### 项目介绍
+#### 项目全称
 java free project tools & framework
 ------- 
 
@@ -19,18 +19,17 @@ java free project tools & framework
 
 #### 版本日志
 1.2.1  2018/7/18 正式发布 <br>
-  1). 优化爬虫框架<br>
-  2). 增加缓存管理器<br>
-  3). 优化公共标签实现<br>
-        a). 业务标签 org.zmsoft.jfp.common.tag<br>
-        b). 通用标签 org.zmsoft.jfp.framework.tag<br>
+&nbsp;&nbsp;1). 优化爬虫框架<br>
+&nbsp;&nbsp;2). 增加缓存管理器<br>
+&nbsp;&nbsp;3). 优化公共标签实现<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a). 业务标签 org.zmsoft.jfp.common.tag<br>
+&nbsp;&nbsp;&nbsp;&nbsp;b). 通用标签 org.zmsoft.jfp.framework.tag<br>
 1.1.1  2018/6/25 正式发布 <br>
-  1). 优化代码结构<br>
-  2). 优化缓存模块（系统配置、参数定义、业务分类）<br>
-  3). 优化公共业务生产者端实现<br>
+&nbsp;&nbsp;1). 优化代码结构<br>
+&nbsp;&nbsp;2). 优化缓存模块（系统配置、参数定义、业务分类）<br>
+&nbsp;&nbsp;3). 优化公共业务生产者端实现<br>
 1.0.1  2018/2/8 正式发布 <br>
 0.1.0  2018/2/2 原有代码整理迁移 
-
 
 #### 参与贡献
 1. Fork 本项目

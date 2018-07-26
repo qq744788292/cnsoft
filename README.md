@@ -18,6 +18,12 @@ java free project tools & framework
 3. JFP-Framework-Equivocal      扩展功能，包括业务支撑底层
 
 #### 版本日志
+1.2.2  2018/7/28 正式发布 <br>
+&nbsp;&nbsp;1). HttpServiceHelper增加JSON方式通信<br>
+&nbsp;&nbsp;2). RESTResultBean增加XML输出格式<br>
+&nbsp;&nbsp;3). ISSystemDataCache优化缓存集成关系<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a). 业务标签 org.zmsoft.jfp.common.tag<br>
+&nbsp;&nbsp;&nbsp;&nbsp;b). 通用标签 org.zmsoft.jfp.framework.tag<br>
 1.2.1  2018/7/18 正式发布 <br>
 &nbsp;&nbsp;1). 优化爬虫框架<br>
 &nbsp;&nbsp;2). 增加缓存管理器<br>

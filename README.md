@@ -18,6 +18,8 @@ java free project tools & framework
 3. JFP-Framework-Equivocal      扩展功能，包括业务支撑底层
 
 #### 版本日志
+1.2.3  2018/8/20 正式发布 <br>
+&nbsp;&nbsp;1). 功能优化<br>
 1.2.2  2018/7/28 正式发布 <br>
 &nbsp;&nbsp;1). HttpServiceHelper增加JSON方式通信<br>
 &nbsp;&nbsp;2). RESTResultBean增加XML输出格式<br>

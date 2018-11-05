@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="LC-ZY-WEB-User">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
+        <dependent-module archiveName="CN-Biz-Common-2.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CN-Biz-Common-3000/CN-Biz-Common-3000">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CN-Persistent-Common-2.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CN-Persistent-Common-2000/CN-Persistent-Common-2000">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CN-Framewore-Config-2.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CN-Framewore-Config-1200/CN-Framewore-Config-1200">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CN-Framewore-Core-2.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CN-Framewore-Core-1100/CN-Framewore-Core-1100">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CN-User-Weixin-2.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CN-User-Weixin-3100/CN-User-Weixin-3100">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CJApp-Persistent-Common-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CJApp-Persistent-Common-2100/CJApp-Persistent-Common-2100">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/LC-ZY-WEB-User-5000/target/classes"/>
+        <property name="context-root" value="LC-ZY-WEB-User"/>
+    </wb-module>
+</project-modules>

@@ -18,6 +18,10 @@ java free project tools & framework
 3. JFP-Framework-Equivocal      扩展功能，包括业务支撑底层
 
 #### 版本日志
+2.5.2  2019/8/17 正式发布 <br>
+&nbsp;&nbsp;1). 整合历史版本功能<br>
+&nbsp;&nbsp;2). 优化配置（基于数据库）<br>
+&nbsp;&nbsp;3). 集成Cloud，基于Http通信<br>
 2.2.2  2018/11/05 正式发布 <br>
 &nbsp;&nbsp;1). 基于SpringBoot<br>
 1.2.3  2018/8/20 正式发布 <br>

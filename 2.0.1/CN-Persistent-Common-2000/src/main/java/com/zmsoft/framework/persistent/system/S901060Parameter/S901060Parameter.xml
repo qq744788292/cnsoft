@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 分类参数定义 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='com.zmsoft.framework.persistent.system.S901060Parameter.S901060ParameterMapper'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        config_type_id,config_key,config_value,meno,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,hdp,del_flag,create_time,creator,update_time,updator
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='S901060ParameterDBO' resultType='S901060ParameterDBO'>
+        SELECT <include refid='tableColumns'/> FROM s901060_parameter
+        WHERE 1 = 1 
+            <if test=' configTypeId != null and configTypeId !="" '><!-- 业务分类ID -->
+                AND config_type_id = #{configTypeId}
+            </if>
+            <if test=' configKey != null and configKey !="" '><!-- 键定义 -->
+                AND INSTR(config_key , #{configKey} ) != 0
+            </if>
+            <if test=' configValue != null and configValue !="" '><!-- 值内容 -->
+                AND config_value = #{configValue}
+            </if>
+            <if test=' meno != null and meno !="" '><!-- 备注 -->
+                AND meno = #{meno}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                AND fb1 = #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                AND fb2 = #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                AND fb3 = #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                AND fb4 = #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                AND fb5 = #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                AND eb1 = #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                AND eb2 = #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                AND eb3 = #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                AND eb4 = #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                AND eb5 = #{eb5}
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                AND hdp = #{hdp}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                AND del_flag = #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                AND create_time = #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                AND creator = #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                AND updator = #{updator}
+            </if>
+    </select>
+
+    <!-- 插入一条数据 -->
+    <insert id='doInsert' parameterType='S901060ParameterDBO'>
+        INSERT INTO s901060_parameter
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{configTypeId},#{configKey},#{configValue},#{meno},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{hdp},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='S901060ParameterDBO'>
+        UPDATE s901060_parameter SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' configTypeId != null and configTypeId !="" '><!-- 业务分类ID -->
+            ,config_type_id = #{configTypeId}
+        </if>
+        <if test=' configKey != null and configKey !="" '><!-- 键定义 -->
+            ,config_key = #{configKey}
+        </if>
+        <if test=' configValue != null and configValue !="" '><!-- 值内容 -->
+            ,config_value = #{configValue}
+        </if>
+        <if test=' meno != null and meno !="" '><!-- 备注 -->
+            ,meno = #{meno}
+        </if>
+        <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+        <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+        <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+        <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+        <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+        <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+        <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+        <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+        <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+        <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+        <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+            ,hdp = #{hdp}
+        </if>
+        <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+        <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+        <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+        <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            AND config_type_id = #{configTypeId}  <!-- 业务分类ID -->
+            AND config_key = #{configKey}  <!-- 键定义 -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='S901060ParameterDBO'>
+        UPDATE s901060_parameter
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND config_type_id = #{configTypeId}  <!-- 业务分类ID -->
+            AND config_key = #{configKey}  <!-- 键定义 -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='S901060ParameterDBO'>
+        DELETE FROM s901060_parameter
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND config_type_id = #{configTypeId}  <!-- 业务分类ID -->
+            AND config_key = #{configKey}  <!-- 键定义 -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='S901060ParameterDBO' resultType='S901060ParameterDBO'>
+        SELECT <include refid='tableColumns'/> FROM s901060_parameter WHERE 1 = 1
+            AND config_type_id = #{configTypeId}  <!-- 业务分类ID -->
+            AND config_key = #{configKey}  <!-- 键定义 -->
+    </select>
+
+</mapper>

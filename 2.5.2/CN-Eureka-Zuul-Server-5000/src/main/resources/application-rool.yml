@@ -1,0 +1,6 @@
+##路由中心代理设置
+zuul:
+  routes:
+    cmp-account-center:
+      path: /cmp-account-center/**
+      serviceId: CMP-ACCOUNT-CENTER

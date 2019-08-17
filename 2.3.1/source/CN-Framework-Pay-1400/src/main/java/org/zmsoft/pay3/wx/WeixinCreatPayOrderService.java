@@ -1,0 +1,201 @@
+package org.zmsoft.pay3.wx;
+
+import java.io.ByteArrayInputStream;
+import java.math.BigDecimal;
+import java.util.HashMap;
+
+import org.zmsoft.common.MySystemConfigService;
+import org.zmsoft.config.wx.ICWeixinPayConstants;
+import org.zmsoft.config.wx.WxConfigService;
+import org.zmsoft.framework.beans.PayOrderBean;
+import org.zmsoft.framework.beans.common.RESTResultBean;
+import org.zmsoft.framework.cache.session.SessionHelper;
+import org.zmsoft.framework.support.MyBeanFactoryHelper;
+import org.zmsoft.framework.support.MyServiceSupport;
+import org.zmsoft.framework.token.OrderTokenHelper;
+import org.zmsoft.framework.utils.EmptyHelper;
+import org.zmsoft.framework.utils.HttpServiceHelper;
+import org.zmsoft.framework.utils.PKHelper;
+import org.zmsoft.framework.utils.RandomHelper;
+import org.zmsoft.framework.utils.XMLHelper;
+import org.zmsoft.pay3.wx.bean.WxUnionOrderBean;
+import org.zmsoft.pay3.wx.call.WxJSAPIOrderCallBean;
+
+/**
+ * 微信统一下单
+ * 
+ * @author zxm
+ *
+ */
+public class WeixinCreatPayOrderService extends MyServiceSupport implements ICWeixinPayConstants {
+
+	public void main(String[] args) throws Exception {
+		WxJSAPIOrderCallBean pcOrder = new WxJSAPIOrderCallBean();
+		pcOrder.setNonceStr(RandomHelper.getRandomString(32));// 随机数
+		PayOrderBean order = new PayOrderBean();
+
+		order.setPayTradeNo(PKHelper.creatUUKey());// 订单号
+		order.setBody("【xxxx】购买交易");// 订单名称
+		order.setPayAmount(new BigDecimal("1.01"));
+
+		System.out.println(createWeinxinPcOrder(pcOrder, order));
+	}
+
+	private MySystemConfigService systemConfigService;
+
+	private MySystemConfigService getSystemConfigService() {
+		if (EmptyHelper.isEmpty(systemConfigService))
+			systemConfigService = MyBeanFactoryHelper.getBean(MySystemConfigService.class.getSimpleName());
+		return systemConfigService;
+	}
+
+	// 微信配置
+	private WxConfigService wxConfigService;
+
+	private WxConfigService getWxConfigService() {
+		if (EmptyHelper.isEmpty(wxConfigService))
+			wxConfigService = MyBeanFactoryHelper.getBean(WxConfigService.class.getSimpleName());
+		return wxConfigService;
+	}
+
+	private String loadNotifyUrl(String orderToken) {
+		return getSystemConfigService().getApiServerUrl() + String.format(WX_NOTIFY_URL, "orderToken");
+	}
+
+	/**
+	 * 生成微信下单数据//文章素材相关
+	 * 
+	 * @param order
+	 * @return
+	 * @throws Exception
+	 */
+	public RESTResultBean<WxJSAPIOrderCallBean> createWeinxinPcOrder(WxJSAPIOrderCallBean pcOrder, PayOrderBean order) throws Exception {
+		logger.debug("微信统一下单数据===WxPcOrderBean>>>>>>" + pcOrder);
+		logger.debug("微信统一下单数据===PayOrderBean>>>>>>" + order);
+		String orderNumber = order.getPayTradeNo();// 商户订单号
+		BigDecimal rechargeMoney = order.getPayAmount();// 订单金额
+
+		RESTResultBean<WxJSAPIOrderCallBean> result = new RESTResultBean<WxJSAPIOrderCallBean>();
+		// TODO 开发过程中改为1,发布时改为100,即最少1元
+		rechargeMoney = rechargeMoney.multiply(BigDecimal.ZERO).multiply(BigDecimal.ZERO);
+		if (rechargeMoney.intValue() < 1) {
+			result.setCode(1);
+			result.setMsg("价格设置错误，请联系管理员！");
+			return result;
+		}
+		String orderAmount = "" + rechargeMoney.intValue();
+		String orderToken = OrderTokenHelper.loadToken(SessionHelper.currentUserId(), orderNumber);
+
+		WxUnionOrderBean _WxUnionOrderBean_ = new WxUnionOrderBean();
+		//_WxUnionOrderBean_.setKey(getWxConfigService().getWxCustomSecret());
+		_WxUnionOrderBean_.setAppid(getWxConfigService().getWxAppID());// 应用ID
+		_WxUnionOrderBean_.setAttach(getWxConfigService().getWxAttach());// 附加数据
+		_WxUnionOrderBean_.setFee_type(WX_FEE_TYPE);// 标价币种
+		_WxUnionOrderBean_.setMch_id(getWxConfigService().getWxCustomid());// 商户号
+		_WxUnionOrderBean_.setNotify_url(loadNotifyUrl(orderToken));// 通知地址
+		_WxUnionOrderBean_.setSign_type(WX_SIGN_TYPE);// 签名类型
+
+		_WxUnionOrderBean_.setTrade_type("NATIVE");// 交易类型（JSAPI--公众号支付、NATIVE--原生扫码支付、APP--app支付，统一下单接口trade_type的传参可参考这里）
+
+		_WxUnionOrderBean_.setBody(order.getBody());// 商品描述
+		_WxUnionOrderBean_.setNonce_str(pcOrder.getNonceStr());// 随机字符串
+		_WxUnionOrderBean_.setOut_trade_no(orderNumber);// 商户订单号
+		_WxUnionOrderBean_.setSpbill_create_ip(order.getUserIp());// 用户IP
+		_WxUnionOrderBean_.setTotal_fee(orderAmount);// 标价金额（分）
+
+		StringBuffer param = _WxUnionOrderBean_.creatOrderPayXML();
+		logger.debug("微信统一下单数据===_WxH5OrderBean_>>>>>>" + _WxUnionOrderBean_);
+		// 调用微信统一下单
+		String payResult = HttpServiceHelper.doHttpPOST(WX_PAY_URL, param);
+		logger.debug("微信统一下单结果===payResult>>>>>>" + payResult);
+
+		// 格式化返回结果
+		HashMap<String, String> wxResult = XMLHelper.loadXML(new ByteArrayInputStream(payResult.getBytes(SYSTEM_CHARSET)));
+
+		logger.info("微信统一下单结果===wxResult>>>>>>" + wxResult);
+		String prepay_id = wxResult.get("prepay_id");
+		if (EmptyHelper.isEmpty(prepay_id)) {
+			throw new Exception(wxResult.get("return_msg"));
+		}
+
+		// 重新计算签名.有appId, timeStamp, nonceStr, package, signType
+		pcOrder.setAppId(getWxConfigService().getWxAppID());
+//		pcOrder.setKey(getWxConfigService().getWxCustomSecret());
+//		pcOrder.setPakkage(prepay_id);
+//		pcOrder.setCodeUrl(wxResult.get("code_url"));
+//		pcOrder.setOrderNumber(orderNumber);
+
+		// 设定页面返回结果
+		result.setData(pcOrder);
+		result.setMsg("下单成功，请扫码支付！");
+		logger.debug("微信统一下单结果..." + orderNumber + "," + result.getData());
+		return result;
+	}
+
+	/**
+	 * 生成微信下单数据
+	 * 
+	 * @param order
+	 * @return
+	 * @throws Exception
+	 */
+	public RESTResultBean<WxJSAPIOrderCallBean> createWeinxinH5Order(WxJSAPIOrderCallBean h5Order, PayOrderBean order) throws Exception {
+		logger.debug("微信统一下单数据===WxH5JSOrderBean>>>>>>" + h5Order);
+		logger.debug("微信统一下单数据===PayOrderBean>>>>>>" + order);
+		String orderCode = order.getPayTradeNo();// 商户订单号
+		BigDecimal rechargeMoney = order.getPayAmount();// 订单金额
+
+		RESTResultBean<WxJSAPIOrderCallBean> result = new RESTResultBean<WxJSAPIOrderCallBean>();
+		rechargeMoney = rechargeMoney.multiply(new BigDecimal("100"));
+		if (rechargeMoney.intValue() < 1) {
+			result.setCode(1);
+			result.setMsg("价格设置错误，请联系管理员！");
+			return result;
+		}
+		String orderAmount = "" + rechargeMoney.intValue();
+
+		WxUnionOrderBean _WxUnionOrderBean_ = new WxUnionOrderBean();
+//		_WxUnionOrderBean_.setKey(getWxConfigService().getWxCustomSecret());
+		_WxUnionOrderBean_.setAppid(getWxConfigService().getWxAppID());// 应用ID
+		_WxUnionOrderBean_.setAttach(getWxConfigService().getWxAttach());// 附加数据
+		_WxUnionOrderBean_.setBody(order.getBody());// 商品描述
+		_WxUnionOrderBean_.setFee_type(WX_FEE_TYPE);// 标价币种
+		_WxUnionOrderBean_.setMch_id(getWxConfigService().getWxCustomid());// 商户号
+		_WxUnionOrderBean_.setNonce_str(h5Order.getNonceStr());// 随机字符串
+		_WxUnionOrderBean_.setNotify_url(WX_NOTIFY_URL);// 通知地址???????????????????????
+		_WxUnionOrderBean_.setOpenid(order.getOpenid());// 用户标识
+		_WxUnionOrderBean_.setOut_trade_no(orderCode);// 商户订单号
+		_WxUnionOrderBean_.setSign_type(WX_SIGN_TYPE);// 签名类型
+		_WxUnionOrderBean_.setSpbill_create_ip(order.getUserIp());// 用户IP
+		_WxUnionOrderBean_.setTotal_fee(orderAmount);// 标价金额（分）
+		_WxUnionOrderBean_.setTrade_type("JSAPI");// 交易类型（JSAPI--公众号支付、NATIVE--原生扫码支付、APP--app支付，统一下单接口trade_type的传参可参考这里）
+
+		StringBuffer param = _WxUnionOrderBean_.creatOrderPayXML();
+		logger.debug("微信统一下单数据===WxH5JSOrderPayBean>>>>>>" + _WxUnionOrderBean_);
+		// 调用微信统一下单
+		String payResult = HttpServiceHelper.doHttpPOST(WX_PAY_URL, param);
+		logger.debug("微信统一下单结果===payResult>>>>>>" + payResult);
+
+		// 格式化返回结果
+		HashMap<String, String> wxResult = XMLHelper.loadXML(new ByteArrayInputStream(payResult.getBytes(SYSTEM_CHARSET)));
+
+		logger.debug("微信统一下单结果===wxResult>>>>>>" + wxResult);
+		String prepay_id = wxResult.get("prepay_id");
+		if (EmptyHelper.isEmpty(prepay_id)) {
+			throw new Exception(wxResult.get("return_msg"));
+		}
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// 重新计算签名.有appId, timeStamp, nonceStr, package, signType
+		h5Order.setAppId(getWxConfigService().getWxAppID());
+//		h5Order.setKey(getWxConfigService().getWxCustomSecret());
+		h5Order.setPakkage("prepay_id=" + prepay_id);
+		h5Order.setSignType(WX_SIGN_TYPE);
+
+		// 设定页面返回结果
+		result.setData(h5Order);
+		result.setMsg("下单成功，请完成微信支付！");
+		logger.info("微信统一下单结果...orderCode=" + orderCode + "," + result.getData());
+		return result;
+	}
+}

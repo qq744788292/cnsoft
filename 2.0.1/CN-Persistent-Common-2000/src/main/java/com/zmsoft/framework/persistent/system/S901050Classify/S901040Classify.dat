@@ -1,0 +1,6 @@
+INSERT INTO `s901040_classify` VALUES ('1000', '1000', '影视', ' ', '影视', null, null, null, null, null, null, null, null, null, null, null, '0', '2018-02-02', 'SYSTEM', '2018-02-02', 'SYSTEM');
+INSERT INTO `s901040_classify` VALUES ('2000', '2000', '游戏', '', '游戏', null, null, null, null, null, null, null, null, null, null, null, '0', '2018-02-02', 'SYSTEM', '2018-02-02', 'SYSTEM');
+INSERT INTO `s901040_classify` VALUES ('3000', '3000', '下载', '', '下载', null, null, null, null, null, null, null, null, null, null, null, '0', '2018-02-02', 'SYSTEM', '2018-02-02', 'SYSTEM');
+INSERT INTO `s901040_classify` VALUES ('CUSTOMER', '30000000', '客服后台', '', '客服操作业务分类', '', '', '', '', '', '', '', '', '', '', null, '1', '2018-02-02', 'SYSTEM', '2018-02-02', 'SYSTEM');
+INSERT INTO `s901040_classify` VALUES ('MANAGER', '10000000', '管理后台', '', '管理操作业务分类', null, null, null, null, null, null, null, null, null, null, null, '1', '2018-02-02', 'SYSTEM', '2018-02-02', 'SYSTEM');
+INSERT INTO `s901040_classify` VALUES ('OPERATION', '20000000', '运维后台', '', '运维操作业务分类', '', '', '', '', '', '', '', '', '', '', null, '1', '2018-02-02', 'SYSTEM', '2018-02-02', 'SYSTEM');

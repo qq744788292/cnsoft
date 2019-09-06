@@ -42,7 +42,7 @@ public class WxJSAccessKeyCacheService extends WxJsapiTicketSupport {
 	public String loadAccessToken(String appID, String appSecret) throws Exception {
 		String data = (String) myCacheService.getObject(KEY_ACCESS_TOKEN, false);
 		if (EmptyHelper.isEmpty(data)) {
-			data = loadAccessToken(appID, appSecret);
+			data = super.loadAccessToken(appID, appSecret);
 			if (EmptyHelper.isNotEmpty(data)) {
 				logger.debug("loadAccessToken=====putObject>>>>>=====data>>>>>" + data);
 				myCacheService.putObject(KEY_ACCESS_TOKEN, data, 3600, false);
@@ -67,7 +67,7 @@ public class WxJSAccessKeyCacheService extends WxJsapiTicketSupport {
 	public String loadJsapiTicket(String access_token) throws Exception {
 		String data = (String) myCacheService.getObject(KEY_JSAPI_TICKET, false);
 		if (EmptyHelper.isEmpty(data)) {
-			data = loadJsapiTicket(access_token);
+			data = super.loadJsapiTicket(access_token);
 			if (EmptyHelper.isNotEmpty(data)) {
 				logger.debug("loadAccessToken=====putObject>>>>>=====data>>>>>" + data);
 				myCacheService.putObject(KEY_JSAPI_TICKET, data, 3600, false);

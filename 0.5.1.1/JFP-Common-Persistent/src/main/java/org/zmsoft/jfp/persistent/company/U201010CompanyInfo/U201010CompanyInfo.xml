@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 企业基本信息 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.jfp.persistent.company.U201010CompanyInfo.U201010CompanyInfoDao'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        puk,company_name,company_code,company_address_country,company_address_province,company_address_city,company_address_area,company_address,business_license_copy,corporation_name,corporation_phone,legal_person_idcard_front,legal_person_idcard_back,contact_idcard_front,contact_idcard_back,contact_name,contact_telephone,examine_state,balance,meno,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,del_flag,create_time,creator,update_time,updator
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='U201010CompanyInfoDBO' resultType='U201010CompanyInfoDBO'>
+        SELECT <include refid='tableColumns'/> FROM u201010_company_info
+        WHERE 1 = 1 
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+              AND puk = #{puk}
+          </if>
+            <if test=' companyName != null and companyName !="" '><!-- 公司名称 -->
+              AND company_name = #{companyName}
+          </if>
+            <if test=' companyCode != null and companyCode !="" '><!-- 统一社会信息用代码 -->
+              AND company_code = #{companyCode}
+          </if>
+            <if test=' companyAddressCountry != null and companyAddressCountry !="" '><!-- 公司注册地址（国家） -->
+              AND company_address_country = #{companyAddressCountry}
+          </if>
+            <if test=' companyAddressProvince != null and companyAddressProvince !="" '><!-- 公司注册地址（省） -->
+              AND company_address_province = #{companyAddressProvince}
+          </if>
+            <if test=' companyAddressCity != null and companyAddressCity !="" '><!-- 公司注册地址（市） -->
+              AND company_address_city = #{companyAddressCity}
+          </if>
+            <if test=' companyAddressArea != null and companyAddressArea !="" '><!-- 公司注册地址（区） -->
+              AND company_address_area = #{companyAddressArea}
+          </if>
+            <if test=' companyAddress != null and companyAddress !="" '><!-- 公司注册地址（街道） -->
+              AND company_address = #{companyAddress}
+          </if>
+            <if test=' businessLicenseCopy != null and businessLicenseCopy !="" '><!-- 营业执照(副本)URL -->
+              AND business_license_copy = #{businessLicenseCopy}
+          </if>
+            <if test=' corporationName != null and corporationName !="" '><!-- 法人姓名 -->
+              AND corporation_name = #{corporationName}
+          </if>
+            <if test=' corporationPhone != null and corporationPhone !="" '><!-- 法人电话 -->
+              AND corporation_phone = #{corporationPhone}
+          </if>
+            <if test=' legalPersonIdcardFront != null and legalPersonIdcardFront !="" '><!-- 法人身份证(正面)URL -->
+              AND legal_person_idcard_front = #{legalPersonIdcardFront}
+          </if>
+            <if test=' legalPersonIdcardBack != null and legalPersonIdcardBack !="" '><!-- 法人身份证(反面)URL -->
+              AND legal_person_idcard_back = #{legalPersonIdcardBack}
+          </if>
+            <if test=' contactIdcardFront != null and contactIdcardFront !="" '><!-- 联系人身份证(正面)URL -->
+              AND contact_idcard_front = #{contactIdcardFront}
+          </if>
+            <if test=' contactIdcardBack != null and contactIdcardBack !="" '><!-- 联系人身份证(反面)URL -->
+              AND contact_idcard_back = #{contactIdcardBack}
+          </if>
+            <if test=' contactName != null and contactName !="" '><!-- 联系人姓名 -->
+              AND contact_name = #{contactName}
+          </if>
+            <if test=' contactTelephone != null and contactTelephone !="" '><!-- 联系人电话 -->
+              AND contact_telephone = #{contactTelephone}
+          </if>
+            <if test=' examineState != null and examineState !="" '><!-- 审核状态 -->
+              AND examine_state = #{examineState}
+          </if>
+            <if test=' balance != null and balance !="" '><!-- 账户余额 -->
+              AND balance = #{balance}
+          </if>
+            <if test=' meno != null and meno !="" '><!-- 备注 -->
+              AND meno = #{meno}
+          </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+              AND fb1 = #{fb1}
+          </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+              AND fb2 = #{fb2}
+          </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+              AND fb3 = #{fb3}
+          </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+              AND fb4 = #{fb4}
+          </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+              AND fb5 = #{fb5}
+          </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+              AND eb1 = #{eb1}
+          </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+              AND eb2 = #{eb2}
+          </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+              AND eb3 = #{eb3}
+          </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+              AND eb4 = #{eb4}
+          </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+              AND eb5 = #{eb5}
+          </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+              AND del_flag = #{delFlag}
+          </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+              AND create_time = #{createTime}
+          </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+              AND creator = #{creator}
+          </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+              AND update_time = #{updateTime}
+          </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+              AND updator = #{updator}
+          </if>
+    </select>
+
+    <!-- 插入一条数据 -->
+    <insert id='doInsert' parameterType='U201010CompanyInfoDBO'>
+        INSERT INTO u201010_company_info
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{puk},#{companyName},#{companyCode},#{companyAddressCountry},#{companyAddressProvince},#{companyAddressCity},#{companyAddressArea},#{companyAddress},#{businessLicenseCopy},#{corporationName},#{corporationPhone},#{legalPersonIdcardFront},#{legalPersonIdcardBack},#{contactIdcardFront},#{contactIdcardBack},#{contactName},#{contactTelephone},#{examineState},#{balance},#{meno},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='U201010CompanyInfoDBO'>
+        UPDATE u201010_company_info SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+            ,puk = #{puk}
+        </if>
+            <if test=' companyName != null and companyName !="" '><!-- 公司名称 -->
+            ,company_name = #{companyName}
+        </if>
+            <if test=' companyCode != null and companyCode !="" '><!-- 统一社会信息用代码 -->
+            ,company_code = #{companyCode}
+        </if>
+            <if test=' companyAddressCountry != null and companyAddressCountry !="" '><!-- 公司注册地址（国家） -->
+            ,company_address_country = #{companyAddressCountry}
+        </if>
+            <if test=' companyAddressProvince != null and companyAddressProvince !="" '><!-- 公司注册地址（省） -->
+            ,company_address_province = #{companyAddressProvince}
+        </if>
+            <if test=' companyAddressCity != null and companyAddressCity !="" '><!-- 公司注册地址（市） -->
+            ,company_address_city = #{companyAddressCity}
+        </if>
+            <if test=' companyAddressArea != null and companyAddressArea !="" '><!-- 公司注册地址（区） -->
+            ,company_address_area = #{companyAddressArea}
+        </if>
+            <if test=' companyAddress != null and companyAddress !="" '><!-- 公司注册地址（街道） -->
+            ,company_address = #{companyAddress}
+        </if>
+            <if test=' businessLicenseCopy != null and businessLicenseCopy !="" '><!-- 营业执照(副本)URL -->
+            ,business_license_copy = #{businessLicenseCopy}
+        </if>
+            <if test=' corporationName != null and corporationName !="" '><!-- 法人姓名 -->
+            ,corporation_name = #{corporationName}
+        </if>
+            <if test=' corporationPhone != null and corporationPhone !="" '><!-- 法人电话 -->
+            ,corporation_phone = #{corporationPhone}
+        </if>
+            <if test=' legalPersonIdcardFront != null and legalPersonIdcardFront !="" '><!-- 法人身份证(正面)URL -->
+            ,legal_person_idcard_front = #{legalPersonIdcardFront}
+        </if>
+            <if test=' legalPersonIdcardBack != null and legalPersonIdcardBack !="" '><!-- 法人身份证(反面)URL -->
+            ,legal_person_idcard_back = #{legalPersonIdcardBack}
+        </if>
+            <if test=' contactIdcardFront != null and contactIdcardFront !="" '><!-- 联系人身份证(正面)URL -->
+            ,contact_idcard_front = #{contactIdcardFront}
+        </if>
+            <if test=' contactIdcardBack != null and contactIdcardBack !="" '><!-- 联系人身份证(反面)URL -->
+            ,contact_idcard_back = #{contactIdcardBack}
+        </if>
+            <if test=' contactName != null and contactName !="" '><!-- 联系人姓名 -->
+            ,contact_name = #{contactName}
+        </if>
+            <if test=' contactTelephone != null and contactTelephone !="" '><!-- 联系人电话 -->
+            ,contact_telephone = #{contactTelephone}
+        </if>
+            <if test=' examineState != null and examineState !="" '><!-- 审核状态 -->
+            ,examine_state = #{examineState}
+        </if>
+            <if test=' balance != null and balance !="" '><!-- 账户余额 -->
+            ,balance = #{balance}
+        </if>
+            <if test=' meno != null and meno !="" '><!-- 备注 -->
+            ,meno = #{meno}
+        </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+                AND puk = #{puk}
+            </if>
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='U201010CompanyInfoDBO'>
+        UPDATE u201010_company_info
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE update_time = #{updateTime}
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+                AND puk = #{puk}
+            </if>
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='U201010CompanyInfoDBO'>
+        DELETE FROM u201010_company_info
+        WHERE update_time = #{updateTime}
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+                AND puk = #{puk}
+            </if>
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='U201010CompanyInfoDBO' resultType='U201010CompanyInfoDBO'>
+        SELECT <include refid='tableColumns'/> FROM u201010_company_info WHERE 1 = 1
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+                AND puk = #{puk}
+            </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="amms-DC-Web-Manager-1.0.3-RELEASE">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="ZM-Manager-Biz-Common-1.0.1-RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ZM-Manager-Biz-Common/ZM-Manager-Biz-Common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ZM-Biz-Common-1.0.1-RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ZM-Biz-Common/ZM-Biz-Common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="JFP-Common-Persistent-1.0.1-RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/JFP-Common-Persistent/JFP-Common-Persistent">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="JFP-Framework-Equivocal-1.0.1-RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/JFP-Framework-Equivocal/JFP-Framework-Equivocal">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="JFP-Framework-Core-1.0.1-RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/JFP-Framework-Core/JFP-Framework-Core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="JFP-Framework-Support-1.0.1-RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/JFP-Framework-Support/JFP-Framework-Support">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="ZM-Web-Manager"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 系统配置 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.jfp.persistent.common.System.SystemDao'>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectData' parameterType='SystemDBO' resultType='SystemDBO'>
+        SELECT config_key as `key`,config_value as `value`, meno
+        FROM s901010_system
+        WHERE 1 = 1 
+            <if test=' key != null and key !="" '><!-- 键定义 -->
+              AND INSTR(config_key , #{key} ) != 0
+          </if>
+    </select>
+
+    <!-- 修改一条数据 -->
+    <insert id='saveSystem' parameterType='SystemDBO'>
+        UPDATE s901010_system 
+        SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+            ,config_value = #{configValue}
+        WHERE config_key = #{key}
+    </insert>
+
+
+</mapper>

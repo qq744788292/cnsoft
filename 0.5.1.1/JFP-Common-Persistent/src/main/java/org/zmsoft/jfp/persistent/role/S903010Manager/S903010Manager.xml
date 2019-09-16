@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 系统管理用户表 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.jfp.persistent.system.S903010Manager.S903010ManagerDao'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        puk,user_phone,user_account,user_password,company_id,company_name,department_id,department_name,user_name,user_sex,user_mail,pic_url,allow_login,online_type,online_last_ip,online_last_time,meno,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,hdp,del_flag,create_time,creator,update_time,updator
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='S903010ManagerDBO' resultType='S903010ManagerDBO'>
+        SELECT <include refid='tableColumns'/> FROM s903010_manager
+        WHERE 1 = 1 
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+                AND puk = #{puk}
+            </if>
+            <if test=' userPhone != null and userPhone !="" '><!-- 用户手机号码 -->
+                AND INSTR(user_phone , #{userPhone} ) != 0
+            </if>
+            <if test=' userAccount != null and userAccount !="" '><!-- 用户账户 -->
+                AND INSTR(user_account , #{userAccount} ) != 0
+            </if>
+            <if test=' userPassword != null and userPassword !="" '><!-- 登录密码 -->
+                AND user_password = #{userPassword}
+            </if>
+            <if test=' companyId != null and companyId !="" '><!-- 企业ID -->
+                AND company_id = #{companyId}
+            </if>
+            <if test=' companyName != null and companyName !="" '><!-- 企业名称 -->
+                AND company_name = #{companyName}
+            </if>
+            <if test=' departmentId != null and departmentId !="" '><!-- 所属部门ID -->
+                AND department_id = #{departmentId}
+            </if>
+            <if test=' departmentName != null and departmentName !="" '><!-- 所属部门名称 -->
+                AND department_name = #{departmentName}
+            </if>
+            <if test=' userName != null and userName !="" '><!-- 用户姓名 -->
+                AND user_name = #{userName}
+            </if>
+            <if test=' userSex != null and userSex !="" '><!-- 用户性别 -->
+                AND user_sex = #{userSex}
+            </if>
+            <if test=' userMail != null and userMail !="" '><!-- 用户邮箱 -->
+                AND user_mail = #{userMail}
+            </if>
+            <if test=' picUrl != null and picUrl !="" '><!-- 用户头像 -->
+                AND pic_url = #{picUrl}
+            </if>
+            <if test=' allowLogin != null and allowLogin !="" '><!-- 账户状态 -->
+                AND allow_login = #{allowLogin}
+            </if>
+            <if test=' onlineType != null and onlineType !="" '><!-- 在线状态 -->
+                AND online_type = #{onlineType}
+            </if>
+            <if test=' onlineLastIp != null and onlineLastIp !="" '><!-- 最后登录IP -->
+                AND online_last_ip = #{onlineLastIp}
+            </if>
+            <if test=' onlineLastTime != null and onlineLastTime !="" '><!-- 最后登录时间 -->
+                AND online_last_time = #{onlineLastTime}
+            </if>
+            <if test=' meno != null and meno !="" '><!-- 备注 -->
+                AND meno = #{meno}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                AND fb1 = #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                AND fb2 = #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                AND fb3 = #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                AND fb4 = #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                AND fb5 = #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                AND eb1 = #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                AND eb2 = #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                AND eb3 = #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                AND eb4 = #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                AND eb5 = #{eb5}
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                AND hdp = #{hdp}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                AND del_flag = #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                AND create_time = #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                AND creator = #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                AND updator = #{updator}
+            </if>
+    </select>
+
+    <!-- 插入一条数据 -->
+    <insert id='doInsert' parameterType='S903010ManagerDBO'>
+        INSERT INTO s903010_manager
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{puk},#{userPhone},#{userAccount},#{userPassword},#{companyId},#{companyName},#{departmentId},#{departmentName},#{userName},#{userSex},#{userMail},#{picUrl},#{allowLogin},#{onlineType},#{onlineLastIp},#{onlineLastTime},#{meno},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{hdp},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='S903010ManagerDBO'>
+        UPDATE s903010_manager SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' puk != null and puk !="" '><!-- 流水ID -->
+            ,puk = #{puk}
+        </if>
+        <if test=' userPhone != null and userPhone !="" '><!-- 用户手机号码 -->
+            ,user_phone = #{userPhone}
+        </if>
+        <if test=' userAccount != null and userAccount !="" '><!-- 用户账户 -->
+            ,user_account = #{userAccount}
+        </if>
+        <if test=' userPassword != null and userPassword !="" '><!-- 登录密码 -->
+            ,user_password = #{userPassword}
+        </if>
+        <if test=' companyId != null and companyId !="" '><!-- 企业ID -->
+            ,company_id = #{companyId}
+        </if>
+        <if test=' companyName != null and companyName !="" '><!-- 企业名称 -->
+            ,company_name = #{companyName}
+        </if>
+        <if test=' departmentId != null and departmentId !="" '><!-- 所属部门ID -->
+            ,department_id = #{departmentId}
+        </if>
+        <if test=' departmentName != null and departmentName !="" '><!-- 所属部门名称 -->
+            ,department_name = #{departmentName}
+        </if>
+        <if test=' userName != null and userName !="" '><!-- 用户姓名 -->
+            ,user_name = #{userName}
+        </if>
+        <if test=' userSex != null and userSex !="" '><!-- 用户性别 -->
+            ,user_sex = #{userSex}
+        </if>
+        <if test=' userMail != null and userMail !="" '><!-- 用户邮箱 -->
+            ,user_mail = #{userMail}
+        </if>
+        <if test=' picUrl != null and picUrl !="" '><!-- 用户头像 -->
+            ,pic_url = #{picUrl}
+        </if>
+        <if test=' allowLogin != null and allowLogin !="" '><!-- 账户状态 -->
+            ,allow_login = #{allowLogin}
+        </if>
+        <if test=' onlineType != null and onlineType !="" '><!-- 在线状态 -->
+            ,online_type = #{onlineType}
+        </if>
+        <if test=' onlineLastIp != null and onlineLastIp !="" '><!-- 最后登录IP -->
+            ,online_last_ip = #{onlineLastIp}
+        </if>
+        <if test=' onlineLastTime != null and onlineLastTime !="" '><!-- 最后登录时间 -->
+            ,online_last_time = #{onlineLastTime}
+        </if>
+        <if test=' meno != null and meno !="" '><!-- 备注 -->
+            ,meno = #{meno}
+        </if>
+        <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+        <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+        <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+        <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+        <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+        <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+        <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+        <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+        <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+        <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+        <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+            ,hdp = #{hdp}
+        </if>
+        <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+        <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+        <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+        <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            AND puk = #{puk}  <!-- 流水ID -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='S903010ManagerDBO'>
+        UPDATE s903010_manager
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='S903010ManagerDBO'>
+        DELETE FROM s903010_manager
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='S903010ManagerDBO' resultType='S903010ManagerDBO'>
+        SELECT <include refid='tableColumns'/> FROM s903010_manager WHERE 1 = 1
+            AND puk = #{puk}  <!-- 流水ID -->
+    </select>
+
+</mapper>

@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 订单管理 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.jfp.persistent.user.U103010Recharge.U103010RechargeDao'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        puk,order_number,material_id,material_classify,material_tpe,user_id,user_ip,openid,user_phone,pay_type,recharge_money,recharge_state,order_state,supplement_state,process_name,nonce_str,body,meno,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,del_flag,create_time,creator,update_time,updator
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='U103010RechargeDBO' resultType='U103010RechargeDBO'>
+        SELECT <include refid='tableColumns'/> FROM u103010_recharge
+        WHERE 1 = 1 
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+                AND puk = #{puk}
+            </if>
+            <if test=' orderNumber != null and orderNumber !="" '><!-- 订单号 -->
+                AND order_number = #{orderNumber}
+            </if>
+            <if test=' materialId != null and materialId !="" '><!-- 素材ID -->
+                AND material_id = #{materialId}
+            </if>
+            <if test=' materialClassify != null and materialClassify !="" '><!-- 素材分类 -->
+                AND material_classify = #{materialClassify}
+            </if>
+            <if test=' materialTpe != null and materialTpe !="" '><!-- 素材类型 -->
+                AND material_tpe = #{materialTpe}
+            </if>
+            <if test=' userId != null and userId !="" '><!-- 玩家流水ID -->
+                AND user_id = #{userId}
+            </if>
+            <if test=' userIp != null and userIp !="" '><!-- 用户当前IP -->
+                AND user_ip = #{userIp}
+            </if>
+            <if test=' openid != null and openid !="" '><!-- OpenID -->
+                AND openid = #{openid}
+            </if>
+            <if test=' userPhone != null and userPhone !="" '><!-- 手机号码 -->
+                AND user_phone = #{userPhone}
+            </if>
+            <if test=' payType != null and payType !="" '><!-- 支付账户类别 -->
+                AND pay_type = #{payType}
+            </if>
+            <if test=' rechargeMoney != null '><!-- 充值金额 -->
+                AND recharge_money = #{rechargeMoney}
+            </if>
+            <if test=' rechargeState != null and rechargeState !="" '><!-- 充值状态 -->
+                AND recharge_state = #{rechargeState}
+            </if>
+            <if test=' orderState != null and orderState !="" '><!-- 订单状态 -->
+                AND order_state = #{orderState}
+            </if>
+            <if test=' supplementState != null and supplementState !="" '><!-- 补单状态 -->
+                AND supplement_state = #{supplementState}
+            </if>
+            <if test=' processName != null and processName !="" '><!-- 业务实现类名 -->
+                AND process_name = #{processName}
+            </if>
+            <if test=' nonceStr != null and nonceStr !="" '><!-- 订单校验码 -->
+                AND nonce_str = #{nonceStr}
+            </if>
+            <if test=' body != null and body !="" '><!-- 订单描述 -->
+                AND body = #{body}
+            </if>
+            <if test=' meno != null and meno !="" '><!-- 备注 -->
+                AND meno = #{meno}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                AND fb1 = #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                AND fb2 = #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                AND fb3 = #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                AND fb4 = #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                AND fb5 = #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                AND eb1 = #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                AND eb2 = #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                AND eb3 = #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                AND eb4 = #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                AND eb5 = #{eb5}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                AND del_flag = #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                AND create_time = #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                AND creator = #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                AND updator = #{updator}
+            </if>
+    </select>
+
+    <!-- 插入一条数据 -->
+    <insert id='doInsert' parameterType='U103010RechargeDBO'>
+        INSERT INTO u103010_recharge
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{puk},#{orderNumber},#{materialId},#{materialClassify},#{materialTpe},#{userId},#{userIp},#{openid},#{userPhone},#{payType},#{rechargeMoney},#{rechargeState},#{orderState},#{supplementState},#{processName},#{nonceStr},#{body},#{meno},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='U103010RechargeDBO'>
+        UPDATE u103010_recharge SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' puk != null and puk !="" '><!-- 流水ID -->
+            ,puk = #{puk}
+        </if>
+        <if test=' orderNumber != null and orderNumber !="" '><!-- 订单号 -->
+            ,order_number = #{orderNumber}
+        </if>
+        <if test=' materialId != null and materialId !="" '><!-- 素材ID -->
+            ,material_id = #{materialId}
+        </if>
+        <if test=' materialClassify != null and materialClassify !="" '><!-- 素材分类 -->
+            ,material_classify = #{materialClassify}
+        </if>
+        <if test=' materialTpe != null and materialTpe !="" '><!-- 素材类型 -->
+            ,material_tpe = #{materialTpe}
+        </if>
+        <if test=' userId != null and userId !="" '><!-- 玩家流水ID -->
+            ,user_id = #{userId}
+        </if>
+        <if test=' userIp != null and userIp !="" '><!-- 用户当前IP -->
+            ,user_ip = #{userIp}
+        </if>
+        <if test=' openid != null and openid !="" '><!-- OpenID -->
+            ,openid = #{openid}
+        </if>
+        <if test=' userPhone != null and userPhone !="" '><!-- 手机号码 -->
+            ,user_phone = #{userPhone}
+        </if>
+        <if test=' payType != null and payType !="" '><!-- 支付账户类别 -->
+            ,pay_type = #{payType}
+        </if>
+        <if test=' rechargeMoney != null '><!-- 充值金额 -->
+            ,recharge_money = #{rechargeMoney}
+        </if>
+        <if test=' rechargeState != null and rechargeState !="" '><!-- 充值状态 -->
+            ,recharge_state = #{rechargeState}
+        </if>
+        <if test=' orderState != null and orderState !="" '><!-- 订单状态 -->
+            ,order_state = #{orderState}
+        </if>
+        <if test=' supplementState != null and supplementState !="" '><!-- 补单状态 -->
+            ,supplement_state = #{supplementState}
+        </if>
+        <if test=' processName != null and processName !="" '><!-- 业务实现类名 -->
+            ,process_name = #{processName}
+        </if>
+        <if test=' nonceStr != null and nonceStr !="" '><!-- 订单校验码 -->
+            ,nonce_str = #{nonceStr}
+        </if>
+        <if test=' body != null and body !="" '><!-- 订单描述 -->
+            ,body = #{body}
+        </if>
+        <if test=' meno != null and meno !="" '><!-- 备注 -->
+            ,meno = #{meno}
+        </if>
+        <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+        <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+        <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+        <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+        <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+        <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+        <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+        <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+        <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+        <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+        <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+        <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+        <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+        <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            AND puk = #{puk}  <!-- 流水ID -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='U103010RechargeDBO'>
+        UPDATE u103010_recharge
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='U103010RechargeDBO'>
+        DELETE FROM u103010_recharge
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='U103010RechargeDBO' resultType='U103010RechargeDBO'>
+        SELECT <include refid='tableColumns'/> FROM u103010_recharge WHERE 1 = 1
+            AND puk = #{puk}  <!-- 流水ID -->
+    </select>
+
+</mapper>

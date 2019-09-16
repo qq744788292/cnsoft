@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"> 
+   <tlibversion>1.0</tlibversion> 
+   <jspversion>2.0</jspversion> 
+  <tag> 
+    <name>navbar</name> 
+    <tagclass>org.zmsoft.jfp.common.tag.NavbarTag</tagclass> 
+    <attribute>
+		<name>title</name><!-- 属性名字 -->  
+		<required>true</required><!-- 是否必须 -->  
+		<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+    </attribute>
+    <attribute>
+		<name>navbar</name><!-- 属性名字 -->  
+		<required>true</required><!-- 是否必须 -->  
+		<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+    </attribute>
+  </tag>
+</taglib>

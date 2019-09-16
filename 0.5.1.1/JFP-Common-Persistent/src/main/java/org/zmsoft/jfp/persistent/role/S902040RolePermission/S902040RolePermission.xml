@@ -1,0 +1,190 @@
+﻿<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 用户角色操作权限表 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.jfp.persistent.system.S902040RolePermission.S902040RolePermissionDao'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        role_id,user_id,role_name,user_name,state,meno,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,hdp,del_flag,create_time,creator,update_time,updator
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='S902040RolePermissionDBO' resultType='S902040RolePermissionDBO'>
+        SELECT <include refid='tableColumns'/> FROM s902040_role_permission
+        WHERE 1 = 1 
+            <if test=' roleId != null and roleId !="" '><!-- 角色ID -->
+                AND role_id = #{roleId}
+            </if>
+            <if test=' userId != null and userId !="" '><!-- 用户ID -->
+                AND user_id = #{userId}
+            </if>
+            <if test=' roleName != null and roleName !="" '><!-- 角色名称 -->
+                AND INSTR(role_name , #{roleName} ) != 0
+            </if>
+            <if test=' userName != null and userName !="" '><!-- 用户名称 -->
+                AND INSTR(user_name , #{userName} ) != 0
+            </if>
+            <if test=' state != null and state !="" '><!-- 权限标识 -->
+                AND state = #{state}
+            </if>
+            <if test=' meno != null and meno !="" '><!-- 备注 -->
+                AND meno = #{meno}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                AND fb1 = #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                AND fb2 = #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                AND fb3 = #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                AND fb4 = #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                AND fb5 = #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                AND eb1 = #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                AND eb2 = #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                AND eb3 = #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                AND eb4 = #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                AND eb5 = #{eb5}
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                AND hdp = #{hdp}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                AND del_flag = #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                AND create_time = #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                AND creator = #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                AND updator = #{updator}
+            </if>
+    </select>
+
+    <!-- 插入一条数据 -->
+    <insert id='doInsert' parameterType='S902040RolePermissionDBO'>
+        INSERT INTO s902040_role_permission
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{roleId},#{userId},#{roleName},#{userName},#{state},#{meno},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{hdp},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='S902040RolePermissionDBO'>
+        UPDATE s902040_role_permission SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' roleId != null and roleId !="" '><!-- 角色ID -->
+            ,role_id = #{roleId}
+        </if>
+        <if test=' userId != null and userId !="" '><!-- 用户ID -->
+            ,user_id = #{userId}
+        </if>
+        <if test=' roleName != null and roleName !="" '><!-- 角色名称 -->
+            ,role_name = #{roleName}
+        </if>
+        <if test=' userName != null and userName !="" '><!-- 用户名称 -->
+            ,user_name = #{userName}
+        </if>
+        <if test=' state != null and state !="" '><!-- 权限标识 -->
+            ,state = #{state}
+        </if>
+        <if test=' meno != null and meno !="" '><!-- 备注 -->
+            ,meno = #{meno}
+        </if>
+        <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+        <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+        <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+        <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+        <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+        <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+        <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+        <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+        <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+        <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+        <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+            ,hdp = #{hdp}
+        </if>
+        <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+        <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+        <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+        <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            AND role_id = #{roleId}  <!-- 角色ID -->
+            AND user_id = #{userId}  <!-- 用户ID -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='S902040RolePermissionDBO'>
+        UPDATE s902040_role_permission
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND role_id = #{roleId}  <!-- 角色ID -->
+            AND user_id = #{userId}  <!-- 用户ID -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='S902040RolePermissionDBO'>
+        DELETE FROM s902040_role_permission
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND role_id = #{roleId}  <!-- 角色ID -->
+            AND user_id = #{userId}  <!-- 用户ID -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='S902040RolePermissionDBO' resultType='S902040RolePermissionDBO'>
+        SELECT <include refid='tableColumns'/> FROM s902040_role_permission WHERE 1 = 1
+            AND role_id = #{roleId}  <!-- 角色ID -->
+            AND user_id = #{userId}  <!-- 用户ID -->
+    </select>
+
+</mapper>

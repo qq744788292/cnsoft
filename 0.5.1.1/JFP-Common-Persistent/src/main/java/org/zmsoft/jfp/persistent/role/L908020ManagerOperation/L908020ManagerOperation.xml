@@ -1,0 +1,198 @@
+﻿<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 系统管理用户操作日志表 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.jfp.persistent.system.L908020ManagerOperation.L908020ManagerOperationDao'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        puk,user_id,user_account,name,edit_type,edit_before,edit_after,meno,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,hdp,del_flag,create_time,creator,update_time,updator
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='L908020ManagerOperationDBO' resultType='L908020ManagerOperationDBO'>
+        SELECT <include refid='tableColumns'/> FROM l908020_manager_operation
+        WHERE 1 = 1 
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+                AND puk = #{puk}
+            </if>
+            <if test=' userId != null and userId !="" '><!-- 用户ID -->
+                AND user_id = #{userId}
+            </if>
+            <if test=' userAccount != null and userAccount !="" '><!-- 用户账户 -->
+                AND INSTR(user_account , #{userAccount} ) != 0
+            </if>
+            <if test=' name != null and name !="" '><!-- 用户姓名 -->
+                AND INSTR(name , #{name} ) != 0
+            </if>
+            <if test=' editType != null and editType !="" '><!-- 变更类型 -->
+                AND edit_type = #{editType}
+            </if>
+            <if test=' editBefore != null and editBefore !="" '><!-- 变更前内容 -->
+                AND edit_before = #{editBefore}
+            </if>
+            <if test=' editAfter != null and editAfter !="" '><!-- 变更后内容 -->
+                AND edit_after = #{editAfter}
+            </if>
+            <if test=' meno != null and meno !="" '><!-- 备注 -->
+                AND meno = #{meno}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                AND fb1 = #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                AND fb2 = #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                AND fb3 = #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                AND fb4 = #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                AND fb5 = #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                AND eb1 = #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                AND eb2 = #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                AND eb3 = #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                AND eb4 = #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                AND eb5 = #{eb5}
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                AND hdp = #{hdp}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                AND del_flag = #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                AND create_time = #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                AND creator = #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                AND updator = #{updator}
+            </if>
+    </select>
+
+    <!-- 插入一条数据 -->
+    <insert id='doInsert' parameterType='L908020ManagerOperationDBO'>
+        INSERT INTO l908020_manager_operation
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{puk},#{userId},#{userAccount},#{name},#{editType},#{editBefore},#{editAfter},#{meno},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{hdp},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='L908020ManagerOperationDBO'>
+        UPDATE l908020_manager_operation SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' puk != null and puk !="" '><!-- 流水ID -->
+            ,puk = #{puk}
+        </if>
+        <if test=' userId != null and userId !="" '><!-- 用户ID -->
+            ,user_id = #{userId}
+        </if>
+        <if test=' userAccount != null and userAccount !="" '><!-- 用户账户 -->
+            ,user_account = #{userAccount}
+        </if>
+        <if test=' name != null and name !="" '><!-- 用户姓名 -->
+            ,name = #{name}
+        </if>
+        <if test=' editType != null and editType !="" '><!-- 变更类型 -->
+            ,edit_type = #{editType}
+        </if>
+        <if test=' editBefore != null and editBefore !="" '><!-- 变更前内容 -->
+            ,edit_before = #{editBefore}
+        </if>
+        <if test=' editAfter != null and editAfter !="" '><!-- 变更后内容 -->
+            ,edit_after = #{editAfter}
+        </if>
+        <if test=' meno != null and meno !="" '><!-- 备注 -->
+            ,meno = #{meno}
+        </if>
+        <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+        <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+        <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+        <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+        <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+        <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+        <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+        <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+        <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+        <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+        <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+            ,hdp = #{hdp}
+        </if>
+        <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+        <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+        <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+        <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            AND puk = #{puk}  <!-- 流水ID -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='L908020ManagerOperationDBO'>
+        UPDATE l908020_manager_operation
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='L908020ManagerOperationDBO'>
+        DELETE FROM l908020_manager_operation
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='L908020ManagerOperationDBO' resultType='L908020ManagerOperationDBO'>
+        SELECT <include refid='tableColumns'/> FROM l908020_manager_operation WHERE 1 = 1
+            AND puk = #{puk}  <!-- 流水ID -->
+    </select>
+
+</mapper>

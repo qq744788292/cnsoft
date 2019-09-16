@@ -1,0 +1,227 @@
+﻿<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 定时任务运行日志表 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.jfp.persistent.job.L804011JobLog.L804011JobLogDao'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        puk,task_id,job_id,job_no,job_name,job_start_time,job_use_time,job_run_status,job_run_result,meno,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,hdp,del_flag,create_time,creator,update_time,updator
+    </sql>
+	<!-- 查询统计数据信息  -->
+    <select id='doSelectTotal' parameterType='L804011JobLogDBO' resultType='L804011JobLogDBO'>
+        SELECT 
+			ll.job_id,ll.job_no,ll.job_name
+			,count(ll.puk) as job_start_time
+        	,avg(ll.job_use_time) as job_use_time
+        	,(SELECT count(la.puk) FROM l804011_job_log la WHERE la.job_run_status = 1 AND la.job_id = ll.job_id)/count(ll.puk) as job_run_status 
+        FROM l804011_job_log ll
+        WHERE 1 = 1 
+            <if test=' jobNo != null and jobNo !="" '><!-- 任务编号 -->
+                AND ll.job_no = #{jobNo}
+            </if>
+            <if test=' jobName != null and jobName !="" '><!-- 任务名称 -->
+                AND INSTR(ll.job_name , #{jobName} ) != 0
+            </if>
+         GROUP BY ll.job_id
+    </select>
+    
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='L804011JobLogDBO' resultType='L804011JobLogDBO'>
+        SELECT <include refid='tableColumns'/> FROM l804011_job_log
+        WHERE 1 = 1 
+            <if test=' puk != null and puk !="" '><!-- 流水ID -->
+                AND puk = #{puk}
+            </if>
+            <if test=' taskId != null and taskId !="" '><!-- 任务识别ID -->
+                AND task_id = #{taskId}
+            </if>
+            <if test=' jobId != null and jobId !="" '><!-- 任务ID -->
+                AND job_id = #{jobId}
+            </if>
+            <if test=' jobNo != null and jobNo !="" '><!-- 任务编号 -->
+                AND job_no = #{jobNo}
+            </if>
+            <if test=' jobName != null and jobName !="" '><!-- 任务名称 -->
+                AND INSTR(job_name , #{jobName} ) != 0
+            </if>
+            <if test=' jobStartTime != null and jobStartTime !="" '><!-- 启动时间 -->
+                AND job_start_time = #{jobStartTime}
+            </if>
+            <if test=' jobUseTime != null and jobUseTime !="" '><!-- 运行时间（秒） -->
+                AND job_use_time = #{jobUseTime}
+            </if>
+            <if test=' jobRunStatus != null and jobRunStatus !="" '><!-- 运行状态 -->
+                AND job_run_status = #{jobRunStatus}
+            </if>
+            <if test=' jobRunResult != null and jobRunResult !="" '><!-- 运行结果 -->
+                AND job_run_result = #{jobRunResult}
+            </if>
+            <if test=' meno != null and meno !="" '><!-- 备注 -->
+                AND meno = #{meno}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                AND fb1 = #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                AND fb2 = #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                AND fb3 = #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                AND fb4 = #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                AND fb5 = #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                AND eb1 = #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                AND eb2 = #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                AND eb3 = #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                AND eb4 = #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                AND eb5 = #{eb5}
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                AND hdp = #{hdp}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                AND del_flag = #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                AND create_time = #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                AND creator = #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                AND updator = #{updator}
+            </if>
+    </select>
+
+    <!-- 插入一条数据 -->
+    <insert id='doInsert' parameterType='L804011JobLogDBO'>
+        INSERT INTO l804011_job_log
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{puk},#{taskId},#{jobId},#{jobNo},#{jobName},#{jobStartTime},#{jobUseTime},#{jobRunStatus},#{jobRunResult},#{meno},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{hdp},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='L804011JobLogDBO'>
+        UPDATE l804011_job_log SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' puk != null and puk !="" '><!-- 流水ID -->
+            ,puk = #{puk}
+        </if>
+        <if test=' taskId != null and taskId !="" '><!-- 任务识别ID -->
+            ,task_id = #{taskId}
+        </if>
+        <if test=' jobId != null and jobId !="" '><!-- 任务ID -->
+            ,job_id = #{jobId}
+        </if>
+        <if test=' jobNo != null and jobNo !="" '><!-- 任务编号 -->
+            ,job_no = #{jobNo}
+        </if>
+        <if test=' jobName != null and jobName !="" '><!-- 任务名称 -->
+            ,job_name = #{jobName}
+        </if>
+        <if test=' jobStartTime != null and jobStartTime !="" '><!-- 启动时间 -->
+            ,job_start_time = #{jobStartTime}
+        </if>
+        <if test=' jobUseTime != null and jobUseTime !="" '><!-- 运行时间（秒） -->
+            ,job_use_time = #{jobUseTime}
+        </if>
+        <if test=' jobRunStatus != null and jobRunStatus !="" '><!-- 运行状态 -->
+            ,job_run_status = #{jobRunStatus}
+        </if>
+        <if test=' jobRunResult != null and jobRunResult !="" '><!-- 运行结果 -->
+            ,job_run_result = #{jobRunResult}
+        </if>
+        <if test=' meno != null and meno !="" '><!-- 备注 -->
+            ,meno = #{meno}
+        </if>
+        <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+        <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+        <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+        <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+        <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+        <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+        <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+        <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+        <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+        <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+        <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+            ,hdp = #{hdp}
+        </if>
+        <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+        <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+        <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+        <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            AND puk = #{puk}  <!-- 流水ID -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='L804011JobLogDBO'>
+        UPDATE l804011_job_log
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='L804011JobLogDBO'>
+        DELETE FROM l804011_job_log
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 流水ID -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='L804011JobLogDBO' resultType='L804011JobLogDBO'>
+        SELECT <include refid='tableColumns'/> FROM l804011_job_log WHERE 1 = 1
+            AND puk = #{puk}  <!-- 流水ID -->
+    </select>
+
+</mapper>

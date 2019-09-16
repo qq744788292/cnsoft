@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"> 
+   <tlibversion>1.0</tlibversion> 
+   <jspversion>2.0</jspversion> 
+  <tag> 
+    <name>editor</name> 
+    <tagclass>org.zmsoft.jfp.common.tag.ArticleEditorTag</tagclass> 
+    <attribute>
+		<name>id</name>
+		<required>true</required>
+    </attribute>
+    <attribute>
+		<name>name</name>
+    </attribute>
+    <attribute>
+		<name>token</name><!-- 属性名字 -->  
+		<required>true</required><!-- 是否必须 -->  
+		<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+    </attribute>
+		 
+	<attribute>
+		<name>value</name><!-- 属性名字 -->  
+		<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+    </attribute>
+    
+    <attribute>
+     	<name>style</name>
+    </attribute>  
+    
+  </tag>
+</taglib> 

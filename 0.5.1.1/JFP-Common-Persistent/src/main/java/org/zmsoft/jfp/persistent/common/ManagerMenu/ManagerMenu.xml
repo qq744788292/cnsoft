@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 系统菜单 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.jfp.persistent.common.ManagerMenu.ManagerMenuDao'>
+
+	<select id='doSelectMenusByPermission' parameterType='ManagerMenuDBO' resultType='ManagerMenuDBO'>
+	    SELECT distinct (menu.puk),menu.father_menu_id,menu.menu_name,menu.menu_ver,menu.sort_num,
+	    	menu.menu_pic_url,menu.menu_url,menu.menu_level,menu.next_sub,menu.meno
+	    FROM
+		    s903030_group_permission as gp 
+			    JOIN s903020_user_group as ug
+			    	ON gp.group_id=ug.group_id
+			    JOIN s901030_menu as menu
+			    	ON menu.puk=gp.menu_id
+	    WHERE 1=1
+		    <if test=' fatherMenuId != null and fatherMenuId !="" '><!-- 父菜单流水ID -->
+		      AND menu.father_menu_id = #{fatherMenuId}
+		    </if>
+		    <if test=' menuLevel != null and menuLevel !="" '><!-- 菜单等级 -->
+		      AND menu.menu_level = #{menuLevel}
+		    </if>
+		    <if test=' fb5 != null and fb5 !="" '><!--fb5字段赞用做传用户ID -->
+		      AND ug.user_id=#{fb5}
+		    </if>
+		    <if test=' fb4 != null and fb4 !="" '><!--fb5字段赞用做传用户帐号 -->
+		      AND ug.user_account=#{fb4}
+		    </if>
+		    <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+		      AND menu.del_flag = #{delFlag}
+		    </if>
+    	ORDER BY menu.sort_num
+	</select>
+	
+	<select id='doSelectPage' parameterType='ManagerMenuDBO' resultType='ManagerMenuDBO'>
+	    SELECT * FROM s901030_menu menu 
+	    WHERE 1=1
+		    <if test=' fatherMenuId != null and fatherMenuId !="" '><!-- 父菜单流水ID -->
+		      AND menu.father_menu_id = #{fatherMenuId}
+		    </if>
+		    <if test=' menuLevel != null and menuLevel !="" '><!-- 菜单等级 -->
+		      AND menu.menu_level = #{menuLevel}
+		    </if>
+		    <if test=' hdp != null and hdp !="" '><!--系统所属 -->
+		      AND menu.hdp = #{hdp}
+		    </if>
+		    <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+		      AND menu.del_flag = #{delFlag}
+		    </if>
+    	ORDER BY menu.sort_num
+	</select>
+</mapper>

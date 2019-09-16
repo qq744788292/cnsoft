@@ -1,0 +1,141 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+html,body {
+	height: 100%;
+}
+body {
+	font-family: "Microsoft YaHei";
+}
+iframe {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow-x:hidden;
+	overflow-y:hidden;
+}
+table {
+	width: 100%;
+}
+table tr {
+	height: 50px;
+}
+table tbody tr {
+	height: 50px;
+}
+.table thead :first-child{
+	height: 50px;
+	border-bottom: 3px solid #ccc;
+}
+table tr th{
+	background: #004975; 
+	color: #fff;
+}
+
+.table tbody tr {
+	height: 50px;
+}
+.table tbody tr td{
+	vertical-align: middle;
+	text-align: left;
+}
+.trparam {
+	background: #f3f3f3;
+}
+
+/******************************************************/
+.trblank10 {
+	width: 10px;
+}
+/******************************************************/
+.tdparam1 {
+	text-align: right;
+}
+.tdparam {
+	width: 180px;
+	vertical-align: middle;
+	text-align: right;
+	padding-right: 10px;
+    font-size: 18px;
+	font-weight: lighter;
+}
+.tdblank5 {
+	width: 5px;
+}
+.tdblank10 {
+	width: 10px;
+}
+.tdblank20 {
+	width: 20px;
+}
+.tdblank30 {
+	width: 40px;
+}
+.tdblank60 {
+	width: 60px;
+}
+.tdblank80 {
+	width: 80px;
+}
+.tdblank100 {
+	width: 100px;
+}
+.tdblank120 {
+	width: 120px;
+}
+.tdblank140 {
+	width: 140px;
+}
+.tdblank150 {
+	width: 150px;
+}
+.tdblank160 {
+	width: 160px;
+}
+.tdblank180 {
+	width: 180px;
+}
+.tdblank200 {
+	width: 200px;
+}
+.tdblank220 {
+	width: 220px;
+}
+.tdblank260 {
+	width: 260px;
+}
+.tdblank300 {
+	width: 300px;
+}
+.tdbtn {
+	width: 120px;
+	padding-left: 10px;
+}
+/******************************************************/
+.btnleft {
+	width: 120px;
+    font-size: 18px;
+	font-weight: lighter;
+}
+.btnleft140 {
+	width: 140px;
+    font-size: 18px;
+	font-weight: lighter;
+}
+.btnleft160 {
+	width: 160px;
+    font-size: 18px;
+	font-weight: lighter;
+}
+
+.btnright {
+	width: 120px;
+    font-size: 18px;
+	font-weight: lighter;
+}
+/******************************************************/
+.pageht {
+	height: 22px;
+}

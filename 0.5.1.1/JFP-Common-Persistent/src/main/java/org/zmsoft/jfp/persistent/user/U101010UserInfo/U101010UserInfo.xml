@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 玩家基本信息 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.jfp.persistent.user.U101010UserInfo.U101010UserInfoDao'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        puk,channel_type,register_type,user_phone,wx_open_id,qq_open_id,nick_name,head_portrait_url,sex,age_group,education,birthday,mailbox,real_name,id_card,real_photo,apply_state_nick,apply_state_head,apply_state_real,state,meno,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,del_flag,create_time,creator,update_time,updator
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPageByHead' parameterType='U101010UserInfoDBO' resultType='U101010UserInfoDBO'>
+    SELECT <include refid='tableColumns'/> FROM u101010_user_info
+    WHERE 1 = 1 AND  head_portrait_url &lt;&gt; ""
+    <if test=' puk != null and puk !="" '><!-- 玩家流水ID -->
+        AND puk = #{puk}
+    </if>
+    </select>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='U101010UserInfoDBO' resultType='U101010UserInfoDBO'>
+        SELECT <include refid='tableColumns'/> FROM u101010_user_info
+        WHERE 1 = 1 
+            <if test=' puk != null and puk !="" '><!-- 玩家流水ID -->
+                AND puk = #{puk}
+            </if>
+            <if test=' channelType != null and channelType !="" '><!-- 渠道标识 -->
+                AND channel_type = #{channelType}
+            </if>
+            <if test=' registerType != null and registerType !="" '><!-- 注册方式 -->
+                AND register_type = #{registerType}
+            </if>
+            <if test=' userPhone != null and userPhone !="" '><!-- 手机号 -->
+                AND INSTR(user_phone , #{userPhone} ) != 0
+            </if>
+            <if test=' wxOpenId != null and wxOpenId !="" '><!-- 微信ID -->
+                AND wx_open_id = #{wxOpenId}
+            </if>
+            <if test=' qqOpenId != null and qqOpenId !="" '><!-- QQID -->
+                AND qq_open_id = #{qqOpenId}
+            </if>
+            <if test=' nickName != null and nickName !="" '><!-- 昵称 -->
+                AND INSTR(nick_name , #{nickName} ) != 0
+            </if>
+            <if test=' headPortraitUrl != null and headPortraitUrl !="" '><!-- 头像URL -->
+                AND head_portrait_url = #{headPortraitUrl}
+            </if>
+            <if test=' sex != null and sex !="" '><!-- 性别 -->
+                AND sex = #{sex}
+            </if>
+            <if test=' ageGroup != null and ageGroup !="" '><!-- 年龄段 -->
+                AND age_group = #{ageGroup}
+            </if>
+            <if test=' education != null and education !="" '><!-- 学历 -->
+                AND education = #{education}
+            </if>
+            <if test=' birthday != null and birthday !="" '><!-- 生日 -->
+                AND birthday = #{birthday}
+            </if>
+            <if test=' mailbox != null and mailbox !="" '><!-- 邮箱 -->
+                AND mailbox = #{mailbox}
+            </if>
+            <if test=' realName != null and realName !="" '><!-- 真实姓名 -->
+                AND INSTR(real_name , #{realName} ) != 0
+            </if>
+            <if test=' idCard != null and idCard !="" '><!-- 身份证号码 -->
+                AND id_card = #{idCard}
+            </if>
+            <if test=' realPhoto != null and realPhoto !="" '><!-- 本人真实照片 -->
+                AND real_photo = #{realPhoto}
+            </if>
+            <if test=' applyStateNick != null and applyStateNick !="" '><!-- 昵称审核状态 -->
+                AND apply_state_nick = #{applyStateNick}
+            </if>
+            <if test=' applyStateHead != null and applyStateHead !="" '><!-- 头像审核状态 -->
+                AND apply_state_head = #{applyStateHead}
+            </if>
+            <if test=' applyStateReal != null and applyStateReal !="" '><!-- 实名审核状态 -->
+                AND apply_state_real = #{applyStateReal}
+            </if>
+            <if test=' state != null and state !="" '><!-- 账号状态 -->
+                AND state = #{state}
+            </if>
+            <if test=' meno != null and meno !="" '><!-- 备注 -->
+                AND meno = #{meno}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                AND fb1 = #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                AND fb2 = #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                AND fb3 = #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                AND fb4 = #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                AND fb5 = #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                AND eb1 = #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                AND eb2 = #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                AND eb3 = #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                AND eb4 = #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                AND eb5 = #{eb5}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                AND del_flag = #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                AND create_time = #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                AND creator = #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                AND updator = #{updator}
+            </if>
+    </select>
+
+    <!-- 插入一条数据 -->
+    <insert id='doInsert' parameterType='U101010UserInfoDBO'>
+        INSERT INTO u101010_user_info
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{puk},#{channelType},#{registerType},#{userPhone},#{wxOpenId},#{qqOpenId},#{nickName},#{headPortraitUrl},#{sex},#{ageGroup},#{education},#{birthday},#{mailbox},#{realName},#{idCard},#{realPhoto},#{applyStateNick},#{applyStateHead},#{applyStateReal},#{state},#{meno},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='U101010UserInfoDBO'>
+        UPDATE u101010_user_info SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' puk != null and puk !="" '><!-- 玩家流水ID -->
+            ,puk = #{puk}
+        </if>
+        <if test=' channelType != null and channelType !="" '><!-- 渠道标识 -->
+            ,channel_type = #{channelType}
+        </if>
+        <if test=' registerType != null and registerType !="" '><!-- 注册方式 -->
+            ,register_type = #{registerType}
+        </if>
+        <if test=' userPhone != null and userPhone !="" '><!-- 手机号 -->
+            ,user_phone = #{userPhone}
+        </if>
+        <if test=' wxOpenId != null and wxOpenId !="" '><!-- 微信ID -->
+            ,wx_open_id = #{wxOpenId}
+        </if>
+        <if test=' qqOpenId != null and qqOpenId !="" '><!-- QQID -->
+            ,qq_open_id = #{qqOpenId}
+        </if>
+        <if test=' nickName != null and nickName !="" '><!-- 昵称 -->
+            ,nick_name = #{nickName}
+        </if>
+        <if test=' headPortraitUrl != null and headPortraitUrl !="" '><!-- 头像URL -->
+            ,head_portrait_url = #{headPortraitUrl}
+        </if>
+        <if test=' sex != null and sex !="" '><!-- 性别 -->
+            ,sex = #{sex}
+        </if>
+        <if test=' ageGroup != null and ageGroup !="" '><!-- 年龄段 -->
+            ,age_group = #{ageGroup}
+        </if>
+        <if test=' education != null and education !="" '><!-- 学历 -->
+            ,education = #{education}
+        </if>
+        <if test=' birthday != null and birthday !="" '><!-- 生日 -->
+            ,birthday = #{birthday}
+        </if>
+        <if test=' mailbox != null and mailbox !="" '><!-- 邮箱 -->
+            ,mailbox = #{mailbox}
+        </if>
+        <if test=' realName != null and realName !="" '><!-- 真实姓名 -->
+            ,real_name = #{realName}
+        </if>
+        <if test=' idCard != null and idCard !="" '><!-- 身份证号码 -->
+            ,id_card = #{idCard}
+        </if>
+        <if test=' realPhoto != null and realPhoto !="" '><!-- 本人真实照片 -->
+            ,real_photo = #{realPhoto}
+        </if>
+        <if test=' applyStateNick != null and applyStateNick !="" '><!-- 昵称审核状态 -->
+            ,apply_state_nick = #{applyStateNick}
+        </if>
+        <if test=' applyStateHead != null and applyStateHead !="" '><!-- 头像审核状态 -->
+            ,apply_state_head = #{applyStateHead}
+        </if>
+        <if test=' applyStateReal != null and applyStateReal !="" '><!-- 实名审核状态 -->
+            ,apply_state_real = #{applyStateReal}
+        </if>
+        <if test=' state != null and state !="" '><!-- 账号状态 -->
+            ,state = #{state}
+        </if>
+        <if test=' meno != null and meno !="" '><!-- 备注 -->
+            ,meno = #{meno}
+        </if>
+        <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+        <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+        <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+        <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+        <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+        <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+        <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+        <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+        <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+        <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+        <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+        <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+        <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+        <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            AND puk = #{puk}  <!-- 玩家流水ID -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='U101010UserInfoDBO'>
+        UPDATE u101010_user_info
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 玩家流水ID -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='U101010UserInfoDBO'>
+        DELETE FROM u101010_user_info
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND puk = #{puk}  <!-- 玩家流水ID -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='U101010UserInfoDBO' resultType='U101010UserInfoDBO'>
+        SELECT <include refid='tableColumns'/> FROM u101010_user_info WHERE 1 = 1
+            AND puk = #{puk}  <!-- 玩家流水ID -->
+    </select>
+
+</mapper>

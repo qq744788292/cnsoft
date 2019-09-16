@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 定义各种启动部署初始化工具 -->
+<beans xmlns='http://www.springframework.org/schema/beans'
+	xmlns:mvc='http://www.springframework.org/schema/mvc' 
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xmlns:p='http://www.springframework.org/schema/p'
+	xmlns:context='http://www.springframework.org/schema/context' 
+	xmlns:cache='http://www.springframework.org/schema/cache'
+	xmlns:tx='http://www.springframework.org/schema/tx'
+	xmlns:aop='http://www.springframework.org/schema/aop'
+	xmlns:rabbit='http://www.springframework.org/schema/rabbit'	
+	xsi:schemaLocation='
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/jdbc 
+		http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		'>
+	
+	<!--检索中心配置信息 -->
+	<bean id='myESPoolFactory' class='org.zmsoft.jfp.framework.search.ESPoolFactory' >
+		<constructor-arg index="0">
+			<list>
+        		<!-- <value>http://127.0.0.1:9200</value> -->
+        		<value>http://10.50.86.21:9200</value>
+        		<!-- <value>http://10.50.85.30:9200</value>
+        		<value>http://10.50.85.31:9200</value>
+        		<value>http://10.50.85.32:9200</value> -->
+            </list>
+		</constructor-arg>
+	</bean>	
+	
+	<!--检索中心操作语法配置信息 -->
+	<bean id='myQuerySentence' class='org.zmsoft.jfp.framework.search.ESQuerySentenceFactory' init-method='init'>
+		
+	</bean>	
+	
+	<!--  -->
+	<bean id='myESTableService' class='org.zmsoft.jfp.framework.search.biz.ESTableService' >
+		<!-- 单次导入数目 -->
+		<property name='size' value='3000'/>  
+		<!-- 间隔毫秒数 -->
+		<property name='sleep' value='1000'/>  
+	</bean>	
+	<bean id='myESSQLService' class='org.zmsoft.jfp.framework.search.biz.ESSQLService' >
+		<!-- 单次导入数目 -->
+		<property name='size' value='3000'/>  
+		<!-- 间隔毫秒数 -->
+		<property name='sleep' value='1000'/>  
+	</bean>	
+		
+	<!--  -->	
+	<bean id='myESDataService' class='org.zmsoft.jfp.framework.search.biz.ESDataService' />
+	<bean id='myESIndexService' class='org.zmsoft.jfp.framework.search.biz.ESIndexService' />
+	<bean id='myESSearchService' class='org.zmsoft.jfp.framework.search.biz.ESSearchService' />
+	
+</beans>

@@ -1,0 +1,54 @@
+# eureka.client.registerWithEureka ：表示是否将自己注册到Eureka Server，默认为true。由于当前这个应用就是Eureka Server，故而设为false
+# eureka.client.fetchRegistry ：表示是否从Eureka Server获取注册信息，默认为true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为false。
+# eureka.client.serviceUrl.defaultZone ：设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
+server:
+  port: 1111
+  
+spring:
+  application:
+    name: CN-Eureka-Server
+  security:
+    user:
+      name: zmsoft
+      password: 123456
+  datasource:
+    name: mysql
+    url: jdbc:mysql://47.96.180.240:3306/fcy_dev?useUnicode=yes&characterEncoding=utf8&autoReconnect=true #&failOverReadOnly=false&allowMultiQueries=true
+    username: root
+    password: "@Hunme123"
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 47.96.180.240
+    password: zaq12wsx
+    port: 6379
+    database: 14
+  mvc:
+    view:
+      prefix: /WEB-INF/views
+      suffix: .jsp
+      
+#注册中心         
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true 
+  client:
+    register-with-eureka: false     ##false来表明自己是一个eureka server，表示不向注册中心注册自己
+    fetch-registry: false           ##这里是开发环境，所以注册中心的任务是维护服务，不需要检测服务，设为false
+    service-url:
+      defaultZone: http://zmsoft:123456@localhost:1111/eureka/
+
+## 日志输出范围配置
+logging:
+  #config: classpath:logback.xml
+  #path: /mnt/log
+  #file: serverUser.log
+  level:
+    springfox.documentation: error
+    org.mybatis: error
+    org.apache: error
+    com.alibaba: error
+    com.netflix: error
+    org.springframework: error
+    org.quartz: error

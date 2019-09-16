@@ -4,6 +4,7 @@ Jfp
 
 #### 项目全称
 java free project tools & framework
+基于JAVA的开发工具框架
 ------- 
 
 #### 软件架构
@@ -18,6 +19,10 @@ java free project tools & framework
 3. JFP-Framework-Equivocal      扩展功能，包括业务支撑底层
 
 #### 版本日志
+2.6.2  2019/9/16 正式发布 <br>
+&nbsp;&nbsp;1). 开源协议修正为【The Clear BSD License】<br>
+&nbsp;&nbsp;2). 启动模式优化<br>
+&nbsp;&nbsp;3). 其他各种细节优化<br>
 2.5.2  2019/8/17 正式发布 <br>
 &nbsp;&nbsp;1). 整合历史版本功能<br>
 &nbsp;&nbsp;2). 优化配置（基于数据库）<br>

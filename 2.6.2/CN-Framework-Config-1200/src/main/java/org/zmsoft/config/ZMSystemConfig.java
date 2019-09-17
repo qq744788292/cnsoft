@@ -48,7 +48,7 @@ public class ZMSystemConfig implements ICFrameworkConstants {
 	public void loadVersion() {
 		System.out.println("");
 		// 初始化端口和模式
-		System.out.println("    当前框架版本号：2.5.2   项目主页https://gitee.com/zzzmmmsoft/jfp");
+		System.out.println("    当前框架版本号：2.6.2   项目主页https://gitee.com/zzzmmmsoft/jfp");
 		System.out.println("        ________  __            __ _   ");
 		System.out.println("       |___  /  \\/  |          / _| |  ");
 		System.out.println("          / /| \\  / |___  ___ | |_| |_ ");

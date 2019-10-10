@@ -19,10 +19,17 @@ java free project tools & framework
 3. JFP-Framework-Equivocal      扩展功能，包括业务支撑底层
 
 #### 版本日志
-2.6.2  2019/9/16 正式发布 <br>
+2.6.2.2  2019/10/10 正式发布 <br>
+&nbsp;&nbsp;1). 优化启动模式<br>
+&nbsp;&nbsp;2). 优化模块加载<br>
+&nbsp;&nbsp;3). 修正版权声明<br>
+&nbsp;&nbsp;4). 其他各种细节优化<br>
+2.6.2  2019/9/17 正式发布 <br>
 &nbsp;&nbsp;1). 开源协议修正为【The Clear BSD License】<br>
 &nbsp;&nbsp;2). 启动模式优化<br>
-&nbsp;&nbsp;3). 其他各种细节优化<br>
+&nbsp;&nbsp;3). 统一日志输出模块优化（LogDataRemoteSupport、RemoteLogConfigService）<br>
+&nbsp;&nbsp;4). 参数配置基类优化，去掉TYPE字段过滤（AConfigSupport）<br>
+&nbsp;&nbsp;5). 其他各种细节优化<br>
 2.5.2  2019/8/17 正式发布 <br>
 &nbsp;&nbsp;1). 整合历史版本功能<br>
 &nbsp;&nbsp;2). 优化配置（基于数据库）<br>

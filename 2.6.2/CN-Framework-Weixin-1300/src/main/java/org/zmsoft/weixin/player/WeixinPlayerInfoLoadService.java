@@ -11,7 +11,7 @@ import org.zmsoft.weixin.MyWeixinCommonSupport;
 /**
  * 获取用户基本信息(UnionID机制)
  * 
- * @author fcy
+ * @author ZMSoft
  *
  */
 @Component("WeixinPlayerInfoLoadService")

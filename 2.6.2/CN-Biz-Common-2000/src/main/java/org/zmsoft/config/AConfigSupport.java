@@ -94,8 +94,6 @@ public abstract class AConfigSupport extends ObjectBean implements ICFrameworkCo
 				if (!field.isAccessible())
 					field.setAccessible(true);
 
-				if (field.getName().equalsIgnoreCase("TYPE"))
-					continue;
 				// 设置内容
 				if (configs.containsKey(field.getName()))
 					field.set(clazz, configs.get(field.getName()));

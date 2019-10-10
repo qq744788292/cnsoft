@@ -5,7 +5,7 @@ import org.zmsoft.framework.beans.db.MyDataBaseObjectSupport3;
 
 /**
  * 用户功能权限模型
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 public interface ISMenuRoleSupport {

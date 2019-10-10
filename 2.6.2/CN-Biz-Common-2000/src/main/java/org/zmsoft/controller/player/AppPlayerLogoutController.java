@@ -16,7 +16,7 @@ import org.zmsoft.framework.token.TokenBusinessSupport;
 /**
  * 用户登出
  * 
- * @author FCY
+ * @author ZMSoft
  * @version 2.0.1 2018/7/8 新建
  * @since 2.0.1 2018/7/8
  * @see <ApiUserInfoController>,<LCJUserLoginController>,<WxIndexController>

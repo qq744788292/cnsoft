@@ -11,7 +11,7 @@ import org.zmsoft.framework.utils.EmptyHelper;
 /**
  * 注入ApplicationContext对象的三种方式
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 @Component

@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * 当前项目下面所有SQL类名称集合
  * 
- * @author spookfcy
+ * @author ZMSoft
  * @see <MyDBTableSQLSupport>
  */
 public class MyTableSQLConfigerHolder {

@@ -137,23 +137,25 @@ public interface ICFrameworkConstants {
 	 * 数据锁
 	 */
 	public final static String LOCK = ".LOCK";
-	public final static String URL_SLASH = "/";// backslash
+	public final static String URL_SLASH = "/";
 
-	public final static String SEMICOLON = ";";// semicolon
-	public final static String QUOTES = "'";// semicolon
-	public final static String AND = "&";// semicolon
-	public final static String QUMARK = "?";// semicolon
+	public final static String SEMICOLON = ";";
+	public final static String QUOTES = "'";
+	public final static String AND = "&";
+	public final static String QUMARK = "?";
 
-	public final static String BACKSLASH = "/";// backslash
-	public final static String BACKSLASH2 = "//";// backslash
-	public final static String FILE_URI = "file://";// FILE_URI
+	public final static String BACKSLASH = "/";
+	public final static String BACKSLASH2 = "//";
+	public final static String FILE_URI = "file://";
+	public final static String HTTP_URI = "http://";
+	public final static String HTTPS_URI = "https://";
 
 	public final static String DOT = ".";
 	public final static char DOT2 = '.';
 	public final static String COMMA = ",";
 	public final static String TRANSVERSE_LINE = "-";
-	public final static String DOWN_LINE = "_";// backslash
-	public final static char DOWN_LINE2 = '_';// backslash
+	public final static String DOWN_LINE = "_";
+	public final static char DOWN_LINE2 = '_';
 
 	/* 数据基本操作 */
 	public enum DBManagerType {

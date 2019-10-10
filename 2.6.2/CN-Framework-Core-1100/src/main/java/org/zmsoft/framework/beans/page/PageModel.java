@@ -27,23 +27,36 @@ import com.alibaba.fastjson.JSON;
 @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class PageModel<T> extends PageData implements ICDBConstants {
 
-	protected boolean resultCountFlag = false;
-	protected String countSQL = "count(1)";
+	/**
+	 * 开启全部返回
+	 */
+	private boolean resultCountFlag = false;
+
+	/**
+	 * 最大返回条数
+	 */
+	private int maxResultNum = 120;
+	private String pageLimitSQL = "LIMIT " + maxResultNum;
+
+	/**
+	 * 默认统计查询语句
+	 */
+	private String countSQL = "count(1)";
 
 	/**
 	 * 页面一览数据
 	 */
-	protected List<T> pageListData;
+	private List<T> pageListData;
 
 	/**
 	 * 页面检索参数
 	 */
-	protected FrameworkDataBean formParamBean;
+	private FrameworkDataBean formParamBean;
 
 	/**
 	 * 自定义排序
 	 */
-	protected String orderby = EMPTY;
+	private String orderby = EMPTY;
 
 	public PageModel() {
 		build();
@@ -57,6 +70,19 @@ public class PageModel<T> extends PageData implements ICDBConstants {
 		pageListData = null;
 		formParamBean = new FrameworkDataBean();
 		orderby = "";
+	}
+
+	public String currentPageLimitSQL() {
+		return pageLimitSQL;
+	}
+
+	public int currentMaxResultNum() {
+		return maxResultNum;
+	}
+
+	public void setMaxResultNum(int maxResultNum) {
+		this.maxResultNum = maxResultNum;
+		this.pageLimitSQL = "LIMIT " + maxResultNum;
 	}
 
 	public boolean currentResultCountFlag() {
@@ -156,10 +182,10 @@ public class PageModel<T> extends PageData implements ICDBConstants {
 		this.orderby = orderby;
 	}
 
-
 	public void setOrderbyIdASC() {
 		this.orderby = Orderby_Id_ASC;
 	}
+
 	public void setOrderbyWeightASC() {
 		this.orderby = Orderby_Weight_ASC;
 	}
@@ -175,7 +201,7 @@ public class PageModel<T> extends PageData implements ICDBConstants {
 	public void setOrderbyWeightDESC() {
 		this.orderby = Orderby_Weight_DESC;
 	}
-	
+
 	public void setOrderbyRand() {
 		this.orderby = Orderby_Rand;
 	}

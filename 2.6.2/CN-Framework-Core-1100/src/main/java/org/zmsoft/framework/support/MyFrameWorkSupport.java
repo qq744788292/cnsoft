@@ -28,15 +28,15 @@ public class MyFrameWorkSupport extends FrameworkDataBean implements ICFramework
 
 	@Value("${spring.application.name}")
 	protected String myAppName = "ZMSoft";// 服务名称（项目名称）
-	@Value("${model.type}")
-	protected String myModelTyle = "dev";// 服务名称（项目名称）
+	@Value("${model.id}")
+	protected String myModelId = "10";// 服务名称（项目名称）
 
-	public String getMyModelTyle() {
-		return myModelTyle;
+	public String getMyModelId() {
+		return myModelId;
 	}
 
 	public String getMyAppName() {
-		return myAppName + TRANSVERSE_LINE + myModelTyle;
+		return myAppName + TRANSVERSE_LINE + myModelId;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////

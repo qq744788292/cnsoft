@@ -7,7 +7,7 @@ import org.zmsoft.framework.constants.ICHeaderConstants;
 
 /**
  * 当前请求参数梳理
- * @author fcy
+ * @author ZMSoft
  *
  */
 public class RequestHeaderSupport implements ICHeaderConstants {

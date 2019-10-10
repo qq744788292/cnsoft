@@ -10,7 +10,7 @@ import org.zmsoft.persistent.common.ManagerMenu.ManagerMenuDBO;
 /**
  * 用户首页
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 public interface ISManagerHomeService extends ICFrameworkConstants {

@@ -17,7 +17,7 @@ public interface ICBussinessConstants {
 	public final static String MQ_TOPIC_WEIXIN = "MQ_TOPIC_WEIXIN";
 	
 	//第三方日志采集
-	public final static String RemoteLogServiceName = "RemoteLogServiceName";
+	public final static String RemoteLogServiceName = "LogDataRemoteSupport";
 	/**
 	 * 用户首页业务
 	 */

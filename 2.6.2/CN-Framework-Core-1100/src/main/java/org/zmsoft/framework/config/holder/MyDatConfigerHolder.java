@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * 当前项目下面所有dat初始化数据集合
  * 
- * @author spookfcy
+ * @author ZMSoft
  * @see <MyDBTableDatSupport>
  */
 public class MyDatConfigerHolder {

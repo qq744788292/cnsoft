@@ -1,9 +1,12 @@
+
 package org.zmsoft.config.system;
 
 import java.net.InetAddress;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.zmsoft.framework.beans.common.ServiceInstanceDBO;
 import org.zmsoft.framework.constants.ICCacheConstants;
 import org.zmsoft.framework.task.AJobSupport;
 import org.zmsoft.framework.utils.DateHelper;
@@ -18,7 +21,7 @@ public class MyHeardTaskService extends AJobSupport implements ICCacheConstants 
 	@Scheduled(cron = "0/15 * * * * ?")
 	public void doQuartzService() throws Exception {
 		// 激活父类启动方法
-		doJobTaskProcess();
+		doJobBizProcess();
 	}
 
 	public String getLocalHost() {
@@ -30,6 +33,16 @@ public class MyHeardTaskService extends AJobSupport implements ICCacheConstants 
 		}
 	}
 
+	// 服务名称
+	@Value("${spring.application.name}")
+	private String name;
+	// 服务端口
+	@Value("${server.port}")
+	private String port;
+	// 服务器ID
+	@Value("${model.id}")
+	protected String myModelId;
+	
 	/**
 	 * 业务逻辑
 	 */
@@ -37,6 +50,16 @@ public class MyHeardTaskService extends AJobSupport implements ICCacheConstants 
 	public boolean doProcess() throws Exception {
 		// 服务器心跳
 		putCacheService(CACHE_KEY_SERVER + getLocalHost(), DateHelper.currentTimeMillisCN1());
+		
+		ServiceInstanceDBO data = new ServiceInstanceDBO();
+		data.setHost(getLocalHost());
+		data.setPort(Integer.parseInt(port));
+		data.setServiceId(myModelId);
+
+		logger.debug("CustomerServiceName=====>>>>>" + name);
+
+		putCacheService(CACHE_KEY_SERVER + name, data.toString());
+		
 		return true;
 	}
 

@@ -2,7 +2,7 @@ package org.zmsoft.framework.weixin.bean;
 
 /**
  * 微信用户个人信息（UnionID机制）
- * @author fcy
+ * @author ZMSoft
  *
  */
 public class WxUserinfoEntity {

@@ -10,7 +10,7 @@ import org.zmsoft.framework.utils.EmptyHelper;
 /**
  * 用户功能权限管理
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 public class MyManagerMenuRoleHelper extends MyFrameWorkSupport {

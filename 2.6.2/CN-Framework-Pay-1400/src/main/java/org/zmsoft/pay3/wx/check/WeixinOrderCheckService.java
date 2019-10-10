@@ -15,7 +15,7 @@ import org.zmsoft.pay.support.MyOrderSupport;
 /**
  * 微信订单检查
  * 
- * @author FCY
+ * @author ZMSoft
  * @version 0.0.1 2017-10-19
  * @since 0.0.1 2017-10-19
  */

@@ -41,8 +41,8 @@ import org.zmsoft.framework.utils.EmptyHelper;
 
 /**
  * 分页插件（select）<br>
- * 拦截所有查询操作
- * 
+ * 拦截所有查询操作<br>
+ * 最大返回120条数据
  * @author ZmSoft
  * @version 0.1.0 2018/2/8
  * @since 0.1.0 2018/2/8
@@ -53,7 +53,7 @@ import org.zmsoft.framework.utils.EmptyHelper;
 @Intercepts({ @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) })
 public class MyFrameworkQueryPlugin implements Interceptor {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
-
+	
 	protected static final int MAPPED_STATEMENT_INDEX = 0;
 	protected static final int PARAMETER_INDEX = 1;
 	protected static final int ROWBOUNDS_INDEX = 2;
@@ -105,19 +105,19 @@ public class MyFrameworkQueryPlugin implements Interceptor {
 			return;
 		}
 		// 获得传递的分页模型
-		PageModel<?> pageVO = (PageModel<?>) queryArgs[PARAMETER_INDEX];
+		PageModel<?> pageModel = (PageModel<?>) queryArgs[PARAMETER_INDEX];
 		// 获得自动分页器
-		DefaultDialect dialect = pageVO.currentDefaultDialect();
+		DefaultDialect dialect = pageModel.currentDefaultDialect();
 		if (dialect == null)
 			dialect = new DefaultDialect();
-		dialect.setSupportsOrderby(pageVO.currentOrderby());
+		dialect.setSupportsOrderby(pageModel.currentOrderby());
 
 		// 判断数据库是否允许分页
 		if (dialect.supportsLimit()) {
-			BoundSql boundSql = ms.getBoundSql(pageVO.currentFormParamBean());
+			BoundSql boundSql = ms.getBoundSql(pageModel.currentFormParamBean());
 			String sql = boundSql.getSql().trim();
 			// 数据总数
-			if (pageVO.currentResultCountFlag() == true) {
+			if (pageModel.currentResultCountFlag() == true) {
 				Connection connection = connectionHolder.getConnection();
 				if(EmptyHelper.isEmpty(connection)||connection.isClosed()){
 					connection = ms.getConfiguration().getEnvironment().getDataSource().getConnection();
@@ -126,18 +126,18 @@ public class MyFrameworkQueryPlugin implements Interceptor {
 				ResultSet rs = null;
 				try {
 					StringBuffer countSql = new StringBuffer(sql.length() + 100);
-					countSql.append("select ").append(pageVO.currentCountSQL()).append(" as TotalCount from ( ").append(sql).append(" ) Total_Count");
+					countSql.append("select ").append(pageModel.currentCountSQL()).append(" as TotalCount from ( ").append(sql).append(" ) Total_Count " + pageModel.currentPageLimitSQL());
 					PreparedStatement countStmt = connection.prepareStatement(countSql.toString());
-					BoundSql countBS = new BoundSql(ms.getConfiguration(), countSql.toString(), boundSql.getParameterMappings(), pageVO.currentFormParamBean());
+					BoundSql countBS = new BoundSql(ms.getConfiguration(), countSql.toString(), boundSql.getParameterMappings(), pageModel.currentFormParamBean());
 
 					// 设定查询参数
-					setParameters(countStmt, ms, countBS, pageVO.currentFormParamBean());
+					setParameters(countStmt, ms, countBS, pageModel.currentFormParamBean());
 
 					logger.info("TotalCount.SQL====>>>>>" + countBS.getSql());
 
 					rs = countStmt.executeQuery();
 					if (rs.next()) {
-						pageVO.setResultCount(rs.getInt(1));
+						pageModel.setResultCount(rs.getInt(1));
 					}
 					if (countStmt != null){
 						countStmt.close();
@@ -150,13 +150,13 @@ public class MyFrameworkQueryPlugin implements Interceptor {
 					}
 				}
 			} else {
-				pageVO.setResultCount(120);
+				pageModel.setResultCount(pageModel.currentMaxResultNum());
 			}
 
 			// 每页显示数目
-			int limit = pageVO.getPageLimit();
+			int limit = pageModel.getPageLimit();
 			// 计算起始数目
-			int offset = (pageVO.getPageCurrent() - 1) * limit;
+			int offset = (pageModel.getPageCurrent() - 1) * limit;
 			if (dialect.supportsLimitOffset()) {
 				sql = dialect.getLimitString(sql, offset, limit);
 				offset = RowBounds.NO_ROW_OFFSET;
@@ -166,7 +166,7 @@ public class MyFrameworkQueryPlugin implements Interceptor {
 			// 输出修正后的操作语句
 			logger.info("Limit.SQL====>>>>>" + sql);
 			// 设定操作参数PARAMETER
-			queryArgs[PARAMETER_INDEX] = pageVO.currentFormParamBean();
+			queryArgs[PARAMETER_INDEX] = pageModel.currentFormParamBean();
 			// 保存sql语句
 			MappedStatement newMs = MyFrameworkSqlSource.copyFromMappedStatement(ms, new MyFrameworkSqlSource(ms.getConfiguration(), sql, boundSql.getParameterMappings()));
 			// 设定操作参数MAPPED

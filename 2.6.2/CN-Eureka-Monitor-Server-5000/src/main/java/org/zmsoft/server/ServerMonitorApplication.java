@@ -14,7 +14,7 @@ import org.zmsoft.framework.support.MyBeanFactoryHelper;
 
 /**
  * 服务器监控
- * @author Fcy
+ * @author ZMSoft
  *
  */
 @EnableDiscoveryClient

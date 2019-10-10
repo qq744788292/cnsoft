@@ -16,7 +16,7 @@ import com.netflix.zuul.exception.ZuulException;
 /**
  * 自定义过滤器
  * 
- * @author spookfcy
+ * @author ZMSoft
  * @see <ISCompanyRoolCheck>
  */
 @Component

@@ -15,7 +15,7 @@ import org.zmsoft.framework.support.MyTokenCommonSupport;
 /**
  * 游客检查
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 @CrossOrigin

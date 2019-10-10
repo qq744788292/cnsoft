@@ -12,19 +12,20 @@ public enum ECCodeMessageConstants {
 	/**
 	 * 用户不存在
 	 */
-	MESSAGE_USER_ERROR(1, "1200:用户不存在"), 
-	MESSAGE_DB_ERROR(1, "1210:缺少必要条件"), 
-	MESSAGE_DB_SELECT(0, "1100:数据查询成功"), 
-	MESSAGE_DB_INSERT(0, "1110:数据增加成功"), 
-	MESSAGE_DB_UPDATE(0, "1120:数据更新成功"), 
-	MESSAGE_DB_DELETE(0, "1130:数据删除成功"), 
-	MESSAGE_DB_FAIL(1, "1140:数据操作失败"),
-	MESSAGE_DB_SAVE(0, "1150:数据保存成功"), 
-	MESSAGE_DB_Export_FAIL(1, "1160:数据导出失败！！！"),
-	MESSAGE_DB_Export_SUCCESS(0, "1170:数据导出成功！！！"),
-	MESSAGE_SMS_SEND(0, "2000:短信发送成功！！！"),
-	MESSAGE_SYNC_SUCCESS(0, "3000:数据同步成功！！！"),
-	MESSAGE_SYNC_FAIL(1, "3100:数据同步失败！！！");
+	SYSTEM_ERROR(1, "4:系统繁忙，请稍后再试"), 
+	MESSAGE_USER_ERROR(1, "4:用户不存在"), 
+	MESSAGE_DB_ERROR(1, "4:缺少必要条件"), 
+	MESSAGE_DB_SELECT(0, "1:数据查询成功"), 
+	MESSAGE_DB_INSERT(0, "2:数据增加成功"), 
+	MESSAGE_DB_UPDATE(0, "2:数据更新成功"), 
+	MESSAGE_DB_DELETE(0, "3:数据删除成功"), 
+	MESSAGE_DB_FAIL(1, "4:数据操作失败"),
+	MESSAGE_DB_SAVE(0, "2:数据保存成功"), 
+	MESSAGE_DB_Export_FAIL(1, "4:数据导出失败！！！"),
+	MESSAGE_DB_Export_SUCCESS(0, "3:数据导出成功！！！"),
+	MESSAGE_SMS_SEND(0, "2:短信发送成功！！！"),
+	MESSAGE_SYNC_SUCCESS(0, "2:数据同步成功！！！"),
+	MESSAGE_SYNC_FAIL(1, "4:数据同步失败！！！");
 	///////////////////////////////////////////////////////////////// 4
 	private int code;
 

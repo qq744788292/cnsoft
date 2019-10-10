@@ -13,7 +13,7 @@ import org.zmsoft.framework.token.TokenBusinessSupport;
 /**
  * 默认用户登录管理
  * 
- * @author FCY
+ * @author ZMSoft
  * @version 2.0.1 2018/7/8 新建
  * @since 2.0.1 2018/7/8
  */

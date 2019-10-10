@@ -8,7 +8,7 @@ import org.zmsoft.framework.utils.EmptyHelper;
 /**
  * 名称转换器称转换
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 public class MyManagerNameTransHelper extends MyFrameWorkSupport {

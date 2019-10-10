@@ -3,7 +3,7 @@ package org.zmsoft.framework.weixin.bean;
 /**
  * 微信自定义回调数据实体
  * 
- * @author fcy
+ * @author ZMSoft
  *
  */
 public class WxCallBackParamBean extends WxUserBean {

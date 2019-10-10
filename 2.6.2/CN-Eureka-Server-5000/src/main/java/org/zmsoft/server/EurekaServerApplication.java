@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  * 注册中心
- * @author Fcy
+ * @author ZMSoft
  *
  */
 @SpringBootApplication

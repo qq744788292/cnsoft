@@ -17,7 +17,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * 媒体类文件配置
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 @Configuration

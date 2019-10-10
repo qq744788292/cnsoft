@@ -7,6 +7,13 @@ import org.zmsoft.framework.constants.ICFrameworkConstants;
 import org.zmsoft.framework.support.MyBeanFactoryHelper;
 import org.zmsoft.framework.utils.EmptyHelper;
 
+/**
+ * 日志统一收集输出
+ * 
+ * @author ZmSoft
+ * @version 2.0.0 2018/10/10
+ * @since 2.0.0 2018/10/10
+ */
 public class LogDataHelper implements ICFrameworkConstants {
 
 	public static void saveLog(String serviceName, Object logData) {

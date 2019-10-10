@@ -15,7 +15,7 @@ import org.zmsoft.framework.utils.PKHelper;
 /**
  * 版权声明文件
  * 
- * @author Fcy
+ * @author ZMSoft
  *
  */
 @Service("ZMSystemConfig")

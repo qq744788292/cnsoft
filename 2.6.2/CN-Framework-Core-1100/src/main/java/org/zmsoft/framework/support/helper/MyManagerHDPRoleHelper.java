@@ -10,7 +10,7 @@ import org.zmsoft.framework.utils.EmptyHelper;
 /**
  * 用户职能身份权限管理
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 public class MyManagerHDPRoleHelper extends MyFrameWorkSupport {

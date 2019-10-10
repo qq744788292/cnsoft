@@ -12,7 +12,7 @@ import org.zmsoft.framework.weixin.bean.WxCallBackParamBean;
 /**
  * 最终用户登录接口
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  * @param <T>
  */
@@ -48,5 +48,14 @@ public interface ISPlayerLoginService extends ICFrameworkConstants {
 	 */
 	public RESTResultBean<UserBean> doWeixinLogin(HttpServletRequest request, HttpServletResponse response, WxCallBackParamBean wxCallBackParamBean) throws Exception;
 
+	/**
+	 * 根据用户ID登录
+	 * @param request
+	 * @param response
+	 * @param curUser
+	 * @return
+	 * @throws Exception
+	 * @see #doAutoLogin
+	 */
 	public RESTResultBean<UserBean> doPlayerLogin(HttpServletRequest request, HttpServletResponse response, UserBean curUser) throws Exception ;
 }

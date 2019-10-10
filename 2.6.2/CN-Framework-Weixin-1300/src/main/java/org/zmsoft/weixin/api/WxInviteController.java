@@ -22,11 +22,12 @@ import org.zmsoft.weixin.MyWeixinCommonSupport;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * 菜单入口（用户授权）邀请
- * 
+ * 菜单入口（用户授权）邀请<br>
+ * 支持用户裂变
  * @author Zmsoft
  * @version 0.1.0 2018/4/2
  * @since 0.1.0 2018/4/2
+ * @see ISPlayerLoginService#doWeixinLogin
  */
 @Controller
 public class WxInviteController extends MyWeixinCommonSupport {

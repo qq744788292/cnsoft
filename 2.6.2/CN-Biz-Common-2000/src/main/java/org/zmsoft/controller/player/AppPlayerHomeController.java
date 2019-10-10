@@ -18,7 +18,7 @@ import org.zmsoft.service.player.ISPlayerHomeService;
 /**
  * 用户首页
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 @CrossOrigin

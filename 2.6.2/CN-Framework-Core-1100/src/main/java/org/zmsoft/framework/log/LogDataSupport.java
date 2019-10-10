@@ -1,6 +1,5 @@
 package org.zmsoft.framework.log;
 
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.zmsoft.framework.common.ISLog;
 import org.zmsoft.framework.constants.ICBussinessConstants;
@@ -15,6 +14,7 @@ import org.zmsoft.framework.utils.EmptyHelper;
  * @author ZmSoft
  * @version 2.0.0 2018/10/10
  * @since 2.0.0 2018/10/10
+ * @see <RemoteLogServiceName>
  */
 @Component("LogDataSupport")
 public class LogDataSupport extends MyFrameWorkSupport implements ICBussinessConstants {
@@ -29,9 +29,9 @@ public class LogDataSupport extends MyFrameWorkSupport implements ICBussinessCon
 	 * 
 	 * @throws Exception
 	 */
-	@Async("threadPoolTaskExecutor")
 	public void flush() {
 		String log;
+		// 日志内容输出制作
 		try {
 			logData.setAppName(getMyAppName());
 			logData.setLogTimestamp(DateHelper.currentTimeMillisCN5());
@@ -48,7 +48,7 @@ public class LogDataSupport extends MyFrameWorkSupport implements ICBussinessCon
 		// 激活log输出
 		ISLog remoteLog = MyBeanFactoryHelper.getBean(RemoteLogServiceName);
 		if (EmptyHelper.isNotEmpty(remoteLog)) {
-			remoteLog.flush(log);
+			remoteLog.flush(logData);
 		}
 	}
 

@@ -3,7 +3,7 @@ package org.zmsoft.framework.common.buzzinezz;
 /**
  * 管理员用户名称转换接口
  * 
- * @author spookfcy
+ * @author ZMSoft
  * @see <myManagerNameTransSupport>
  */
 public interface ISManagerNameTransSupport {

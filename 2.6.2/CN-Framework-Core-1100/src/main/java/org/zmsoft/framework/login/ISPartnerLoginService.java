@@ -11,7 +11,7 @@ import org.zmsoft.framework.constants.ICFrameworkConstants;
 /**
  * 合作者登录接口
  * 
- * @author spookfcy
+ * @author ZMSoft
  * @see <application-bean.yml>
  */
 public interface ISPartnerLoginService extends ICFrameworkConstants {

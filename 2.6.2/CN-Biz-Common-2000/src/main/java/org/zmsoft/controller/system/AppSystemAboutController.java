@@ -17,7 +17,7 @@ import org.zmsoft.framework.utils.EmptyHelper;
 /**
  * 系统相关
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 @CrossOrigin

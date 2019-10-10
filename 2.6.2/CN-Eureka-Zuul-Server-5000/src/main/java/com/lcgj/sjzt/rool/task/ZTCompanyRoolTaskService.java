@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  * 中台账户中心服务监控
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 @Component

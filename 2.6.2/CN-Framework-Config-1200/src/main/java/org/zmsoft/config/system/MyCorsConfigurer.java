@@ -15,7 +15,7 @@ import org.zmsoft.framework.support.MyInterceptorAdapterSupport;
 /**
  * 接口跨域解决
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 @Configuration

@@ -4,7 +4,7 @@ import org.zmsoft.framework.ObjectBean;
 
 /**
  * 服务器配置地址
- * @author fcy
+ * @author ZMSoft
  *
  */
 public class ServiceInstanceDBO extends ObjectBean {

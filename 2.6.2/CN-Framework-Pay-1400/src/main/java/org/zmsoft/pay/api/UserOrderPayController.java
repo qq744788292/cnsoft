@@ -23,7 +23,7 @@ import org.zmsoft.pay.service.QueryOrderService;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/1.0/pay", method = { RequestMethod.POST })
-public class UserOrderPayController extends MyControllerSupport { // MyTokenCommonSupport
+public class UserOrderPayController extends MyControllerSupport {// MyTokenCommonSupport
 	@Resource
 	private OrderFormService serviceOrderForm;
 	@Resource

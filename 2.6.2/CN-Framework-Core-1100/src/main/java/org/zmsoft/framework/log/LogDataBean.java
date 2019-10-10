@@ -5,8 +5,9 @@ import org.zmsoft.framework.ObjectBean;
 /**
  * 日志对象
  * 
- * @author spookfcy
- *
+ * @author ZmSoft
+ * @version 2.0.0 2018/10/10
+ * @since 2.0.0 2018/10/10
  */
 public class LogDataBean extends ObjectBean {
 

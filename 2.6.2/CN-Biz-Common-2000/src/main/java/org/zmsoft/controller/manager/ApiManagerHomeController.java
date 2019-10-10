@@ -21,7 +21,7 @@ import org.zmsoft.service.manager.ISManagerHomeService;
 /**
  * 用户首页
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 @CrossOrigin

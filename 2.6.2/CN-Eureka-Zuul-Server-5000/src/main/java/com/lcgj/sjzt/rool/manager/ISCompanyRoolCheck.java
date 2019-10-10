@@ -8,7 +8,7 @@ import com.netflix.zuul.exception.ZuulException;
 /**
  * 企业接口权限检查接口
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 public interface ISCompanyRoolCheck {

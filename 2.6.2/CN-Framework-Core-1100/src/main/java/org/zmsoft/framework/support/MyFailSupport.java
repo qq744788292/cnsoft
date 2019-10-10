@@ -14,7 +14,7 @@ import com.alibaba.fastjson.JSON;
  * 系统拦截器<br>
  * 解决跨域和安全
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 public class MyFailSupport extends MyFrameWorkSupport implements ICFrameworkConstants {

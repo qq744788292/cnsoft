@@ -19,7 +19,7 @@ import org.zmsoft.service.player.ISPLayerRegistService;
 /**
  * 用户注册
  * 
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 @CrossOrigin

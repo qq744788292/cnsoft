@@ -5,7 +5,7 @@ import org.zmsoft.framework.beans.db.MyDataBaseObjectSupport3;
 
 /**
  * 用户职能身份权限模型
- * @author spookfcy
+ * @author ZMSoft
  *
  */
 public interface ISIdentityRoleSupport {

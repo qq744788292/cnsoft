@@ -1,4 +1,4 @@
-Attribute VB_Name = "ZMSoft_Tools_2622"
+Attribute VB_Name = "ZMSoft_Tools_26221"
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 '数据库与CN-Soft(原JFP)框架代码片段生成工具
 '
@@ -8,21 +8,21 @@ Attribute VB_Name = "ZMSoft_Tools_2622"
 '
 '日志说明
 '
-'   2.6.2.2 2019-10-10 优化List页面逻辑，允许输出扩展字段
-'   2.6.2.1 2019-09-29 优化JSP输出页面逻辑，允许输出meno字段
-'   2.6.2   2019-09-29 输出JSP后管页面（节省70%代码书写）
-'   2.6.1   2019-09-16 命名修正，开源协议修正，同步框架版本号
-'   2.5.2   2019-07-17 解决文件编码问题，同步框架版本号
-'   2.3.6   2019-05-10 优化ECCodeMessageConstants命名
-'   2.3.5   2019-03-25 增加CreatAll输出
-'   2.3.4   2019-02-25 增加输出文件类别
-'   2.3.3   2018-12-02 增加输出文件类别
-'   2.3.2   2018-11-09 bug修正
-'   2.3.1   2018-11-07 统一ApiDoc输出规范
-'   2.2.2   2018-11-05 统一Controller接口命名规范
-'   2.1.1   2018-10-22 全面封装Businesslogic、Controller、Dao、DBO、Mapper
-'   2.0.2   2018-08-25 文件输出命名变更
-'   2.0.1   2018-08-24 基于StringBoot
+'   2.6.2.2.1 2019-10-10 优化List页面逻辑，允许输出扩展字段，优化输出路径
+'   2.6.2.1   2019-09-29 优化JSP输出页面逻辑，允许输出meno字段
+'   2.6.2     2019-09-29 输出JSP后管页面（节省70%代码书写）
+'   2.6.1     2019-09-16 命名修正，开源协议修正，同步框架版本号
+'   2.5.2     2019-07-17 解决文件编码问题，同步框架版本号
+'   2.3.6     2019-05-10 优化ECCodeMessageConstants命名
+'   2.3.5     2019-03-25 增加CreatAll输出
+'   2.3.4     2019-02-25 增加输出文件类别
+'   2.3.3     2018-12-02 增加输出文件类别
+'   2.3.2     2018-11-09 bug修正
+'   2.3.1     2018-11-07 统一ApiDoc输出规范
+'   2.2.2     2018-11-05 统一Controller接口命名规范
+'   2.1.1     2018-10-22 全面封装Businesslogic、Controller、Dao、DBO、Mapper
+'   2.0.2     2018-08-25 文件输出命名变更
+'   2.0.1     2018-08-24 基于StringBoot
 '
 '
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -94,8 +94,7 @@ Dim result              As Boolean
 
 Dim tempFilename        As String
 
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Sub CreatAll()
     
     creatAllSheet = True
@@ -359,6 +358,7 @@ Sub targetFileName()
         MkDir sfileName
     End If
     
+    SelectPath = SelectPath + FolderPath
     sfileName = sfileName & "\" & FolderPath
     
 End Sub
@@ -1399,7 +1399,7 @@ On Error GoTo Open_Error
     
     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     'Open sfileName & "Service.java" For Output Shared As #1
-    soutfileName = sfileName + "-item.jsp"
+    soutfileName = SelectPath + "-item.jsp"
     sdbname = LCase(ULCase(sdbname))
     SYSNAME = "/page/1.0/base/" + sdbname
     
@@ -1534,7 +1534,7 @@ On Error GoTo Open_Error
     
     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     'Open sfileName & "Service.java" For Output Shared As #1
-    soutfileName = sfileName + "-list.jsp"
+    soutfileName = SelectPath + "-list.jsp"
     sdbname = LCase(ULCase(sdbname))
     SYSNAME = "/page/1.0/base/" + sdbname
     

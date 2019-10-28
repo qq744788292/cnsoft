@@ -17,6 +17,11 @@ java free project tools & framework
 3. CN-Biz-Common-2000           扩展功能，包括常用工具
 
 #### 版本日志
+2.6.2.5  2019/10/28 正式发布 <br>
+&nbsp;&nbsp;1). 日志远程输出模式优化，基于Redis-DB-15<br>
+&nbsp;&nbsp;2). 修正心跳、短信、邮件框架，队列模式强制使用Redis-DB-15<br>
+&nbsp;&nbsp;3). 修正组件之间服务获取基于Redis-DB-15，满足中小业务系统<br>
+&nbsp;&nbsp;4). 其他相关优化，代替注册中心、配置中心<br>
 2.6.2.3  2019/10/12 正式发布 <br>
 &nbsp;&nbsp;1). 开源协议修正为【The Clear BSD License】<br>
 &nbsp;&nbsp;2). 修正版权声明<br>

@@ -25,11 +25,8 @@ public class MyPageControllerSupport extends MyControllerSupport {
 		return model;
 	}
 	
-	//是否开启游客访问 （true:不允许）
-	protected boolean disableGuest = true;
-	public void setDisableGuest(boolean disableGuest) {
-		this.disableGuest = disableGuest;
-	}
+	//是否开启游客访问 （true:允许）
+	protected boolean allowGuest = false;
 
 	/**
 	 * 校验游客(disableGuest = true:不允许)
@@ -37,7 +34,7 @@ public class MyPageControllerSupport extends MyControllerSupport {
 	 */
 	public boolean doCheckToken(String bizToken) throws Exception {
 		boolean result = super.doCheckToken(bizToken);
-		if (result == true && disableGuest == true && doCheckGuest(bizToken) == true) {
+		if (result == true && allowGuest == false && doCheckGuest(bizToken) == true) {
 			return false;
 		}
 		return result;

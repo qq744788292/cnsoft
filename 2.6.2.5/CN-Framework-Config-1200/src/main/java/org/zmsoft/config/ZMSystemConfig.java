@@ -15,8 +15,9 @@ import org.zmsoft.framework.utils.PKHelper;
 /**
  * 版权声明文件
  * 
- * @author ZMSoft
- *
+ * @author CnSoft
+ * @version 2.6.2.6 2019/11/09
+ * @since 0.1.0 2018/8/22
  */
 @Service("ZMSystemConfig")
 public class ZMSystemConfig implements ICFrameworkConstants {

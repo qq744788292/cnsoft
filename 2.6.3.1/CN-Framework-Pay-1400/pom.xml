@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>CN-Framework-Pay</artifactId>
+	
+	<parent>
+		<groupId>CN-Soft</groupId>
+		<artifactId>CN-Framework-Base</artifactId>
+		<version>2.6.3.1-SNAPSHOT</version>
+		<relativePath>../CN-Framework-Base-1000</relativePath>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>CN-Soft</groupId>
+			<artifactId>CN-Biz-Common</artifactId>
+		</dependency>
+	  <dependency>
+		  <groupId>com.alipay.sdk</groupId>
+		  <artifactId>alipay-sdk-java</artifactId>
+		  <version>3.4.49.ALL</version>
+	  </dependency>
+	</dependencies>
+</project>

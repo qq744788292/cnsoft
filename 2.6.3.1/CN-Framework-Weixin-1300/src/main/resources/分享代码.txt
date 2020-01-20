@@ -1,0 +1,10 @@
+<script src="/resources/other/js/jweixin-1.4.0.js"></script>
+<script src="/resources/other/js/wxshare.js"></script>
+<title>Welcome</title>
+<body>
+	<h1>请打开微信进行分享测试</h1>
+	<script type="text/javascript">
+	loadWeixinShareDefault('1');
+	</script>
+</body>
+</html>

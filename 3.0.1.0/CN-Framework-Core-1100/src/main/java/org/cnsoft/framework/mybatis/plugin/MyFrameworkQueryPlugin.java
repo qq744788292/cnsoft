@@ -1,0 +1,235 @@
+package org.cnsoft.framework.mybatis.plugin;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Properties;
+
+import javax.annotation.Resource;
+
+import org.apache.ibatis.executor.ErrorContext;
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.ExecutorException;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.mapping.ParameterMapping;
+import org.apache.ibatis.mapping.ParameterMode;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.property.PropertyTokenizer;
+import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.type.TypeHandler;
+import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.cnsoft.framework.beans.FrameworkDataBean;
+import org.cnsoft.framework.db.page.PageModel;
+import org.cnsoft.framework.mybatis.MyFrameworkSqlSource;
+import org.cnsoft.framework.mybatis.convert.DefaultConvert;
+import org.cnsoft.framework.mybatis.dialect.DefaultDialect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+/**
+ * 分页插件（select）<br>
+ * 拦截所有查询操作<br>
+ * 最大返回120条数据
+ * 
+ * @author CNSoft
+ * @version 0.1.0 2018/2/8
+ * @since 0.1.0 2018/2/8
+ * @see <MyDataSourceManager><MyDataSourceHolder>
+ * @see <MyDataBaseObjectSupport><MyDataBaseOperateSupport><ISDataSourceName>
+ */
+@Component
+@Intercepts({ @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) })
+public class MyFrameworkQueryPlugin implements Interceptor {
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	/**
+	 * 全局查询返回记录数开关
+	 */
+	public static boolean resultCountFlag = false;
+
+	protected static final int MAPPED_STATEMENT_INDEX = 0;
+	protected static final int PARAMETER_INDEX = 1;
+	protected static final int ROWBOUNDS_INDEX = 2;
+	protected static final int RESULT_HANDLER_INDEX = 3;
+
+	private static final String METHOD_SELECT = "doSelectPage";
+
+	/**
+	 * 参数转换器
+	 */
+	@Resource
+	private DefaultConvert defaultConvert;
+
+	/**
+	 * 拦截器method.invoke
+	 */
+	public Object intercept(Invocation invocation) throws Throwable {
+		processIntercept(invocation.getArgs());
+		return invocation.proceed();
+	}
+
+	/**
+	 * 
+	 * @param queryArgs
+	 */
+	private void processIntercept(Object[] queryArgs) throws Throwable {
+		if ((queryArgs[MAPPED_STATEMENT_INDEX] instanceof MappedStatement) == false) {
+			return;
+		}
+		// 参数统一拦截
+		if (defaultConvert != null) {
+			if ((queryArgs[PARAMETER_INDEX] instanceof FrameworkDataBean) == true) {
+				defaultConvert.convert((FrameworkDataBean) queryArgs[PARAMETER_INDEX]);
+			} else if ((queryArgs[PARAMETER_INDEX] instanceof PageModel) == true) {
+				defaultConvert.convert(((PageModel<?>) queryArgs[PARAMETER_INDEX]).currentFormParamBean());
+			}
+		}
+		// 分页判断
+		if ((queryArgs[PARAMETER_INDEX] instanceof PageModel) == false) {
+			return;
+		}
+
+		MappedStatement ms = (MappedStatement) queryArgs[MAPPED_STATEMENT_INDEX];
+
+		// 自定义分页判断METHOD_SELECT
+		if (ms.getId().indexOf(METHOD_SELECT) < 0) {
+			return;
+		}
+		// 获得传递的分页模型
+		PageModel<?> pageModel = (PageModel<?>) queryArgs[PARAMETER_INDEX];
+		// 获得自动分页器
+		DefaultDialect dialect = pageModel.currentDefaultDialect();
+		if (dialect == null)
+			dialect = new DefaultDialect();
+		dialect.setSupportsOrderby(pageModel.currentOrderby());
+
+		// 判断数据库是否允许分页
+		if (dialect.supportsLimit()) {
+			BoundSql boundSql = ms.getBoundSql(pageModel.currentFormParamBean());
+			String sql = boundSql.getSql().trim();
+			// 数据总数
+			if ((pageModel.currentResultCountFlag() == true) || (resultCountFlag == true)) {
+				Connection connection = ms.getConfiguration().getEnvironment().getDataSource().getConnection();
+				ResultSet rs = null;
+				try {
+					StringBuffer countSql = new StringBuffer(sql.length() + 100);
+					countSql.append("select ").append(pageModel.currentCountSQL()).append(" as TotalCount from ( ").append(sql).append(" ) Total_Count " + pageModel.currentPageLimitSQL());
+					PreparedStatement countStmt = connection.prepareStatement(countSql.toString());
+					BoundSql countBS = new BoundSql(ms.getConfiguration(), countSql.toString(), boundSql.getParameterMappings(), pageModel.currentFormParamBean());
+
+					// 设定查询参数
+					setParameters(countStmt, ms, countBS, pageModel.currentFormParamBean());
+
+					logger.info("TotalCount.SQL====>>>>>" + countBS.getSql());
+
+					rs = countStmt.executeQuery();
+					if (rs.next()) {
+						pageModel.setResultCount(rs.getInt(1));
+					}
+					if (countStmt != null) {
+						countStmt.close();
+						countStmt = null;
+						connection.close();
+						connection = null;
+					}
+				} finally {
+					if (rs != null) {
+						rs.close();
+						rs = null;
+					}
+				}
+			} else {
+				pageModel.setResultCount(pageModel.currentMaxResultNum());
+			}
+
+			// 每页显示数目
+			int limit = pageModel.getPageLimit();
+			// 计算起始数目
+			int offset = (pageModel.getPageCurrent() - 1) * limit;
+			if (dialect.supportsLimitOffset()) {
+				sql = dialect.getLimitString(sql, offset, limit);
+				offset = RowBounds.NO_ROW_OFFSET;
+			} else {
+				sql = dialect.getLimitString(sql, 0, limit);
+			}
+			// 输出修正后的操作语句
+			logger.info("Limit.SQL====>>>>>" + sql);
+			// 设定操作参数PARAMETER
+			queryArgs[PARAMETER_INDEX] = pageModel.currentFormParamBean();
+			// 保存sql语句
+			MappedStatement newMs = MyFrameworkSqlSource.copyFromMappedStatement(ms, new MyFrameworkSqlSource(ms.getConfiguration(), sql, boundSql.getParameterMappings()));
+			// 设定操作参数MAPPED
+			queryArgs[MAPPED_STATEMENT_INDEX] = newMs;
+		}
+	}
+
+	/**
+	 * 对SQL参数(?)设值,参考org.apache.ibatis.executor.parameter. DefaultParameterHandler
+	 * 
+	 * @param ps
+	 * @param mappedStatement
+	 * @param boundSql
+	 * @param parameterObject
+	 * @throws SQLException
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void setParameters(PreparedStatement ps, MappedStatement mappedStatement, BoundSql boundSql, Object parameterObject) throws SQLException {
+		ErrorContext.instance().activity("setting parameters").object(mappedStatement.getParameterMap().getId());
+		List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
+		if (parameterMappings != null) {
+			Configuration configuration = mappedStatement.getConfiguration();
+			TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
+			MetaObject metaObject = parameterObject == null ? null : configuration.newMetaObject(parameterObject);
+			for (int i = 0; i < parameterMappings.size(); i++) {
+				ParameterMapping parameterMapping = parameterMappings.get(i);
+				if (parameterMapping.getMode() != ParameterMode.OUT) {
+					Object value;
+					String propertyName = parameterMapping.getProperty();
+					PropertyTokenizer prop = new PropertyTokenizer(propertyName);
+					if (parameterObject == null) {
+						value = null;
+					} else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
+						value = parameterObject;
+					} else if (boundSql.hasAdditionalParameter(propertyName)) {
+						value = boundSql.getAdditionalParameter(propertyName);
+					} else if (propertyName.startsWith(ForEachSqlNode.ITEM_PREFIX) && boundSql.hasAdditionalParameter(prop.getName())) {
+						value = boundSql.getAdditionalParameter(prop.getName());
+						if (value != null) {
+							value = configuration.newMetaObject(value).getValue(propertyName.substring(prop.getName().length()));
+						}
+					} else {
+						value = metaObject == null ? null : metaObject.getValue(propertyName);
+					}
+					TypeHandler typeHandler = parameterMapping.getTypeHandler();
+					if (typeHandler == null) {
+						throw new ExecutorException("There was no TypeHandler found for parameter " + propertyName + " of statement " + mappedStatement.getId());
+					}
+					typeHandler.setParameter(ps, i + 1, value, parameterMapping.getJdbcType());
+				}
+			}
+		}
+	}
+
+	public Object plugin(Object target) {
+		return Plugin.wrap(target, this);
+	}
+
+	/**
+	 * @deprecated
+	 */
+	public void setProperties(Properties properties) {
+	}
+
+}

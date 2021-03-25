@@ -17,6 +17,9 @@ java free project tools & framework
 3. CN-Biz-Common-2000           扩展功能，包括常用工具
 
 #### 版本日志
+2.6.3.2  2020/12/20 正式发布 <br>
+&nbsp;&nbsp;1). 优化WEB开发接口<br>
+&nbsp;&nbsp;2). 常规优化<br>
 2.6.3.1  2020/01/20 正式发布 <br>
 &nbsp;&nbsp;1). 优化持久层XML<br>
 &nbsp;&nbsp;2). 优化数据库管理界面工具为JSP模型自动化输出<br>

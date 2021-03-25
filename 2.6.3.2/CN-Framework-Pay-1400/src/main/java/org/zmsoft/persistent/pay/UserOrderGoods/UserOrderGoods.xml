@@ -1,0 +1,447 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 订单商品详情表 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.persistent.pay.UserOrderGoods.UserOrderGoodsMapper'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        id,order_id,merchant_id,merchant_name,goods_id,goods_name,goods_publish_id,goods_publish_name,goods_publish_specs_id,goods_publish_specs_name,market_price,goods_price,buy_num,goods_status_code,goods_status_name,memo,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,hdp,del_flag,create_time,creator,update_time,updator
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='UserOrderGoodsDBO' resultType='UserOrderGoodsDBO'>
+        SELECT <include refid='tableColumns'/> FROM u122020_order_goods
+        WHERE 1 = 1 
+            <if test=' id != null and id !="" '><!-- ID -->
+                AND id = #{id}
+            </if>
+            <if test=' orderId != null and orderId !="" '><!-- 玩家订单ID -->
+                AND order_id = #{orderId}
+            </if>
+            <if test=' merchantId != null and merchantId !="" '><!-- 商户ID -->
+                AND merchant_id = #{merchantId}
+            </if>
+            <if test=' merchantName != null and merchantName !="" '><!-- 商户名称 -->
+                AND merchant_name = #{merchantName}
+            </if>
+            <if test=' goodsId != null and goodsId !="" '><!-- 产品ID -->
+                AND goods_id = #{goodsId}
+            </if>
+            <if test=' goodsName != null and goodsName !="" '><!-- 产品名称 -->
+                AND goods_name = #{goodsName}
+            </if>
+            <if test=' goodsPublishId != null and goodsPublishId !="" '><!-- 商品发布ID -->
+                AND goods_publish_id = #{goodsPublishId}
+            </if>
+            <if test=' goodsPublishName != null and goodsPublishName !="" '><!-- 商品发布名称 -->
+                AND goods_publish_name = #{goodsPublishName}
+            </if>
+            <if test=' goodsPublishSpecsId != null and goodsPublishSpecsId !="" '><!-- 商品发布规格ID -->
+                AND goods_publish_specs_id = #{goodsPublishSpecsId}
+            </if>
+            <if test=' goodsPublishSpecsName != null and goodsPublishSpecsName !="" '><!-- 商品发布规格名称 -->
+                AND goods_publish_specs_name = #{goodsPublishSpecsName}
+            </if>
+            <if test=' marketPrice != null '><!-- 市场价格(标价) -->
+                AND market_price = #{marketPrice}
+            </if>
+            <if test=' goodsPrice != null '><!-- 商品价格(卖价) -->
+                AND goods_price = #{goodsPrice}
+            </if>
+            <if test=' buyNum != null '><!-- 购买数量 -->
+                AND buy_num = #{buyNum}
+            </if>
+            <if test=' goodsStatusCode != null and goodsStatusCode !="" '><!-- 商品状态编码(1待发货2已发货3缺货取消9退货) -->
+                AND goods_status_code = #{goodsStatusCode}
+            </if>
+            <if test=' goodsStatusName != null and goodsStatusName !="" '><!-- 商品状态说明 -->
+                AND goods_status_name = #{goodsStatusName}
+            </if>
+            <if test=' memo != null and memo !="" '><!-- 备注 -->
+                AND memo = #{memo}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                AND fb1 = #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                AND fb2 = #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                AND fb3 = #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                AND fb4 = #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                AND fb5 = #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                AND eb1 = #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                AND eb2 = #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                AND eb3 = #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                AND eb4 = #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                AND eb5 = #{eb5}
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                AND hdp = #{hdp}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                AND del_flag = #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                AND create_time = #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                AND creator = #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                AND updator = #{updator}
+            </if>
+    </select>
+
+    <!-- 插入一条数据（使用空值） -->
+    <insert id='doInsert' parameterType='UserOrderGoodsDBO'>
+        INSERT INTO u122020_order_goods
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{id},#{orderId},#{merchantId},#{merchantName},#{goodsId},#{goodsName},#{goodsPublishId},#{goodsPublishName},#{goodsPublishSpecsId},#{goodsPublishSpecsName},#{marketPrice},#{goodsPrice},#{buyNum},#{goodsStatusCode},#{goodsStatusName},#{memo},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{hdp},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 插入一条数据（使用默认值） -->
+    <insert id='doInsertSelective' parameterType='UserOrderGoodsDBO'>
+        INSERT INTO u122020_order_goods
+        (
+            <if test=' id != null and id !="" '><!-- ID -->
+                 id
+            </if>
+            <if test=' orderId != null and orderId !="" '><!-- 玩家订单ID -->
+                , order_id
+            </if>
+            <if test=' merchantId != null and merchantId !="" '><!-- 商户ID -->
+                , merchant_id
+            </if>
+            <if test=' merchantName != null and merchantName !="" '><!-- 商户名称 -->
+                , merchant_name
+            </if>
+            <if test=' goodsId != null and goodsId !="" '><!-- 产品ID -->
+                , goods_id
+            </if>
+            <if test=' goodsName != null and goodsName !="" '><!-- 产品名称 -->
+                , goods_name
+            </if>
+            <if test=' goodsPublishId != null and goodsPublishId !="" '><!-- 商品发布ID -->
+                , goods_publish_id
+            </if>
+            <if test=' goodsPublishName != null and goodsPublishName !="" '><!-- 商品发布名称 -->
+                , goods_publish_name
+            </if>
+            <if test=' goodsPublishSpecsId != null and goodsPublishSpecsId !="" '><!-- 商品发布规格ID -->
+                , goods_publish_specs_id
+            </if>
+            <if test=' goodsPublishSpecsName != null and goodsPublishSpecsName !="" '><!-- 商品发布规格名称 -->
+                , goods_publish_specs_name
+            </if>
+            <if test=' marketPrice != null '><!-- 市场价格(标价) -->
+                , market_price
+            </if>
+            <if test=' goodsPrice != null '><!-- 商品价格(卖价) -->
+                , goods_price
+            </if>
+            <if test=' buyNum != null '><!-- 购买数量 -->
+                , buy_num
+            </if>
+            <if test=' goodsStatusCode != null and goodsStatusCode !="" '><!-- 商品状态编码(1待发货2已发货3缺货取消9退货) -->
+                , goods_status_code
+            </if>
+            <if test=' goodsStatusName != null and goodsStatusName !="" '><!-- 商品状态说明 -->
+                , goods_status_name
+            </if>
+            <if test=' memo != null and memo !="" '><!-- 备注 -->
+                , memo
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                , fb1
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                , fb2
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                , fb3
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                , fb4
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                , fb5
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                , eb1
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                , eb2
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                , eb3
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                , eb4
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                , eb5
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                , hdp
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                , del_flag
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                , create_time
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                , creator
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                , update_time
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                , updator
+            </if>
+        )
+        VALUES 
+        (
+            <if test=' id != null and id !="" '><!-- ID -->
+                  #{id}
+            </if>
+            <if test=' orderId != null and orderId !="" '><!-- 玩家订单ID -->
+                ,  #{orderId}
+            </if>
+            <if test=' merchantId != null and merchantId !="" '><!-- 商户ID -->
+                ,  #{merchantId}
+            </if>
+            <if test=' merchantName != null and merchantName !="" '><!-- 商户名称 -->
+                ,  #{merchantName}
+            </if>
+            <if test=' goodsId != null and goodsId !="" '><!-- 产品ID -->
+                ,  #{goodsId}
+            </if>
+            <if test=' goodsName != null and goodsName !="" '><!-- 产品名称 -->
+                ,  #{goodsName}
+            </if>
+            <if test=' goodsPublishId != null and goodsPublishId !="" '><!-- 商品发布ID -->
+                ,  #{goodsPublishId}
+            </if>
+            <if test=' goodsPublishName != null and goodsPublishName !="" '><!-- 商品发布名称 -->
+                ,  #{goodsPublishName}
+            </if>
+            <if test=' goodsPublishSpecsId != null and goodsPublishSpecsId !="" '><!-- 商品发布规格ID -->
+                ,  #{goodsPublishSpecsId}
+            </if>
+            <if test=' goodsPublishSpecsName != null and goodsPublishSpecsName !="" '><!-- 商品发布规格名称 -->
+                ,  #{goodsPublishSpecsName}
+            </if>
+            <if test=' marketPrice != null '><!-- 市场价格(标价) -->
+                ,  #{marketPrice}
+            </if>
+            <if test=' goodsPrice != null '><!-- 商品价格(卖价) -->
+                ,  #{goodsPrice}
+            </if>
+            <if test=' buyNum != null '><!-- 购买数量 -->
+                ,  #{buyNum}
+            </if>
+            <if test=' goodsStatusCode != null and goodsStatusCode !="" '><!-- 商品状态编码(1待发货2已发货3缺货取消9退货) -->
+                ,  #{goodsStatusCode}
+            </if>
+            <if test=' goodsStatusName != null and goodsStatusName !="" '><!-- 商品状态说明 -->
+                ,  #{goodsStatusName}
+            </if>
+            <if test=' memo != null and memo !="" '><!-- 备注 -->
+                ,  #{memo}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                ,  #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                ,  #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                ,  #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                ,  #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                ,  #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                ,  #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                ,  #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                ,  #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                ,  #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                ,  #{eb5}
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                ,  #{hdp}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                ,  #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                ,  #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                ,  #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                ,  #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                ,  #{updator}
+            </if>
+        )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='UserOrderGoodsDBO'>
+        UPDATE u122020_order_goods SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' id != null and id !="" '><!-- ID -->
+            ,id = #{id}
+        </if>
+        <if test=' orderId != null and orderId !="" '><!-- 玩家订单ID -->
+            ,order_id = #{orderId}
+        </if>
+        <if test=' merchantId != null and merchantId !="" '><!-- 商户ID -->
+            ,merchant_id = #{merchantId}
+        </if>
+        <if test=' merchantName != null and merchantName !="" '><!-- 商户名称 -->
+            ,merchant_name = #{merchantName}
+        </if>
+        <if test=' goodsId != null and goodsId !="" '><!-- 产品ID -->
+            ,goods_id = #{goodsId}
+        </if>
+        <if test=' goodsName != null and goodsName !="" '><!-- 产品名称 -->
+            ,goods_name = #{goodsName}
+        </if>
+        <if test=' goodsPublishId != null and goodsPublishId !="" '><!-- 商品发布ID -->
+            ,goods_publish_id = #{goodsPublishId}
+        </if>
+        <if test=' goodsPublishName != null and goodsPublishName !="" '><!-- 商品发布名称 -->
+            ,goods_publish_name = #{goodsPublishName}
+        </if>
+        <if test=' goodsPublishSpecsId != null and goodsPublishSpecsId !="" '><!-- 商品发布规格ID -->
+            ,goods_publish_specs_id = #{goodsPublishSpecsId}
+        </if>
+        <if test=' goodsPublishSpecsName != null and goodsPublishSpecsName !="" '><!-- 商品发布规格名称 -->
+            ,goods_publish_specs_name = #{goodsPublishSpecsName}
+        </if>
+        <if test=' marketPrice != null '><!-- 市场价格(标价) -->
+            ,market_price = #{marketPrice}
+        </if>
+        <if test=' goodsPrice != null '><!-- 商品价格(卖价) -->
+            ,goods_price = #{goodsPrice}
+        </if>
+        <if test=' buyNum != null '><!-- 购买数量 -->
+            ,buy_num = #{buyNum}
+        </if>
+        <if test=' goodsStatusCode != null and goodsStatusCode !="" '><!-- 商品状态编码(1待发货2已发货3缺货取消9退货) -->
+            ,goods_status_code = #{goodsStatusCode}
+        </if>
+        <if test=' goodsStatusName != null and goodsStatusName !="" '><!-- 商品状态说明 -->
+            ,goods_status_name = #{goodsStatusName}
+        </if>
+        <if test=' memo != null and memo !="" '><!-- 备注 -->
+            ,memo = #{memo}
+        </if>
+        <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+        <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+        <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+        <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+        <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+        <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+        <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+        <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+        <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+        <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+        <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+            ,hdp = #{hdp}
+        </if>
+        <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+        <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+        <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+        <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            AND id = #{id}  <!-- ID -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='UserOrderGoodsDBO'>
+        UPDATE u122020_order_goods
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND id = #{id}  <!-- ID -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='UserOrderGoodsDBO'>
+        DELETE FROM u122020_order_goods
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND id = #{id}  <!-- ID -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='UserOrderGoodsDBO' resultType='UserOrderGoodsDBO'>
+        SELECT <include refid='tableColumns'/> FROM u122020_order_goods WHERE 1 = 1
+            AND id = #{id}  <!-- ID -->
+    </select>
+
+</mapper>

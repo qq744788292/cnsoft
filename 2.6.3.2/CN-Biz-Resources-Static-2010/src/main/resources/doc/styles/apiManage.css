@@ -1,0 +1,101 @@
+.filter {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+}
+.pt-30 {
+  padding: 30px;
+}
+.mr-20 {
+  margin-right: 20px;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+.title{
+	color: red;
+}
+.title2{
+	color: #108ee9;
+}
+h1 {
+  text-align: center;
+}
+.box {
+  border-top: 1px solid #e1e1e1;
+}
+.listBox {
+  margin-left: 320px;
+}
+.list{
+	border-top: 1px solid #e1e1e1;
+}
+.left {
+  width: 300px;
+  float: left;
+  text-align: center;
+}
+.item{
+  border: 1px solid #e1e1e1;
+  border-bottom: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+.item p {
+  width: 150px;
+  height: 40px;
+  border-right: 1px solid #e1e1e1;
+  line-height: 40px;
+  text-align: center;
+}
+.item div {
+  padding: 0 30px;
+}
+.border-btm {
+  border-bottom: 1px solid #e1e1e1;
+}
+h3 {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-right: 1px solid #e1e1e1;
+  border-left: 1px solid #e1e1e1;
+}
+h4 {
+  text-align: center;
+  margin: 10px 0 10px;
+  font-size: 15px;
+
+}
+.left {
+  border-right: 1px solid #e1e1e1;
+}
+.left li{
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 30px;
+}
+.left li.act{
+  color: #108ee9;
+}
+.gray {
+  color: #999;
+  font-size: 13px;
+}
+.left li:hover {
+  color: #108ee9;
+}
+h2 {
+  text-align: center;
+  margin: 20px 0;
+}
+table {
+  border: 1px solid #e1e1e1;
+}
+td, th {
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+}

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd">
+	<tlibversion>1.0</tlibversion>
+	<jspversion>2.0</jspversion>
+	<tag>
+		<name>fileupload</name>
+		<tagclass>com.zmsoft.tag.common.FileUploadTag</tagclass>
+		<attribute>
+			<name>id</name>
+		</attribute>
+		<attribute>
+			<name>type</name><!-- 0文件1图片 -->
+		</attribute>
+		<attribute>
+			<name>target</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>value</name><!-- 属性名字 -->
+			<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<required>true</required><!-- 是否必须 -->
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<required>true</required><!-- 是否必须 -->
+		</attribute>
+	</tag>
+
+	<!-- 必须输入 -->
+	<tag>
+		<name>must</name>
+		<tagclass>com.zmsoft.tag.page.MustCurrent</tagclass>
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<!-- Token -->
+	<tag>
+		<name>token</name>
+		<tagclass>com.zmsoft.tag.common.TokenTag</tagclass>
+	</tag>
+	<tag>
+		<name>id</name>
+		<tagclass>com.zmsoft.tag.common.IdTag</tagclass>
+		<attribute>
+			<name>data</name><!-- 属性名字 -->
+			<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+		</attribute>
+	</tag>
+	<tag>
+		<name>delflag</name>
+		<tagclass>com.zmsoft.tag.common.DelFlagTag</tagclass>
+		<attribute>
+			<name>data</name><!-- 属性名字 -->
+			<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+		</attribute>
+	</tag>
+	<tag>
+		<name>mode</name>
+		<tagclass>com.zmsoft.tag.common.ModeTag</tagclass>
+		<attribute>
+			<name>data</name>
+			<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+		</attribute>
+	</tag>
+	<tag>
+		<name>input</name>
+		<tagclass>com.zmsoft.tag.form.InputTag</tagclass>
+		<attribute>
+			<name>name</name>
+		</attribute>
+		<attribute>
+			<name>value</name><!-- 属性名字 -->
+			<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+		</attribute>
+		<attribute>
+			<name>style</name><!-- 属性名字 -->
+		</attribute>
+		<attribute>
+			<name>tip</name><!-- 属性名字 -->
+		</attribute>
+	</tag>
+	<tag>
+		<name>tdinput</name>
+		<tagclass>com.zmsoft.tag.form.TdInputTag</tagclass>
+		<attribute>
+			<name>name</name>
+		</attribute>
+		<attribute>
+			<name>value</name><!-- 属性名字 -->
+			<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+		</attribute>
+		<attribute>
+			<name>style</name><!-- 属性名字 -->
+		</attribute>
+		<attribute>
+			<name>tip</name><!-- 属性名字 -->
+		</attribute>
+		<attribute>
+			<name>dis</name><!-- 属性名字 -->
+		</attribute>
+	</tag>
+	<tag>
+		<name>title</name>
+		<tagclass>com.zmsoft.tag.form.TitleTdTag</tagclass>
+		<attribute>
+			<name>tip</name><!-- 属性名字 -->
+			<required>true</required><!-- 是否必须 -->
+		</attribute>
+		<attribute>
+			<name>style</name><!-- 属性名字 -->
+		</attribute>
+		<attribute>
+			<name>width</name><!-- 属性名字 -->
+		</attribute>
+
+	</tag>
+	<tag>
+		<name>tdparam</name>
+		<tagclass>com.zmsoft.tag.form.TdParamTag</tagclass>
+		<attribute>
+			<name>tip</name><!-- 属性名字 -->
+			<required>true</required><!-- 是否必须 -->
+		</attribute>
+		<attribute>
+			<name>style</name>
+		</attribute>
+		<attribute>
+			<name>width</name><!-- 属性名字 -->
+		</attribute>
+	</tag>
+	<tag>
+		<name>tdparaminput</name>
+		<tagclass>com.zmsoft.tag.form.TdParamInputTag</tagclass>
+		<attribute>
+			<name>tdclazz</name>
+		</attribute>
+		<attribute>
+			<name>name</name>
+		</attribute>
+		<attribute>
+			<name>value</name><!-- 属性名字 -->
+			<rtexprvalue>true</rtexprvalue><!-- 支持EL表达式 -->
+		</attribute>
+		<attribute>
+			<name>style</name><!-- 属性名字 -->
+		</attribute>
+		<attribute>
+			<name>tip</name><!-- 属性名字 -->
+		</attribute>
+	</tag>
+	<tag>
+		<name>blankiframe</name>
+		<tagclass>com.zmsoft.tag.form.BlankIFrameTag</tagclass>
+		<attribute>
+			<name>name</name><!-- 属性名字 -->
+		</attribute>
+		<attribute>
+			<name>style</name><!-- 属性名字 -->
+		</attribute>
+		<attribute>
+			<name>src</name><!-- 属性名字 -->
+		</attribute>
+	</tag>
+</taglib> 

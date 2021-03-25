@@ -1,0 +1,42 @@
+.popbox{
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.3);
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+}
+.popbox_container{
+	position:fixed;
+	background-color: white;
+	width: 75%;
+	height: 100%;
+}
+.popboxleftbtn {
+	background-color: #f1f1f1;
+	width: 6px;
+	cursor: pointer;
+	color: white;
+}
+
+.popbox_move{
+    animation: _pbm_ 1s forwards;
+}
+
+.popbox_show {
+	display: inline-block;
+	cursor: pointer;
+	text-align: center;
+	width: 32px;
+	height: 32px;
+	float: right;
+	line-height: 32px;
+}
+
+@keyframes _pbm_ {
+   	0%{
+    	right: -65%;
+   	}
+    100%{
+        right: 0;
+    }
+}

@@ -1,0 +1,97 @@
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <title>接口管理</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <script src="/custom/framework/js/methods.js"></script>
+  <link rel="stylesheet" href="./styles/common.css">
+  <link rel="stylesheet" href="./styles/apiManage.css">
+</head>
+
+<body>
+  <form action="/" id="pageForm" name="pageForm" target="BizFrame" method="POST">
+  	<input type="hidden" name="token" id="token">
+  </form>
+
+  <h1 class='pt-30 title'>接口描述</h1>
+  <div class="box">
+    <div class="left">
+      <h4><span class='gray'>(点击选中 再次点击取消)</span</h4>
+      <h4 class='title'>接口列表</h4>
+      <ul class='apiList'>
+        <script id="apiList" type="text/html">
+          {{each data value i}}
+            <li class='list'>{{value.docName}}
+              <span style='display: none'>{{value.url}}</span>
+            </li>
+          {{/each}}
+        </script>
+      </ul>
+    </div>
+    <div class="listBox">
+      <script id="list" type="text/html">
+        {{each data value i}}
+          <div class='list2'>
+            <br>
+            <div class="item">
+              <p>业务名称</p>
+              <div>
+                <h2 class='title'>{{value.name}}</h2>
+              </div>
+            </div>
+            <div class="item">
+              <p>接口地址</p>
+              <div>
+                <a href="#" class='title2' onclick="showBasePage('{{value.baseurl}}')" >{{value.baseurl}}</a>
+              </div>
+            </div>
+            <div class="item border-btm">
+              <p>接口列表</p>
+              <div>
+                {{each value.apilist v idx}}
+                  <span class='mr-10'>
+                    {{v}}
+                  </span>
+                {{/each}}
+              </div>
+            </div>
+            <h3 class='title2'>参数列表</h3>
+            <table>
+              <tr>
+                <th>中文名称</th>
+                <th>英文名称</th>
+                <th>数据类型</th>
+                <th>备注说明</th>
+              </tr>
+              {{each value.itemlist param key}}
+                <tr>
+                  <td>
+                    {{param.cnname}}
+                  </td>
+                  <td>
+                    {{param.enname}}
+                  </td>
+                  <td>
+                    {{param.datatype}}
+                  </td>
+                  <td>
+                    {{param.memo}}
+                  </td>
+                </tr>
+              {{/each}}
+            </table>
+          </div>
+        {{/each}}
+      </script>
+    </div>
+  </div>
+  
+  <script src="/public/jquery-3.4.1/jquery.min.js"></script>
+  <!-- <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script> -->
+  <script src="./js/arttemplate.js"></script>
+  <script src="./js/apiManage.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,627 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE mapper
+    PUBLIC '-//mybatis.org//DTD Dao 3.0//EN' 
+    'http://mybatis.org/dtd/mybatis-3-mapper.dtd' >
+<!-- 玩家订单支付信息 -->
+<!-- 需要和DAO保持完全路径一致 -->
+<mapper namespace='org.zmsoft.persistent.pay.UserOrderRecharge.UserOrderRechargeMapper'>
+    <!-- 表字段信息  -->
+    <sql id='tableColumns'>
+        id,order_id,user_id,user_nickname,user_phone,pay_reason_code,pay_reason_name,open_id,nonce_str,body,pay_trade_no,pay_type_code,pay_type_name,pay_account,pay_account_name,pay_account_phone,pay_sec_code,pay_amount,pay_state_code,pay_state_name,pay_number,pay_date,pay_time,order_state_code,order_state_name,order_time,is_supplement,order_supplement_time,process_name,funcation_name,memo,fb1,fb2,fb3,fb4,fb5,eb1,eb2,eb3,eb4,eb5,hdp,del_flag,create_time,creator,update_time,updator
+    </sql>
+
+    <!-- 查询分页数据信息  -->
+    <select id='doSelectPage' parameterType='UserOrderRechargeDBO' resultType='UserOrderRechargeDBO'>
+        SELECT <include refid='tableColumns'/> FROM u122030_order_recharge
+        WHERE 1 = 1 
+            <if test=' id != null and id !="" '><!-- 支付流水ID -->
+                AND id = #{id}
+            </if>
+            <if test=' orderId != null and orderId !="" '><!-- 玩家订单ID -->
+                AND order_id = #{orderId}
+            </if>
+            <if test=' userId != null and userId !="" '><!-- 玩家ID -->
+                AND user_id = #{userId}
+            </if>
+            <if test=' userNickname != null and userNickname !="" '><!-- 玩家昵称 -->
+                AND INSTR(user_nickname , #{userNickname} ) != 0
+            </if>
+            <if test=' userPhone != null and userPhone !="" '><!-- 玩家手机号 -->
+                AND INSTR(user_phone , #{userPhone} ) != 0
+            </if>
+            <if test=' payReasonCode != null and payReasonCode !="" '><!-- 订单支付类别编码(1充值2购买) -->
+                AND pay_reason_code = #{payReasonCode}
+            </if>
+            <if test=' payReasonName != null and payReasonName !="" '><!-- 订单支付类别说明 -->
+                AND pay_reason_name = #{payReasonName}
+            </if>
+            <if test=' openId != null and openId !="" '><!-- 第三方唯一标识 -->
+                AND INSTR(open_id , #{openId} ) != 0
+            </if>
+            <if test=' nonceStr != null and nonceStr !="" '><!-- 订单校验码 -->
+                AND nonce_str = #{nonceStr}
+            </if>
+            <if test=' body != null and body !="" '><!-- 订单描述 -->
+                AND body = #{body}
+            </if>
+            <if test=' payTradeNo != null and payTradeNo !="" '><!-- 商户支付订单ID（UUID） -->
+                AND pay_trade_no = #{payTradeNo}
+            </if>
+            <if test=' payTypeCode != null and payTypeCode !="" '><!-- 支付方式编码(1:支付宝支付2:微信支付3:支付宝h5支付4:微信扫码支付5:微信公众号支付) -->
+                AND pay_type_code = #{payTypeCode}
+            </if>
+            <if test=' payTypeName != null and payTypeName !="" '><!-- 支付方式说明(1:支付宝支付2:微信支付3:支付宝h5支付4:微信扫码支付5:微信公众号支付) -->
+                AND pay_type_name = #{payTypeName}
+            </if>
+            <if test=' payAccount != null and payAccount !="" '><!-- 支付账户ID -->
+                AND pay_account = #{payAccount}
+            </if>
+            <if test=' payAccountName != null and payAccountName !="" '><!-- 支付账号人姓名 -->
+                AND pay_account_name = #{payAccountName}
+            </if>
+            <if test=' payAccountPhone != null and payAccountPhone !="" '><!-- 支付账号手机号 -->
+                AND pay_account_phone = #{payAccountPhone}
+            </if>
+            <if test=' paySecCode != null and paySecCode !="" '><!-- 支付账号绑定验证码 -->
+                AND pay_sec_code = #{paySecCode}
+            </if>
+            <if test=' payAmount != null '><!-- 支付金额 -->
+                AND pay_amount = #{payAmount}
+            </if>
+            <if test=' payStateCode != null and payStateCode !="" '><!-- 支付状态编码（1已支付,2未支付） -->
+                AND pay_state_code = #{payStateCode}
+            </if>
+            <if test=' payStateName != null and payStateName !="" '><!-- 支付状态说明 -->
+                AND pay_state_name = #{payStateName}
+            </if>
+            <if test=' payNumber != null and payNumber !="" '><!-- 第三方支付流水号 -->
+                AND pay_number = #{payNumber}
+            </if>
+            <if test=' payDate != null and payDate !="" '><!-- 支付日期 -->
+                AND pay_date = #{payDate}
+            </if>
+            <if test=' payTime != null and payTime !="" '><!-- 支付时间 -->
+                AND pay_time = #{payTime}
+            </if>
+            <if test=' orderStateCode != null and orderStateCode !="" '><!-- 到账状态编码（1已到账,2未到账） -->
+                AND order_state_code = #{orderStateCode}
+            </if>
+            <if test=' orderStateName != null and orderStateName !="" '><!-- 到账状态说明 -->
+                AND order_state_name = #{orderStateName}
+            </if>
+            <if test=' orderTime != null and orderTime !="" '><!-- 到账时间 -->
+                AND order_time = #{orderTime}
+            </if>
+            <if test=' isSupplement != null and isSupplement !="" '><!-- 是否需要补单(2需要,1不需要) -->
+                AND is_supplement = #{isSupplement}
+            </if>
+            <if test=' orderSupplementTime != null and orderSupplementTime !="" '><!-- 补单发货时间 -->
+                AND order_supplement_time = #{orderSupplementTime}
+            </if>
+            <if test=' processName != null and processName !="" '><!-- 到账后业务实现类名 -->
+                AND process_name = #{processName}
+            </if>
+            <if test=' funcationName != null and funcationName !="" '><!-- 到账后业务实现方法名称 -->
+                AND funcation_name = #{funcationName}
+            </if>
+            <if test=' memo != null and memo !="" '><!-- 备注 -->
+                AND memo = #{memo}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                AND fb1 = #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                AND fb2 = #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                AND fb3 = #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                AND fb4 = #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                AND fb5 = #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                AND eb1 = #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                AND eb2 = #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                AND eb3 = #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                AND eb4 = #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                AND eb5 = #{eb5}
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                AND hdp = #{hdp}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                AND del_flag = #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                AND create_time = #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                AND creator = #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                AND updator = #{updator}
+            </if>
+    </select>
+
+    <!-- 插入一条数据（使用空值） -->
+    <insert id='doInsert' parameterType='UserOrderRechargeDBO'>
+        INSERT INTO u122030_order_recharge
+          ( <include refid='tableColumns'/>) 
+        VALUES 
+          ( #{id},#{orderId},#{userId},#{userNickname},#{userPhone},#{payReasonCode},#{payReasonName},#{openId},#{nonceStr},#{body},#{payTradeNo},#{payTypeCode},#{payTypeName},#{payAccount},#{payAccountName},#{payAccountPhone},#{paySecCode},#{payAmount},#{payStateCode},#{payStateName},#{payNumber},#{payDate},#{payTime},#{orderStateCode},#{orderStateName},#{orderTime},#{isSupplement},#{orderSupplementTime},#{processName},#{funcationName},#{memo},#{fb1},#{fb2},#{fb3},#{fb4},#{fb5},#{eb1},#{eb2},#{eb3},#{eb4},#{eb5},#{hdp},#{delFlag},#{createTime},#{creator},#{updateTime},#{updator} )
+    </insert>
+    <!-- 插入一条数据（使用默认值） -->
+    <insert id='doInsertSelective' parameterType='UserOrderRechargeDBO'>
+        INSERT INTO u122030_order_recharge
+        (
+            <if test=' id != null and id !="" '><!-- 支付流水ID -->
+                 id
+            </if>
+            <if test=' orderId != null and orderId !="" '><!-- 玩家订单ID -->
+                , order_id
+            </if>
+            <if test=' userId != null and userId !="" '><!-- 玩家ID -->
+                , user_id
+            </if>
+            <if test=' userNickname != null and userNickname !="" '><!-- 玩家昵称 -->
+                , user_nickname
+            </if>
+            <if test=' userPhone != null and userPhone !="" '><!-- 玩家手机号 -->
+                , user_phone
+            </if>
+            <if test=' payReasonCode != null and payReasonCode !="" '><!-- 订单支付类别编码(1充值2购买) -->
+                , pay_reason_code
+            </if>
+            <if test=' payReasonName != null and payReasonName !="" '><!-- 订单支付类别说明 -->
+                , pay_reason_name
+            </if>
+            <if test=' openId != null and openId !="" '><!-- 第三方唯一标识 -->
+                , open_id
+            </if>
+            <if test=' nonceStr != null and nonceStr !="" '><!-- 订单校验码 -->
+                , nonce_str
+            </if>
+            <if test=' body != null and body !="" '><!-- 订单描述 -->
+                , body
+            </if>
+            <if test=' payTradeNo != null and payTradeNo !="" '><!-- 商户支付订单ID（UUID） -->
+                , pay_trade_no
+            </if>
+            <if test=' payTypeCode != null and payTypeCode !="" '><!-- 支付方式编码(1:支付宝支付2:微信支付3:支付宝h5支付4:微信扫码支付5:微信公众号支付) -->
+                , pay_type_code
+            </if>
+            <if test=' payTypeName != null and payTypeName !="" '><!-- 支付方式说明(1:支付宝支付2:微信支付3:支付宝h5支付4:微信扫码支付5:微信公众号支付) -->
+                , pay_type_name
+            </if>
+            <if test=' payAccount != null and payAccount !="" '><!-- 支付账户ID -->
+                , pay_account
+            </if>
+            <if test=' payAccountName != null and payAccountName !="" '><!-- 支付账号人姓名 -->
+                , pay_account_name
+            </if>
+            <if test=' payAccountPhone != null and payAccountPhone !="" '><!-- 支付账号手机号 -->
+                , pay_account_phone
+            </if>
+            <if test=' paySecCode != null and paySecCode !="" '><!-- 支付账号绑定验证码 -->
+                , pay_sec_code
+            </if>
+            <if test=' payAmount != null '><!-- 支付金额 -->
+                , pay_amount
+            </if>
+            <if test=' payStateCode != null and payStateCode !="" '><!-- 支付状态编码（1已支付,2未支付） -->
+                , pay_state_code
+            </if>
+            <if test=' payStateName != null and payStateName !="" '><!-- 支付状态说明 -->
+                , pay_state_name
+            </if>
+            <if test=' payNumber != null and payNumber !="" '><!-- 第三方支付流水号 -->
+                , pay_number
+            </if>
+            <if test=' payDate != null and payDate !="" '><!-- 支付日期 -->
+                , pay_date
+            </if>
+            <if test=' payTime != null and payTime !="" '><!-- 支付时间 -->
+                , pay_time
+            </if>
+            <if test=' orderStateCode != null and orderStateCode !="" '><!-- 到账状态编码（1已到账,2未到账） -->
+                , order_state_code
+            </if>
+            <if test=' orderStateName != null and orderStateName !="" '><!-- 到账状态说明 -->
+                , order_state_name
+            </if>
+            <if test=' orderTime != null and orderTime !="" '><!-- 到账时间 -->
+                , order_time
+            </if>
+            <if test=' isSupplement != null and isSupplement !="" '><!-- 是否需要补单(2需要,1不需要) -->
+                , is_supplement
+            </if>
+            <if test=' orderSupplementTime != null and orderSupplementTime !="" '><!-- 补单发货时间 -->
+                , order_supplement_time
+            </if>
+            <if test=' processName != null and processName !="" '><!-- 到账后业务实现类名 -->
+                , process_name
+            </if>
+            <if test=' funcationName != null and funcationName !="" '><!-- 到账后业务实现方法名称 -->
+                , funcation_name
+            </if>
+            <if test=' memo != null and memo !="" '><!-- 备注 -->
+                , memo
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                , fb1
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                , fb2
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                , fb3
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                , fb4
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                , fb5
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                , eb1
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                , eb2
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                , eb3
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                , eb4
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                , eb5
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                , hdp
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                , del_flag
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                , create_time
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                , creator
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                , update_time
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                , updator
+            </if>
+        )
+        VALUES 
+        (
+            <if test=' id != null and id !="" '><!-- 支付流水ID -->
+                  #{id}
+            </if>
+            <if test=' orderId != null and orderId !="" '><!-- 玩家订单ID -->
+                ,  #{orderId}
+            </if>
+            <if test=' userId != null and userId !="" '><!-- 玩家ID -->
+                ,  #{userId}
+            </if>
+            <if test=' userNickname != null and userNickname !="" '><!-- 玩家昵称 -->
+                ,  #{userNickname}
+            </if>
+            <if test=' userPhone != null and userPhone !="" '><!-- 玩家手机号 -->
+                ,  #{userPhone}
+            </if>
+            <if test=' payReasonCode != null and payReasonCode !="" '><!-- 订单支付类别编码(1充值2购买) -->
+                ,  #{payReasonCode}
+            </if>
+            <if test=' payReasonName != null and payReasonName !="" '><!-- 订单支付类别说明 -->
+                ,  #{payReasonName}
+            </if>
+            <if test=' openId != null and openId !="" '><!-- 第三方唯一标识 -->
+                ,  #{openId}
+            </if>
+            <if test=' nonceStr != null and nonceStr !="" '><!-- 订单校验码 -->
+                ,  #{nonceStr}
+            </if>
+            <if test=' body != null and body !="" '><!-- 订单描述 -->
+                ,  #{body}
+            </if>
+            <if test=' payTradeNo != null and payTradeNo !="" '><!-- 商户支付订单ID（UUID） -->
+                ,  #{payTradeNo}
+            </if>
+            <if test=' payTypeCode != null and payTypeCode !="" '><!-- 支付方式编码(1:支付宝支付2:微信支付3:支付宝h5支付4:微信扫码支付5:微信公众号支付) -->
+                ,  #{payTypeCode}
+            </if>
+            <if test=' payTypeName != null and payTypeName !="" '><!-- 支付方式说明(1:支付宝支付2:微信支付3:支付宝h5支付4:微信扫码支付5:微信公众号支付) -->
+                ,  #{payTypeName}
+            </if>
+            <if test=' payAccount != null and payAccount !="" '><!-- 支付账户ID -->
+                ,  #{payAccount}
+            </if>
+            <if test=' payAccountName != null and payAccountName !="" '><!-- 支付账号人姓名 -->
+                ,  #{payAccountName}
+            </if>
+            <if test=' payAccountPhone != null and payAccountPhone !="" '><!-- 支付账号手机号 -->
+                ,  #{payAccountPhone}
+            </if>
+            <if test=' paySecCode != null and paySecCode !="" '><!-- 支付账号绑定验证码 -->
+                ,  #{paySecCode}
+            </if>
+            <if test=' payAmount != null '><!-- 支付金额 -->
+                ,  #{payAmount}
+            </if>
+            <if test=' payStateCode != null and payStateCode !="" '><!-- 支付状态编码（1已支付,2未支付） -->
+                ,  #{payStateCode}
+            </if>
+            <if test=' payStateName != null and payStateName !="" '><!-- 支付状态说明 -->
+                ,  #{payStateName}
+            </if>
+            <if test=' payNumber != null and payNumber !="" '><!-- 第三方支付流水号 -->
+                ,  #{payNumber}
+            </if>
+            <if test=' payDate != null and payDate !="" '><!-- 支付日期 -->
+                ,  #{payDate}
+            </if>
+            <if test=' payTime != null and payTime !="" '><!-- 支付时间 -->
+                ,  #{payTime}
+            </if>
+            <if test=' orderStateCode != null and orderStateCode !="" '><!-- 到账状态编码（1已到账,2未到账） -->
+                ,  #{orderStateCode}
+            </if>
+            <if test=' orderStateName != null and orderStateName !="" '><!-- 到账状态说明 -->
+                ,  #{orderStateName}
+            </if>
+            <if test=' orderTime != null and orderTime !="" '><!-- 到账时间 -->
+                ,  #{orderTime}
+            </if>
+            <if test=' isSupplement != null and isSupplement !="" '><!-- 是否需要补单(2需要,1不需要) -->
+                ,  #{isSupplement}
+            </if>
+            <if test=' orderSupplementTime != null and orderSupplementTime !="" '><!-- 补单发货时间 -->
+                ,  #{orderSupplementTime}
+            </if>
+            <if test=' processName != null and processName !="" '><!-- 到账后业务实现类名 -->
+                ,  #{processName}
+            </if>
+            <if test=' funcationName != null and funcationName !="" '><!-- 到账后业务实现方法名称 -->
+                ,  #{funcationName}
+            </if>
+            <if test=' memo != null and memo !="" '><!-- 备注 -->
+                ,  #{memo}
+            </if>
+            <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+                ,  #{fb1}
+            </if>
+            <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+                ,  #{fb2}
+            </if>
+            <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+                ,  #{fb3}
+            </if>
+            <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+                ,  #{fb4}
+            </if>
+            <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+                ,  #{fb5}
+            </if>
+            <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+                ,  #{eb1}
+            </if>
+            <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+                ,  #{eb2}
+            </if>
+            <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+                ,  #{eb3}
+            </if>
+            <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+                ,  #{eb4}
+            </if>
+            <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+                ,  #{eb5}
+            </if>
+            <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+                ,  #{hdp}
+            </if>
+            <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+                ,  #{delFlag}
+            </if>
+            <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+                ,  #{createTime}
+            </if>
+            <if test=' creator != null and creator !="" '><!-- 创建者 -->
+                ,  #{creator}
+            </if>
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                ,  #{updateTime}
+            </if>
+            <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+                ,  #{updator}
+            </if>
+        )
+    </insert>
+    <!-- 修改一条数据 -->
+    <update id='doUpdate' parameterType='UserOrderRechargeDBO'>
+        UPDATE u122030_order_recharge SET update_time = #{uuu} <!-- 更新时间、更新者 -->
+        <if test=' id != null and id !="" '><!-- 支付流水ID -->
+            ,id = #{id}
+        </if>
+        <if test=' orderId != null and orderId !="" '><!-- 玩家订单ID -->
+            ,order_id = #{orderId}
+        </if>
+        <if test=' userId != null and userId !="" '><!-- 玩家ID -->
+            ,user_id = #{userId}
+        </if>
+        <if test=' userNickname != null and userNickname !="" '><!-- 玩家昵称 -->
+            ,user_nickname = #{userNickname}
+        </if>
+        <if test=' userPhone != null and userPhone !="" '><!-- 玩家手机号 -->
+            ,user_phone = #{userPhone}
+        </if>
+        <if test=' payReasonCode != null and payReasonCode !="" '><!-- 订单支付类别编码(1充值2购买) -->
+            ,pay_reason_code = #{payReasonCode}
+        </if>
+        <if test=' payReasonName != null and payReasonName !="" '><!-- 订单支付类别说明 -->
+            ,pay_reason_name = #{payReasonName}
+        </if>
+        <if test=' openId != null and openId !="" '><!-- 第三方唯一标识 -->
+            ,open_id = #{openId}
+        </if>
+        <if test=' nonceStr != null and nonceStr !="" '><!-- 订单校验码 -->
+            ,nonce_str = #{nonceStr}
+        </if>
+        <if test=' body != null and body !="" '><!-- 订单描述 -->
+            ,body = #{body}
+        </if>
+        <if test=' payTradeNo != null and payTradeNo !="" '><!-- 商户支付订单ID（UUID） -->
+            ,pay_trade_no = #{payTradeNo}
+        </if>
+        <if test=' payTypeCode != null and payTypeCode !="" '><!-- 支付方式编码(1:支付宝支付2:微信支付3:支付宝h5支付4:微信扫码支付5:微信公众号支付) -->
+            ,pay_type_code = #{payTypeCode}
+        </if>
+        <if test=' payTypeName != null and payTypeName !="" '><!-- 支付方式说明(1:支付宝支付2:微信支付3:支付宝h5支付4:微信扫码支付5:微信公众号支付) -->
+            ,pay_type_name = #{payTypeName}
+        </if>
+        <if test=' payAccount != null and payAccount !="" '><!-- 支付账户ID -->
+            ,pay_account = #{payAccount}
+        </if>
+        <if test=' payAccountName != null and payAccountName !="" '><!-- 支付账号人姓名 -->
+            ,pay_account_name = #{payAccountName}
+        </if>
+        <if test=' payAccountPhone != null and payAccountPhone !="" '><!-- 支付账号手机号 -->
+            ,pay_account_phone = #{payAccountPhone}
+        </if>
+        <if test=' paySecCode != null and paySecCode !="" '><!-- 支付账号绑定验证码 -->
+            ,pay_sec_code = #{paySecCode}
+        </if>
+        <if test=' payAmount != null '><!-- 支付金额 -->
+            ,pay_amount = #{payAmount}
+        </if>
+        <if test=' payStateCode != null and payStateCode !="" '><!-- 支付状态编码（1已支付,2未支付） -->
+            ,pay_state_code = #{payStateCode}
+        </if>
+        <if test=' payStateName != null and payStateName !="" '><!-- 支付状态说明 -->
+            ,pay_state_name = #{payStateName}
+        </if>
+        <if test=' payNumber != null and payNumber !="" '><!-- 第三方支付流水号 -->
+            ,pay_number = #{payNumber}
+        </if>
+        <if test=' payDate != null and payDate !="" '><!-- 支付日期 -->
+            ,pay_date = #{payDate}
+        </if>
+        <if test=' payTime != null and payTime !="" '><!-- 支付时间 -->
+            ,pay_time = #{payTime}
+        </if>
+        <if test=' orderStateCode != null and orderStateCode !="" '><!-- 到账状态编码（1已到账,2未到账） -->
+            ,order_state_code = #{orderStateCode}
+        </if>
+        <if test=' orderStateName != null and orderStateName !="" '><!-- 到账状态说明 -->
+            ,order_state_name = #{orderStateName}
+        </if>
+        <if test=' orderTime != null and orderTime !="" '><!-- 到账时间 -->
+            ,order_time = #{orderTime}
+        </if>
+        <if test=' isSupplement != null and isSupplement !="" '><!-- 是否需要补单(2需要,1不需要) -->
+            ,is_supplement = #{isSupplement}
+        </if>
+        <if test=' orderSupplementTime != null and orderSupplementTime !="" '><!-- 补单发货时间 -->
+            ,order_supplement_time = #{orderSupplementTime}
+        </if>
+        <if test=' processName != null and processName !="" '><!-- 到账后业务实现类名 -->
+            ,process_name = #{processName}
+        </if>
+        <if test=' funcationName != null and funcationName !="" '><!-- 到账后业务实现方法名称 -->
+            ,funcation_name = #{funcationName}
+        </if>
+        <if test=' memo != null and memo !="" '><!-- 备注 -->
+            ,memo = #{memo}
+        </if>
+        <if test=' fb1 != null and fb1 !="" '><!-- 备用1 -->
+            ,fb1 = #{fb1}
+        </if>
+        <if test=' fb2 != null and fb2 !="" '><!-- 备用2 -->
+            ,fb2 = #{fb2}
+        </if>
+        <if test=' fb3 != null and fb3 !="" '><!-- 备用3 -->
+            ,fb3 = #{fb3}
+        </if>
+        <if test=' fb4 != null and fb4 !="" '><!-- 备用4 -->
+            ,fb4 = #{fb4}
+        </if>
+        <if test=' fb5 != null and fb5 !="" '><!-- 备用5 -->
+            ,fb5 = #{fb5}
+        </if>
+        <if test=' eb1 != null and eb1 !="" '><!-- 扩展1 -->
+            ,eb1 = #{eb1}
+        </if>
+        <if test=' eb2 != null and eb2 !="" '><!-- 扩展2 -->
+            ,eb2 = #{eb2}
+        </if>
+        <if test=' eb3 != null and eb3 !="" '><!-- 扩展3 -->
+            ,eb3 = #{eb3}
+        </if>
+        <if test=' eb4 != null and eb4 !="" '><!-- 扩展4 -->
+            ,eb4 = #{eb4}
+        </if>
+        <if test=' eb5 != null and eb5 !="" '><!-- 扩展5 -->
+            ,eb5 = #{eb5}
+        </if>
+        <if test=' hdp != null and hdp !="" '><!-- 数据归属系统 -->
+            ,hdp = #{hdp}
+        </if>
+        <if test=' delFlag != null and delFlag !="" '><!-- 有效标识 -->
+            ,del_flag = #{delFlag}
+        </if>
+        <if test=' createTime != null and createTime !="" '><!-- 创建时间 -->
+            ,create_time = #{createTime}
+        </if>
+        <if test=' creator != null and creator !="" '><!-- 创建者 -->
+            ,creator = #{creator}
+        </if>
+        <if test=' updator != null and updator !="" '><!-- 最后更新者 -->
+            ,updator = #{updator}
+        </if>
+        WHERE 1 = 1 
+            AND id = #{id}  <!-- 支付流水ID -->
+    </update>
+    <!-- 逻辑删除一条数据 -->
+    <delete id='toDelete' parameterType='UserOrderRechargeDBO'>
+        UPDATE u122030_order_recharge
+            SET del_flag = '1', update_time = #{uuu}, updator = #{updator} 
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND id = #{id}  <!-- 支付流水ID -->
+    </delete>
+    <!-- 物理删除一条数据 -->
+    <delete id='doDelete' parameterType='UserOrderRechargeDBO'>
+        DELETE FROM u122030_order_recharge
+        WHERE 1 = 1
+            <if test=' updateTime != null and updateTime !="" '><!-- 更新时间 -->
+                AND update_time = #{updateTime}
+            </if>
+            AND id = #{id}  <!-- 支付流水ID -->
+    </delete>
+    <!-- 查询一条数据  -->
+    <select id='doRead' parameterType='UserOrderRechargeDBO' resultType='UserOrderRechargeDBO'>
+        SELECT <include refid='tableColumns'/> FROM u122030_order_recharge WHERE 1 = 1
+            AND id = #{id}  <!-- 支付流水ID -->
+    </select>
+
+</mapper>

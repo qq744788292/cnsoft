@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>CN-Biz-Tag</artifactId>
+  
+	<parent>
+		<groupId>CN-Soft</groupId>
+		<artifactId>CN-Framework-Base</artifactId>
+		<version>2.6.3.1.2-SNAPSHOT</version>
+		<relativePath>../CN-Framework-Base-1000</relativePath>
+	</parent>
+  
+  <dependencies>
+	<!-- 使用外部的tomcat部署方式End -->
+	<dependency>
+		<groupId>org.apache.tomcat.embed</groupId>
+		<artifactId>tomcat-embed-jasper</artifactId>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+	</dependency>
+  	<dependency>
+  		<groupId>CN-Soft</groupId>
+  		<artifactId>CN-Biz-Common</artifactId>
+  	</dependency>
+  </dependencies>
+</project>

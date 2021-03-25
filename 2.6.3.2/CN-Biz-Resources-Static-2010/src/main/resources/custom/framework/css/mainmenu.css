@@ -1,0 +1,47 @@
+@charset "utf-8";
+/*简单粗暴重置默认样式===============================*/
+.icon {
+	/*color: white;*/
+}
+
+.cursor{
+	cursor: pointer;
+}
+
+/*页面样式*/
+.td_user {
+	width: 200px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.td_user_name {
+	font-size: 18px;
+	vertical-align: middle;
+	width: 200px;
+}
+
+.td_title {
+	color: #484646;
+	font-size: 26px;
+	width: 220px;
+	vertical-align: middle;
+	font-weight: bold;
+	text-align: center;
+}
+
+.td_navbar {
+	color: #484646;
+	font-size: 14px;
+	vertical-align: bottom;
+	padding-bottom: 10px;
+}
+
+.popwindow {
+	background-color: #ddd;
+	width: 70%;
+	height: 90%;
+	position: absolute;
+	top: 52px;
+	right: 0px;
+}

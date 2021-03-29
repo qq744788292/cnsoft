@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service("ISystemConfig")
 public class ZMSystemConfig implements ISystemConfig, ICFrameworkConstants {
 	protected static Logger logger = LoggerFactory.getLogger(ZMSystemConfig.class);
-
+	
 	@Value("${server.port}")
 	private String port;// 实体Bean
 

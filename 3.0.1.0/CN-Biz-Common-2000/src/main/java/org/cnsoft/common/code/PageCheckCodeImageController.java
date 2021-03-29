@@ -98,7 +98,7 @@ public class PageCheckCodeImageController extends MyContentTypeSupport {
 		drawBackground(g, backgroundColor, width, height);// 绘制背景
 
 		// 生成随机数
-		String code = loadSecurityCode(MyHttpRequestHelper.loadToken(request, response));
+		String code = loadSecurityCode(MyHttpRequestHelper.loadToken(request));
 		char[] rands = code.toCharArray();
 
 		// 定义字体颜色

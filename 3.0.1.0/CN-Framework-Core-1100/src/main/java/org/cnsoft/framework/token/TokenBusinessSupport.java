@@ -2,9 +2,7 @@ package org.cnsoft.framework.token;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.cnsoft.framework.beans.MyBeanFactoryHelper;
 import org.cnsoft.framework.beans.user.UserBean;
-import org.cnsoft.framework.common.buzzinezz.ISTokenSupport;
 import org.cnsoft.framework.constants.ICFrameworkConstants;
 import org.cnsoft.framework.security.MD5SecurityHelper;
 import org.cnsoft.framework.support.MyFrameWorkSupport;
@@ -21,7 +19,7 @@ import org.slf4j.LoggerFactory;
  * @version 2.1.1 2019/4/8
  * @since 2.1.1 2019/4/8
  */
-public class TokenBusinessSupport extends MyFrameWorkSupport implements ISTokenSupport, ICFrameworkConstants {
+public class TokenBusinessSupport extends MyFrameWorkSupport implements ICFrameworkConstants {
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,22 +109,4 @@ public class TokenBusinessSupport extends MyFrameWorkSupport implements ISTokenS
 
 	public final static int DATA_NUM = 5;
 
-	public final static String TOKEN = "TOKEN:";
-
-	@Override
-	public boolean checkToken(HttpServletRequest request) throws Exception {
-
-		try {
-			ISTokenSupport token = MyBeanFactoryHelper.getBean(ISTokenSupport.My_CustomTokenCheck_Service);
-			if (EmptyHelper.isEmpty(token)) {
-				logger.warn("当前模式下自定义头处理没有实现......[" + ISTokenSupport.My_CustomTokenCheck_Service + "]");
-			} else {
-				token.checkToken(request);
-			}
-		} catch (Exception e) {
-			logger.error("Token校验失败", e);
-		}
-
-		return false;
-	}
 }

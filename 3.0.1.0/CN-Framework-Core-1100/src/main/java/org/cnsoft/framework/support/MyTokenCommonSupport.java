@@ -3,8 +3,11 @@ package org.cnsoft.framework.support;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.cnsoft.framework.SystemConfig;
+import org.cnsoft.framework.beans.MyBeanFactoryHelper;
 import org.cnsoft.framework.beans.user.UserBean;
 import org.cnsoft.framework.cache.session.SessionHelper;
+import org.cnsoft.framework.common.buzzinezz.ISTokenSupport;
 import org.cnsoft.framework.token.TokenServiceImpl;
 import org.cnsoft.framework.utils.EmptyHelper;
 
@@ -16,7 +19,7 @@ import org.cnsoft.framework.utils.EmptyHelper;
  * @since 2.0.0 2018/10/10
  *
  */
-public class MyTokenCommonSupport extends MyBusinessSupport {
+public class MyTokenCommonSupport extends MyBusinessSupport implements ISTokenSupport {
 	
 	/**
 	 * 用户登录检查
@@ -28,8 +31,8 @@ public class MyTokenCommonSupport extends MyBusinessSupport {
 	 */
 	public boolean doCheckLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 获得请求头参数
-		String token = MyHttpRequestHelper.loadToken(request, response);
-		String jobId = MyHttpRequestHelper.loadJobId(request, response);
+		String token = MyHttpRequestHelper.loadToken(request);
+		String jobId = MyHttpRequestHelper.loadJobId(request);
 		if (EmptyHelper.isEmpty(token)) {
 			// 清空线程缓存
 			SessionHelper.setSessionAttribute(null);
@@ -89,17 +92,42 @@ public class MyTokenCommonSupport extends MyBusinessSupport {
 	/**
 	 * 检查Token有效性
 	 * 
-	 * @param bizToken
+	 * @param curToken
 	 * @return
 	 * @throws Exception
 	 * @see #tokenFail
 	 */
-	public boolean doCheckToken(HttpServletRequest request, String jobId, String bizToken) throws Exception {
-		TokenServiceImpl tokenBiz = TokenServiceImpl.build(jobId, bizToken);
+	public boolean doCheckToken(HttpServletRequest request, String curJobId, String curToken) throws Exception {
+		//是否开启自定义TOKEN检查
+		if (EmptyHelper.isEmpty(curJobId) && ONE.equals(SystemConfig.tokenRole))
+			return checkToken(request);
+		
+		//TODO TOKEN安全性检查
+		
+		//常规Token存在性检查
+		TokenServiceImpl tokenBiz = TokenServiceImpl.build(curJobId, curToken);
 		tokenBiz.setCacheService(myCacheService);
 		return tokenBiz.checkToken(request);
 	}
 
+	//////////////////////////////////////////TOKEN校验//////////////////////////////////////////////
+
+	@Override
+	public boolean checkToken(HttpServletRequest request) throws Exception {
+		try {
+			ISTokenSupport customTokenSupport = MyBeanFactoryHelper.getBean(ISTokenSupport.My_CustomTokenCheck_Service);
+			if (EmptyHelper.isEmpty(customTokenSupport)) {
+				logger.warn("当前模式下自定义头处理没有实现......[" + ISTokenSupport.My_CustomTokenCheck_Service + "]");
+			} else {
+				customTokenSupport.checkToken(request);
+			}
+		} catch (Exception e) {
+			logger.error("Token校验失败", e);
+		}
+
+		return false;
+	}
+	
 	/**
 	 * 用户登出
 	 * 
@@ -110,8 +138,8 @@ public class MyTokenCommonSupport extends MyBusinessSupport {
 	 */
 	public boolean doDestroyedLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 获得请求头参数
-		String token = MyHttpRequestHelper.loadToken(request, response);
-		String jobId = MyHttpRequestHelper.loadJobId(request, response);
+		String token = MyHttpRequestHelper.loadToken(request);
+		String jobId = MyHttpRequestHelper.loadJobId(request);
 		if (EmptyHelper.isEmpty(token)) {
 			return true;
 		}

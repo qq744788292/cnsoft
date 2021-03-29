@@ -47,6 +47,7 @@ public class JSONObject {
 			// mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
 			return getObjectMapper().readValue(content, clazz);
 		} catch (Exception e) {
+			System.err.println("content=="+content);
 			e.printStackTrace();
 		}
 
@@ -68,6 +69,7 @@ public class JSONObject {
 
 			return cast(getObjectMapper().readValue(content, javaType));
 		} catch (Exception e) {
+			System.err.println("content=="+content);
 			e.printStackTrace();
 		}
 		return null;

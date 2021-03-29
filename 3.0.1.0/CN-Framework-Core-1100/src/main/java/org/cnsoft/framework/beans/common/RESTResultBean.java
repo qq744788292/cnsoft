@@ -75,8 +75,8 @@ public class RESTResultBean<T> extends ObjectBean implements ICFrameworkConstant
 	private Object data;
 
 	public Object getData() {
-		if (EmptyHelper.isEmpty(data))
-			return "{}";
+//		if (EmptyHelper.isEmpty(data))
+//			return "{}";
 		return data;
 	}
 

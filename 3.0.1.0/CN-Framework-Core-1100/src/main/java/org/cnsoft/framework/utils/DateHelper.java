@@ -34,7 +34,23 @@ public class DateHelper {
 		// int x = DateHelper.getDaysBetween(d1, d2);
 		// System.out.println(x);
 	}
-
+	
+	public static String currentYear() {
+        Calendar date = Calendar.getInstance();
+        String year = String.valueOf(date.get(Calendar.YEAR));
+        return year;
+	}
+	public static String currentMonth() {
+        Calendar date = Calendar.getInstance();
+        String year = String.valueOf(date.get(Calendar.MONTH));
+        return year;
+	}
+	public static String currentDay() {
+        Calendar date = Calendar.getInstance();
+        String year = String.valueOf(date.get(Calendar.DAY_OF_MONTH));
+        return year;
+	}
+	
 	/**
 	 * 返回日期格式的字符串
 	 * 

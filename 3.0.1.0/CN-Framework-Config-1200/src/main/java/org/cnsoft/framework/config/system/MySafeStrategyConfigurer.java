@@ -3,6 +3,7 @@ package org.cnsoft.framework.config.system;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.cnsoft.framework.SystemConfig;
 import org.cnsoft.framework.cache.client.ClientBean;
 import org.cnsoft.framework.cache.request.ClientRequestHelper;
 import org.cnsoft.framework.core.SystemFailSupport;
@@ -75,10 +76,10 @@ public class MySafeStrategyConfigurer extends MyInterceptorAdapterSupport {
 			// 记录用户信息
 			{
 				ClientBean client = ClientRequestHelper.getClientBusinessSupport();
-				if(EmptyHelper.isEmpty(client))
+				if (EmptyHelper.isEmpty(client))
 					client = new ClientBean();
-				//用户识别ID
-				//-------------------------------------------------------------------
+				// 用户识别ID
+				// -------------------------------------------------------------------
 				// 用户IP地址
 				client.setClientIp(HttpRequestHelper.getClientRemoteIPAddr(request));
 				// 访问域名路径
@@ -95,7 +96,7 @@ public class MySafeStrategyConfigurer extends MyInterceptorAdapterSupport {
 					MyPageControllerSupport controller = (MyPageControllerSupport) h.getBean();
 					// 是否开始检查
 					if (controller != null) {
-						// 自动管理拦截器
+						// 自动管理拦截器-快速检测
 						if (checkPageRole(request, response)) {
 							SystemFailSupport.doRoleFail(request, response, ZERO);
 							handle = false;
@@ -110,7 +111,7 @@ public class MySafeStrategyConfigurer extends MyInterceptorAdapterSupport {
 							SystemFailSupport.doRoleFail(request, response, ZERO);
 							handle = false;
 						}
-						
+
 					}
 				} else if (h.getBean() instanceof MyControllerSupport) {
 					MyControllerSupport controller = (MyControllerSupport) h.getBean();
@@ -130,19 +131,16 @@ public class MySafeStrategyConfigurer extends MyInterceptorAdapterSupport {
 				} else {// MyTokenCommonSupport
 
 				}
-				
+
 			}
 		}
 		return handle;
 	}
 
-	// 自动接口拦截器(0关闭1开启)
-	public static String baseRole = ZERO;
-
 	private boolean checkBaseRole(HttpServletRequest request, HttpServletResponse response) {
 		// 获取接口路径
 		String currentRoleURL = request.getRequestURI().toString();
-		if (ZERO.equals(baseRole) == false) {
+		if (ZERO.equals(SystemConfig.baseRole) == false) {
 			if (currentRoleURL.startsWith("/api/1.0/base")) {
 				return true;
 			}

@@ -143,19 +143,10 @@ public class TokenServiceImpl extends TokenBusinessSupport {
 		return curUser;
 	}
 
-	//////////////////////////////////////////TOKEN校验//////////////////////////////////////////////
-	// 自动接口拦截器(0关闭1开启)
-	public static String jobIdRole = ZERO;
-
+	//TOKEN缓存前缀
+	public final static String TOKEN = "TOKEN:";
 	public boolean checkToken(HttpServletRequest request) throws Exception {
 		try {
-			String curToken = super.getToken();
-			if (EmptyHelper.isEmpty(curToken))
-				return false;
-
-			String curJobId = super.getJobId();
-			if (EmptyHelper.isEmpty(curJobId) && ONE.equals(jobIdRole))
-				return super.checkToken(request);
 			// 基于缓存中心进行校验
 			if (myCacheService != null) {
 				// 获得历史Token

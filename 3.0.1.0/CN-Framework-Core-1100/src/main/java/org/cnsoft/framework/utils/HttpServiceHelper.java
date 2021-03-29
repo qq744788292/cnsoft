@@ -125,16 +125,20 @@ public class HttpServiceHelper implements ICFrameworkConstants {
 	 * JOSN字符串形式发送参数名的常量定义
 	 */
 	public final static String POST_PARAM = "jsonData";
-
+	
 	public static String doHttpGET(String serviceURL) throws Exception {
-		return doHttpGET(serviceURL, currentHeaders);
+		return doHttpGET(serviceURL, currentHeaders, null, SYSTEM_CHARSET);
+	}
+	
+	public static String doHttpGET(String serviceURL, String defaultCharset) throws Exception {
+		return doHttpGET(serviceURL, currentHeaders, null, defaultCharset);
 	}
 
 	public static String doHttpGET(String serviceURL, Map<String, String> headers) throws Exception {
-		return doHttpGET(serviceURL, headers, null);
+		return doHttpGET(serviceURL, headers, null, SYSTEM_CHARSET);
 	}
 
-	public static String doHttpGET(String serviceURL, Map<String, String> headers, Map<String, String> cookies) throws Exception {
+	public static String doHttpGET(String serviceURL, Map<String, String> headers, Map<String, String> cookies, String defaultCharset) throws Exception {
 		logger.debug("=====>>>>>接口请求<<<<<=====" + serviceURL);
 		CloseableHttpClient httpclient = getCloseableHttpClient(serviceURL);
 		try {
@@ -167,7 +171,7 @@ public class HttpServiceHelper implements ICFrameworkConstants {
 			if (status >= 200 && status < 300) {
 				HttpEntity entity = response.getEntity();
 				if (entity != null)
-					return EntityUtils.toString(entity, SYSTEM_CHARSET);
+					return EntityUtils.toString(entity, defaultCharset);
 			} else {
 				throw new Exception("服务请求异常: " + status + ",【URL=" + serviceURL + "】");
 			}

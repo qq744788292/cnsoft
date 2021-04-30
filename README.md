@@ -8,15 +8,21 @@ java free project tools & framework
 ------- 
 
 #### 软件架构
-1. 基于Spring 3.x、MyBatis 3.x 基础框架进行二次封装，
+1. 基于Spring 5.x、MyBatis 3.x 基础框架进行二次封装，
 2. 提供业务开发自动化输出工具
 
 #### 使用说明
 1. CN-Framework-Core-1100       核心实现，包括各种工具、常量和接口
-2. CN-Framework-Config-1200     系统配置文件
+2. CN-Framework-Config-1200     系统配置文件（每个项目独立）
 3. CN-Biz-Common-2000           扩展功能，包括常用工具
 
 #### 版本日志
+3.0.1.0  2021/04/30 正式发布 <br>
+&nbsp;&nbsp;1). 全新升级到Spring Boot 2.4.x<br>
+&nbsp;&nbsp;2). 全面废弃阿里生态<br>
+&nbsp;&nbsp;3). 重构核心框架，全面支撑SAAS模式<br>
+&nbsp;&nbsp;4). 重构安全逻辑<br>
+&nbsp;&nbsp;5). 大量插件接口<br>
 2.6.3.2  2020/12/20 正式发布 <br>
 &nbsp;&nbsp;1). 优化WEB开发接口<br>
 &nbsp;&nbsp;2). 常规优化<br>

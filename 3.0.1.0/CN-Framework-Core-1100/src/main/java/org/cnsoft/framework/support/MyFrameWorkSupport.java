@@ -25,7 +25,7 @@ public class MyFrameWorkSupport extends ObjectBean implements ICFrameworkConstan
 	/**
 	 * 进程阻塞时间（分钟）
 	 */
-	protected int waitTimeMinute = 5;
+	protected int waitTimeMinute = 5000;
 
 	public void setWaitTimeMinute(int waitTimeMinute) {
 		this.waitTimeMinute = waitTimeMinute;

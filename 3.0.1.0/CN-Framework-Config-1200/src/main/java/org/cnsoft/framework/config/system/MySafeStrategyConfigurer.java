@@ -8,6 +8,7 @@ import org.cnsoft.framework.cache.client.ClientBean;
 import org.cnsoft.framework.cache.request.ClientRequestHelper;
 import org.cnsoft.framework.core.SystemFailSupport;
 import org.cnsoft.framework.log.LogDataHelper;
+import org.cnsoft.framework.saas.plugin.MySAASBusinesslogicPlugin;
 import org.cnsoft.framework.support.MyControllerSupport;
 import org.cnsoft.framework.support.MyInterceptorAdapterSupport;
 import org.cnsoft.framework.support.MyPageControllerSupport;
@@ -67,8 +68,7 @@ public class MySafeStrategyConfigurer extends MyInterceptorAdapterSupport {
 		super.addInterceptors(registry);
 	}
 
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		boolean handle = true;
 		if (handler instanceof HandlerMethod) {// 判断资源路径
 			// 记录请求开始时间
@@ -111,7 +111,11 @@ public class MySafeStrategyConfigurer extends MyInterceptorAdapterSupport {
 							SystemFailSupport.doRoleFail(request, response, ZERO);
 							handle = false;
 						}
-
+						// 必要参数验证
+						else if (MySAASBusinesslogicPlugin.requestCheck(request, response) == false) {
+							SystemFailSupport.doRoleFail(request, response, ZERO);
+							handle = false;
+						}
 					}
 				} else if (h.getBean() instanceof MyControllerSupport) {
 					MyControllerSupport controller = (MyControllerSupport) h.getBean();
@@ -125,6 +129,11 @@ public class MySafeStrategyConfigurer extends MyInterceptorAdapterSupport {
 						// 登录检测
 						else if (controller.doCheckLogin(request, response) == false) {
 							SystemFailSupport.doTokenFail(request, response, ONE);
+							handle = false;
+						}
+						// 必要参数验证
+						else if (MySAASBusinesslogicPlugin.requestCheck(request, response) == false) {
+							SystemFailSupport.doRoleFail(request, response, ZERO);
 							handle = false;
 						}
 					}
@@ -162,8 +171,7 @@ public class MySafeStrategyConfigurer extends MyInterceptorAdapterSupport {
 		return false;
 	}
 
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		if (handler instanceof HandlerMethod) {
 			try {
 				// 计算
@@ -188,8 +196,7 @@ public class MySafeStrategyConfigurer extends MyInterceptorAdapterSupport {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean doLogData(HttpServletRequest request, HttpServletResponse response, HandlerMethod handler,
-			long executeTime) throws Exception {
+	public boolean doLogData(HttpServletRequest request, HttpServletResponse response, HandlerMethod handler, long executeTime) throws Exception {
 
 		if (logger.isDebugEnabled()) {
 			System.out.println("=====请求路径=====>>>>>" + request.getRequestURL().toString());

@@ -12,7 +12,7 @@ public interface SystemParameterMapper extends ISDatabaseSupport<SystemParameter
 	/**
 	 * 数据查询
 	 * 
-	 * @param SystemParameterDBO
+	 * @param SystemDictionaryDBO
 	 * @return
 	 */
 	public List<SystemParameterDBO> doSelectData(SystemParameterDBO param);

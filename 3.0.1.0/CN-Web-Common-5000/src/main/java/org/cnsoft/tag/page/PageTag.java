@@ -52,8 +52,7 @@ public class PageTag extends AMyTagSupport {
 				int totalcount = page.getResultCount(); // 总条数
 				int totalPage = page.getPageCount(); // 总页数
 
-				StringBuilder paramStringBuilder = PageModelHelper
-						.preparePageModelFormParamBean(((HttpServletRequest) pageContext.getRequest()), page, url);
+				StringBuilder paramStringBuilder = PageModelHelper.preparePageModelFormParamBean(((HttpServletRequest) pageContext.getRequest()), page, url);
 
 				paramStringBuilder.append("&pageCurrent=");
 
@@ -63,19 +62,17 @@ public class PageTag extends AMyTagSupport {
 				sb.append("<div class=\"page_div\">");
 				sb.append("<table class=\"page_table\">");
 				sb.append("<tr class=\"pageht\">");
+				sb.append("<td style=\"width: 4px\"></td>");
 				///////////////////////////// 左侧统计///////////////////////////////////////////
 				sb.append("<td align=\"left\">");
 				sb.append("<table>");
 				sb.append("<tr class=\"pageht\">");
 				if (show.charAt(0) == '0')
-					sb.append("<td style=\"width:" + (("" + totalcount).length() * 14 + 66) + "px;\">总" + totalcount
-							+ "条记录</td>");
+					sb.append("<td style=\"width:" + (("" + totalcount).length() * 14 + 66) + "px;\">总" + totalcount + "条记录</td>");
 				if (show.charAt(1) == '0')
-					sb.append("<td style=\"width:" + (("" + totalPage).length() * 14 + 38) + "px;\">共" + totalPage
-							+ "页</td>");
+					sb.append("<td style=\"width:" + (("" + totalPage).length() * 14 + 38) + "px;\">共" + totalPage + "页</td>");
 				if (show.charAt(2) == '0')
-					sb.append("<td style=\"width:" + (("" + page.getPageLimit()).length() * 12 + 52) + "px\">每页"
-							+ page.getPageLimit() + "条</td>");
+					sb.append("<td style=\"width:" + (("" + page.getPageLimit()).length() * 12 + 52) + "px\">每页" + page.getPageLimit() + "条</td>");
 				sb.append("<td></td></tr>");
 				sb.append("</table>");
 				sb.append("</td>");
@@ -92,11 +89,9 @@ public class PageTag extends AMyTagSupport {
 				else if (totalPage > 1 && totalPage <= 5) {
 					for (int i = 1; i <= totalPage; i++) {
 						if (i == currentPage) {
-							sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('")
-									.append(url).append(paramStr).append(i).append("')\">").append(i).append("</td>");
+							sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(i).append("')\">").append(i).append("</td>");
 						} else {
-							sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url)
-									.append(paramStr).append(i).append("')\">").append(i).append("</td>");
+							sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(i).append("')\">").append(i).append("</td>");
 						}
 					}
 				}
@@ -104,73 +99,49 @@ public class PageTag extends AMyTagSupport {
 				else if (totalPage > 5) {
 					if (currentPage >= 3) {
 						// 总页数
-						sb.append("<td class=\"page_item pagesize2\" onclick=\"parent.showPageForm('").append(url)
-								.append(paramStr).append("1").append("')\" >").append("首页").append("</td>");
-						sb.append("<td class=\"page_item pagesize2\" onclick=\"parent.showPageForm('").append(url)
-								.append(paramStr).append(currentPage - 1).append("')\" >").append("上一页")
-								.append("</td>");
+						sb.append("<td class=\"page_item pagesize2\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append("1").append("')\" >").append("首页").append("</td>");
+						sb.append("<td class=\"page_item pagesize2\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(currentPage - 1).append("')\" >").append("上一页").append("</td>");
 						int gap = totalPage - currentPage; // 当前页与尾页的距离
 						if (gap >= 2) { // 23 4 56
 							for (int i = currentPage - 2; i < currentPage; i++) {
-								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url)
-										.append(paramStr).append(i).append("')\">").append(i).append("</td>");
+								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(i).append("')\">").append(i).append("</td>");
 							}
-							sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('")
-									.append(url).append(paramStr).append(currentPage).append("')\">")
-									.append(currentPage).append("</td>");
+							sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(currentPage).append("')\">").append(currentPage).append("</td>");
 							for (int i = currentPage + 1; i <= currentPage + 2; i++) {
-								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url)
-										.append(paramStr).append(i).append("')\">").append(i).append("</td>");
+								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(i).append("')\">").append(i).append("</td>");
 							}
 						} else if (gap == 0) { // 3456 7
 							for (int i = currentPage - 4; i < currentPage; i++) {
-								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url)
-										.append(paramStr).append(i).append("')\">").append(i).append("</td>");
+								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(i).append("')\">").append(i).append("</td>");
 							}
-							sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('")
-									.append(url).append(paramStr).append(currentPage).append("')\">")
-									.append(currentPage).append("</td>");
+							sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(currentPage).append("')\">").append(currentPage).append("</td>");
 						} else if (gap == 1) { // 345 6 7
 							for (int i = currentPage - 3; i < currentPage; i++) {
-								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url)
-										.append(paramStr).append(i).append("')\">").append(i).append("</td>");
+								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(i).append("')\">").append(i).append("</td>");
 							}
 
-							sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('")
-									.append(url).append(paramStr).append(currentPage).append("')\">")
-									.append(currentPage).append("</td>");
-							sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url)
-									.append(paramStr).append(currentPage + 1).append("')\">").append(currentPage + 1)
-									.append("</td>");
+							sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(currentPage).append("')\">").append(currentPage).append("</td>");
+							sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(currentPage + 1).append("')\">").append(currentPage + 1).append("</td>");
 						}
 
 						if (currentPage != totalPage) {
-							sb.append("<td class=\"page_item pagesize3\" onclick=\"parent.showPageForm('").append(url)
-									.append(paramStr).append(currentPage + 1).append("')\" >").append("下一页")
-									.append("</td>");
+							sb.append("<td class=\"page_item pagesize3\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(currentPage + 1).append("')\" >").append("下一页").append("</td>");
 						}
-						sb.append("<td class=\"page_item pagesize2\" onclick=\"parent.showPageForm('").append(url)
-								.append(paramStr).append(totalPage).append("')\" >").append("尾页").append("</td>");
+						sb.append("<td class=\"page_item pagesize2\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(totalPage).append("')\" >").append("尾页").append("</td>");
 					}
 					// 总页数>5 但当前页在第1或者2页
 					else if (currentPage < 3) {
 						for (int i = 1; i <= 5; i++) {
 							if (i == currentPage) {
-								sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('")
-										.append(url).append(paramStr).append(i).append("')\">").append(i)
-										.append("</td>");
+								sb.append("<td class=\"page_item page_item_select\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(i).append("')\">").append(i).append("</td>");
 							} else {
-								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url)
-										.append(paramStr).append(i).append("')\">").append(i).append("</td>");
+								sb.append("<td class=\"page_item\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(i).append("')\">").append(i).append("</td>");
 							}
 						}
 						if (currentPage != totalPage) {
-							sb.append("<td class=\"page_item pagesize3\" onclick=\"parent.showPageForm('").append(url)
-									.append(paramStr).append(currentPage + 1).append("')\" >").append("下一页")
-									.append("</td>");
+							sb.append("<td class=\"page_item pagesize3\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(currentPage + 1).append("')\" >").append("下一页").append("</td>");
 						}
-						sb.append("<td class=\"page_item pagesize2\" onclick=\"parent.showPageForm('").append(url)
-								.append(paramStr).append(totalPage).append("')\" >").append("尾页").append("</td>");
+						sb.append("<td class=\"page_item pagesize2\" onclick=\"parent.showPageForm('").append(url).append(paramStr).append(totalPage).append("')\" >").append("尾页").append("</td>");
 					}
 				}
 
@@ -178,11 +149,9 @@ public class PageTag extends AMyTagSupport {
 				if (page.currentResultCountFlag() && totalPage > 5 && show.charAt(3) == '0') {
 					sb.append("<td style=\"width:10px;\"></td>");
 
-					sb.append(
-							"<td style=\"width: 42px;\"><input class=\"form-control\" id=\"_jumpPageInput_\" type=\"text\"></td>");
+					sb.append("<td style=\"width: 42px;\"><input class=\"form-control\" id=\"_jumpPageInput_\" type=\"text\"></td>");
 					sb.append("<td style=\"width: 10px;\"></td>");
-					sb.append(
-							"<td style=\"width: 34px;\"><input class=\"btn btn-default\" type=\"button\" onclick=\"_doJumpPage_()\" value=\"跳转\"></td>");
+					sb.append("<td style=\"width: 34px;\"><input class=\"btn btn-default\" type=\"button\" onclick=\"_doJumpPage_()\" value=\"跳转\"></td>");
 					sb.append("<td style=\"width: 10px;\"></td>");
 					sb.append("\r\n");
 					sb.append("<script type=\"text/javascript\">");
@@ -198,6 +167,7 @@ public class PageTag extends AMyTagSupport {
 
 				sb.append("</tr>");
 				sb.append("</table>");
+				sb.append("<td style=\"width: 4px\"></td>");
 				sb.append("</td>");
 				sb.append("</tr>");
 				sb.append("</table>");

@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 import org.cnsoft.framework.beans.common.RESTResultBean;
 import org.cnsoft.framework.support.MyFrameWorkSupport;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 爬虫基类
@@ -16,7 +14,6 @@ import org.slf4j.LoggerFactory;
  * @see
  */
 public abstract class ACrawlerServiceSupport<T, E> extends MyFrameWorkSupport {
-	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public static final String CrawlerService_KEY = "Crawler:";
 

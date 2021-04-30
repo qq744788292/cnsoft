@@ -15,11 +15,7 @@
     <dependencies>
     	<dependency>
     		<groupId>CN-Soft</groupId>
-    		<artifactId>CN-Framework-Core</artifactId>
-    	</dependency>
-    	<dependency>
-    		<groupId>CN-Soft</groupId>
-    		<artifactId>CN-Framework-Config</artifactId>
+    		<artifactId>CN-Biz-Common</artifactId>
     	</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>

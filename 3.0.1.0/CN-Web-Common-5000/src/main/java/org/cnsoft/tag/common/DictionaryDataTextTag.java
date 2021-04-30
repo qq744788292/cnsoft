@@ -6,8 +6,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.Tag;
 
-import org.cnsoft.framework.beans.MyBeanFactoryHelper;
-import org.cnsoft.framework.utils.EmptyHelper;
 import org.cnsoft.tag.AMyTagSupport;
 
 /**
@@ -17,7 +15,7 @@ import org.cnsoft.tag.AMyTagSupport;
  * @version 0.1.0 2018/2/8
  * @since 0.1.0 2018/2/8
  */
-public class ConfigDataTextTag extends AMyTagSupport {
+public class DictionaryDataTextTag extends AMyTagSupport {
 
 	private static final long serialVersionUID = 4070563013716274089L;
 

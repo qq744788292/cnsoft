@@ -47,6 +47,8 @@ public class TdInputTag extends AMyTagSupport {
 			sb.append(" class=\"form-control\"");
 			if (EmptyHelper.isNotEmpty(dis))
 				sb.append(" disabled");
+			if (EmptyHelper.isNotEmpty(read))
+				sb.append(" readonly");
 			sb.append(" name=\"" + name + "\"");
 			sb.append(" value=\"" + value + "\" />");
 			// 结尾
@@ -71,6 +73,15 @@ public class TdInputTag extends AMyTagSupport {
 	private String style;
 	private String tip = EMPTY;
 	private String dis = EMPTY;
+	private String read = EMPTY;
+	
+	public String getRead() {
+		return read;
+	}
+
+	public void setRead(String read) {
+		this.read = read;
+	}
 
 	public String getTdclazz() {
 		return tdclazz;

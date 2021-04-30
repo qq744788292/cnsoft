@@ -9,13 +9,14 @@ import org.cnsoft.framework.db.ISDatabaseSupport;
 import org.cnsoft.framework.db.page.PageModel;
 import org.cnsoft.framework.log.LogDataHelper;
 import org.cnsoft.framework.mybatis.ISDataSourceName;
+import org.cnsoft.framework.saas.plugin.MySAASBusinesslogicPlugin;
 import org.cnsoft.framework.utils.EmptyHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 数据持久层操作超类
+ * 数据DAO操作超类
  * 
  * @author CNSoft
  * @version 2.0.0 2018/10/10
@@ -67,6 +68,9 @@ public abstract class ADataBaseOperateSupport<T> implements ISLoginer, ISDataSou
 		// 补充删除标记
 		if (ddd)
 			((ADataBaseDefaultSupportBean) formParamPageModel.getFormParamBean()).prepareDeleteFlag(1);
+		// SAAS模式
+		MySAASBusinesslogicPlugin.sqlHandle((ADataBaseDefaultSupportBean) formParamPageModel.getFormParamBean());
+		
 		// 默认排序
 //		if (EmptyHelper.isEmpty(formParamPageModel.getOrderby()))
 //			formParamPageModel.setOrderbyIdDESC();
@@ -93,7 +97,11 @@ public abstract class ADataBaseOperateSupport<T> implements ISLoginer, ISDataSou
 	 * @return
 	 */
 	public List<T> doSelectData(ADataBaseDefaultSupportBean formParamBean, int ddd) {
+		// 删除标记
 		formParamBean.prepareDeleteFlag(ddd);
+		// SAAS模式
+		MySAASBusinesslogicPlugin.sqlHandle(formParamBean);
+		
 		return getMapper().doSelectPage(formParamBean);
 	}
 
@@ -104,6 +112,8 @@ public abstract class ADataBaseOperateSupport<T> implements ISLoginer, ISDataSou
 	public int toDelete(ADataBaseDefaultSupportBean formParamBean) {
 		// 更新者、更新时间
 		formParamBean.prepareUpdator(2, dataLock);
+		// SAAS模式
+		MySAASBusinesslogicPlugin.sqlHandle(formParamBean);
 
 		return getMapper().toDelete(formParamBean);
 	}
@@ -115,6 +125,9 @@ public abstract class ADataBaseOperateSupport<T> implements ISLoginer, ISDataSou
 	 * @return
 	 */
 	public int doDelete(ADataBaseDefaultSupportBean formParamBean) {
+		// SAAS模式
+		MySAASBusinesslogicPlugin.sqlHandle(formParamBean);
+		
 		return getMapper().doDelete(formParamBean);
 	}
 
@@ -308,6 +321,8 @@ public abstract class ADataBaseOperateSupport<T> implements ISLoginer, ISDataSou
 
 		// 补充删除标记
 		formParamBean.prepareDeleteFlag(1);
+		// SAAS模式
+		MySAASBusinesslogicPlugin.sqlHandle(formParamBean);
 
 		// 日志输出
 		LogDataHelper.saveLog("MyDataBaseOperateSupport.doInsert=>" + formParamBean.getClass().getSimpleName(), formParamBean);
@@ -335,6 +350,8 @@ public abstract class ADataBaseOperateSupport<T> implements ISLoginer, ISDataSou
 	public int doUpdate(ADataBaseDefaultSupportBean formParamBean, int intercept, boolean lock) {
 		// 更新者、更新时间
 		formParamBean.prepareUpdator(intercept, lock);
+		// SAAS模式
+		MySAASBusinesslogicPlugin.sqlHandle(formParamBean);
 
 		return getMapper().doUpdate(formParamBean);
 	}
@@ -350,6 +367,8 @@ public abstract class ADataBaseOperateSupport<T> implements ISLoginer, ISDataSou
 	public void doUpdateAll(ADataBaseDefaultSupportBean formParamBean, int intercept, boolean lock) {
 		// 更新者、更新时间
 		formParamBean.prepareUpdator(intercept, lock);
+		// SAAS模式
+		MySAASBusinesslogicPlugin.sqlHandle(formParamBean);
 
 		getMapper().doUpdateAll(formParamBean);
 	}
@@ -410,10 +429,12 @@ public abstract class ADataBaseOperateSupport<T> implements ISLoginer, ISDataSou
 	 * @return
 	 */
 	public T doRead(ADataBaseDefaultSupportBean formParamBean, boolean ddd) {
-
 		// 补充删除标记
 		if (ddd)
 			formParamBean.prepareDeleteFlag(1);
+		// SAAS模式
+		MySAASBusinesslogicPlugin.sqlHandle(formParamBean);
+		
 		return getMapper().doRead(formParamBean);
 	}
 
@@ -425,9 +446,11 @@ public abstract class ADataBaseOperateSupport<T> implements ISLoginer, ISDataSou
 	 * @return
 	 */
 	public T doRead(ADataBaseDefaultSupportBean formParamBean, int flag) {
-
 		// 补充删除标记
 		formParamBean.prepareDeleteFlag(flag);
+		// SAAS模式
+		MySAASBusinesslogicPlugin.sqlHandle(formParamBean);
+		
 		return getMapper().doRead(formParamBean);
 	}
 }

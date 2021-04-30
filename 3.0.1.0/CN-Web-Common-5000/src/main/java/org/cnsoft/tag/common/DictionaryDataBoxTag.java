@@ -1,12 +1,17 @@
 package org.cnsoft.tag.common;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.Tag;
 
+import org.cnsoft.common.cache.SystemDictionaryCacheService;
+import org.cnsoft.framework.beans.MyBeanFactoryHelper;
+import org.cnsoft.framework.beans.common.KeyValueBean;
 import org.cnsoft.framework.utils.EmptyHelper;
+import org.cnsoft.persistent.common.SystemDictionary.SystemDictionaryDBO;
 import org.cnsoft.tag.AMyTagSupport;
 
 /**
@@ -16,7 +21,7 @@ import org.cnsoft.tag.AMyTagSupport;
  * @version 0.1.0 2018/2/8
  * @since 0.1.0 2018/2/8
  */
-public class ConfigDataBoxTag extends AMyTagSupport {
+public class DictionaryDataBoxTag extends AMyTagSupport {
 
 	private static final long serialVersionUID = 4070563013716274089L;// 缓存
 
@@ -79,48 +84,41 @@ public class ConfigDataBoxTag extends AMyTagSupport {
 			if (EmptyHelper.isNotEmpty(firstOption)) {
 				sb.append("<option value>").append(firstOption).append("</option>");
 			}
-			// 缓存
-			// 直接从数据库里读取
-//			if (TAG_PARAMETER.equals(tableName)) {
-//				ASystemDataCacheSupport<SystemParameterDBO> SystemParameterService_ = MyBeanFactoryHelper.getBean(SystemParameterCacheService.class);
-//				SystemParameterDBO configDate = new SystemParameterDBO();
-//				configDate.setType(type);
-//				configDate.setDelFlag(ZERO);
-//				List<SystemParameterDBO> configDatas = SystemParameterService_.getDatasFromDB(1, configDate);
-//
-//				for (SystemParameterDBO item : configDatas) {
-//					sb.append("<option");
-//					// 默认数据
-//					{
-//						sb.append(" value=\"" + item.getKey());
-//						sb.append("\"");
-//						if (item.getKey().equals(value))
-//							sb.append(" selected ");
-//						sb.append(">");
-//					}
-//					sb.append(item.getValue());
-//					sb.append("</option>");
-//				}
-//			} else if (TAG_CLASSIFY.equals(tableName)) {
-//				ASystemDataCacheSupport<SystemClassifyDBO> SystemClassifyService_ = MyBeanFactoryHelper
-//						.getBean(SystemClassifyCacheService.class);
-//				SystemClassifyDBO systemClassifyDBO = new SystemClassifyDBO();
-//				systemClassifyDBO.setDelFlag(ZERO);
-//				List<SystemClassifyDBO> configDatas = SystemClassifyService_.loadCacheDatas(1, true, systemClassifyDBO);
-//				for (SystemClassifyDBO item : configDatas) {
-//					sb.append("<option");
-//					// 默认数据
-//					{
-//						sb.append(" value=\"" + item.getId());
-//						sb.append("\"");
-//						if (item.getId().equals(value))
-//							sb.append(" selected ");
-//						sb.append(">");
-//					}
-//					sb.append(item.getClassifyName());
-//					sb.append("</option>");
-//				}
-//			}
+			
+			if (EmptyHelper.isNotEmpty(options)) {
+				for (KeyValueBean item : options) {
+					sb.append("<option");
+					// 默认数据
+					{
+						sb.append(" value=\"" + item.getKey());
+						sb.append("\"");
+						if (item.getKey().equals(value))
+							sb.append(" selected ");
+						sb.append(">");
+					}
+					sb.append(item.getValue());
+					sb.append("</option>");
+				}
+			}else if (EmptyHelper.isNotEmpty(dicType)) {
+				//寻找数据字典配置
+				SystemDictionaryCacheService sdc = MyBeanFactoryHelper.getBean(SystemDictionaryCacheService.class);
+				List<SystemDictionaryDBO> loadDictionariess = sdc.loadDictionariess(true, dicType);
+				if (EmptyHelper.isNotEmpty(loadDictionariess)) {
+					for (SystemDictionaryDBO item : loadDictionariess) {
+						sb.append("<option");
+						// 默认数据
+						{
+							sb.append(" value=\"" + item.getKey());
+							sb.append("\"");
+							if (item.getKey().equals(value))
+								sb.append(" selected ");
+							sb.append(">");
+						}
+						sb.append(item.getValue());
+						sb.append("</option>");
+					}
+				}
+			}
 
 			sb.append("</select>");
 
@@ -128,7 +126,7 @@ public class ConfigDataBoxTag extends AMyTagSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
-				out.write("<span>ConfigDataTag标签渲染出错，请配置数据字典</span>");
+				out.write("<span>ConfigDataBoxTag标签渲染出错，请配置数据字典场所options</span>");
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -140,15 +138,38 @@ public class ConfigDataBoxTag extends AMyTagSupport {
 
 	/////////////////////////////////////////////////////////////////////////////
 	private String onclick;
+	private String value = EMPTY;
 	private String onchange;
 	private String clazz;
 	private String style;
 	private String name;
 	private String firstOption;
-	private String tableName;
-	private String type;
-	private String value;
+	private String dicType;
+	private List<KeyValueBean> options;
 
+	public String getClazz() {
+		return clazz;
+	}
+
+	public void setClazz(String clazz) {
+		this.clazz = clazz;
+	}
+
+	public String getDicType() {
+		return dicType;
+	}
+
+	public void setDicType(String dicType) {
+		this.dicType = dicType;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
 	public String getOnclick() {
 		return onclick;
 	}
@@ -163,14 +184,6 @@ public class ConfigDataBoxTag extends AMyTagSupport {
 
 	public void setOnchange(String onchange) {
 		this.onchange = onchange;
-	}
-
-	public String getClazz() {
-		return clazz;
-	}
-
-	public void setClazz(String clazz) {
-		this.clazz = clazz;
 	}
 
 	public String getStyle() {
@@ -197,28 +210,12 @@ public class ConfigDataBoxTag extends AMyTagSupport {
 		this.firstOption = firstOption;
 	}
 
-	public String getTableName() {
-		return tableName;
+	public List<KeyValueBean> getOptions() {
+		return options;
 	}
 
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
+	public void setOptions(List<KeyValueBean> options) {
+		this.options = options;
 	}
 
 }

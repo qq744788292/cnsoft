@@ -66,7 +66,7 @@ public class HttpServiceHelper implements ICFrameworkConstants {
 	}
 
 	private static Logger logger = LoggerFactory.getLogger(HttpServiceHelper.class);
-	public static int waitTimeMinute = 15;
+	public static int waitTimeMinute = 60;
 
 	public static int getWaitTimeMinute() {
 		return waitTimeMinute;

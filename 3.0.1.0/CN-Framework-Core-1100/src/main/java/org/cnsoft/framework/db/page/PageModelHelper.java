@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.cnsoft.framework.utils.EmptyHelper;
 
 /**
  * 分页数据参数转换
@@ -20,7 +21,7 @@ public class PageModelHelper {
 		StringBuilder stb = new StringBuilder();
 		try {
 			// 梳理请求参数
-			Map<String,String> param = BeanUtils.describe(pageModel.currentFormParamBean());
+			Map<String, String> param = BeanUtils.describe(pageModel.currentFormParamBean());
 
 			// 补全判断
 			if (requestURI.indexOf('?') > 0) {
@@ -39,10 +40,12 @@ public class PageModelHelper {
 
 			// 不全请求参数
 			for (Entry<String, String> entry : param.entrySet()) {
-				if ("orderby".equals(entry.getKey()) || "pageCurrent".equals(entry.getKey()) || "pageLimit".equals(entry.getKey()))
-					continue;
-				// 整理参数
-				stb.append("&").append(entry.getKey()).append("=").append(entry.getValue());
+				if (EmptyHelper.isNotEmpty(entry.getValue())) {
+					if ("token".equals(entry.getKey()) || "orderby".equals(entry.getKey()) || "pageCurrent".equals(entry.getKey()) || "pageLimit".equals(entry.getKey()))
+						continue;
+					// 整理参数
+					stb.append("&").append(entry.getKey()).append("=").append(entry.getValue());
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
